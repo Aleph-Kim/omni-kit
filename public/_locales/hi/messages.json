@@ -6,7 +6,7 @@
     "message": "OmniKit"
   },
   "appDesc": {
-    "message": "रोज़ काम आने वाले ब्राउज़र टूल एक ही जगह। शुरुआत बुकमार्क शॉर्टकट से: Option या Alt+Shift और एक नंबर दबाकर पसंदीदा बुकमार्क खोलें।"
+    "message": "रोज़ के ब्राउज़र टूल एक जगह: चुने हुए हिस्से, दिखने वाले हिस्से या पूरे पेज का स्क्रीनशॉट और नंबर से बुकमार्क खोलने के शॉर्टकट।"
   },
   "actionTitle": {
     "message": "OmniKit खोलें"
@@ -70,6 +70,94 @@
   },
   "clearSlot": {
     "message": "स्लॉट $N$ खाली करें",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "captureTitle": {
+    "message": "कैप्चर"
+  },
+  "screenshot": {
+    "message": "स्क्रीनशॉट"
+  },
+  "shotArea": {
+    "message": "चुना हुआ हिस्सा"
+  },
+  "shotVisible": {
+    "message": "दिखने वाला हिस्सा"
+  },
+  "shotFullPage": {
+    "message": "पूरा पेज"
+  },
+  "captureUnavailable": {
+    "message": "यह पेज कैप्चर नहीं किया जा सकता"
+  },
+  "captureLimited": {
+    "message": "इस पेज पर सिर्फ़ दिखने वाला हिस्सा कैप्चर किया जा सकता है"
+  },
+  "menuCapture": {
+    "message": "OmniKit कैप्चर"
+  },
+  "capturing": {
+    "message": "कैप्चर हो रहा है ($N$/$M$)",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      },
+      "m": {
+        "content": "$2",
+        "example": "12"
+      }
+    }
+  },
+  "editorTitle": {
+    "message": "OmniKit कैप्चर"
+  },
+  "download": {
+    "message": "डाउनलोड करें"
+  },
+  "copy": {
+    "message": "कॉपी करें"
+  },
+  "copied": {
+    "message": "कॉपी हो गया"
+  },
+  "openInNewTab": {
+    "message": "नए टैब में खोलें"
+  },
+  "exportTitle": {
+    "message": "एक्सपोर्ट"
+  },
+  "format": {
+    "message": "फ़ॉर्मैट"
+  },
+  "resolution": {
+    "message": "रिज़ॉल्यूशन"
+  },
+  "original": {
+    "message": "मूल"
+  },
+  "captureMissing": {
+    "message": "कैप्चर नहीं मिला"
+  },
+  "pageSplit": {
+    "message": "पेज लंबा है, इसलिए इसे $N$ इमेज में बांटा गया",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "pageTruncated": {
+    "message": "पेज बहुत लंबा है, इसलिए सिर्फ़ ऊपर का हिस्सा कैप्चर हुआ"
+  },
+  "partLabel": {
+    "message": "इमेज $N$",
     "placeholders": {
       "n": {
         "content": "$1",

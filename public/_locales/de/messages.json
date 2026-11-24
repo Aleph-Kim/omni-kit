@@ -6,7 +6,7 @@
     "message": "OmniKit"
   },
   "appDesc": {
-    "message": "Browser-Tools für jeden Tag an einem Ort. Zuerst Lesezeichen-Kürzel: Öffne Lesezeichen mit Option oder Alt+Umschalt und einer Zahl."
+    "message": "Browser-Tools für jeden Tag: Screenshots von Bereich, sichtbarem Teil oder ganzer Seite und Lesezeichen-Kürzel mit Zahlentasten."
   },
   "actionTitle": {
     "message": "OmniKit öffnen"
@@ -70,6 +70,94 @@
   },
   "clearSlot": {
     "message": "Platz $N$ leeren",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "captureTitle": {
+    "message": "Aufnahme"
+  },
+  "screenshot": {
+    "message": "Screenshot"
+  },
+  "shotArea": {
+    "message": "Ausgewählter Bereich"
+  },
+  "shotVisible": {
+    "message": "Sichtbarer Bereich"
+  },
+  "shotFullPage": {
+    "message": "Ganze Seite"
+  },
+  "captureUnavailable": {
+    "message": "Diese Seite kann nicht aufgenommen werden"
+  },
+  "captureLimited": {
+    "message": "Auf dieser Seite kann nur der sichtbare Bereich aufgenommen werden"
+  },
+  "menuCapture": {
+    "message": "OmniKit-Aufnahme"
+  },
+  "capturing": {
+    "message": "Aufnahme läuft ($N$/$M$)",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      },
+      "m": {
+        "content": "$2",
+        "example": "12"
+      }
+    }
+  },
+  "editorTitle": {
+    "message": "OmniKit-Aufnahme"
+  },
+  "download": {
+    "message": "Herunterladen"
+  },
+  "copy": {
+    "message": "Kopieren"
+  },
+  "copied": {
+    "message": "Kopiert"
+  },
+  "openInNewTab": {
+    "message": "In neuem Tab öffnen"
+  },
+  "exportTitle": {
+    "message": "Exportieren"
+  },
+  "format": {
+    "message": "Format"
+  },
+  "resolution": {
+    "message": "Auflösung"
+  },
+  "original": {
+    "message": "Original"
+  },
+  "captureMissing": {
+    "message": "Aufnahme nicht gefunden"
+  },
+  "pageSplit": {
+    "message": "Die Seite ist lang und wurde in $N$ Bilder geteilt",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "pageTruncated": {
+    "message": "Die Seite ist zu lang, nur der obere Teil wurde aufgenommen"
+  },
+  "partLabel": {
+    "message": "Bild $N$",
     "placeholders": {
       "n": {
         "content": "$1",

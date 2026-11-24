@@ -6,7 +6,7 @@
     "message": "OmniKit"
   },
   "appDesc": {
-    "message": "أدوات المتصفح اليومية في مكان واحد. البداية مع اختصارات الإشارات المرجعية: افتح إشاراتك المفضلة بـ Option أو Alt+Shift ورقم."
+    "message": "أدوات المتصفح اليومية في مكان واحد: لقطات شاشة لمنطقة محددة أو الجزء المرئي أو الصفحة كاملة، واختصارات للإشارات المرجعية بالأرقام."
   },
   "actionTitle": {
     "message": "فتح OmniKit"
@@ -70,6 +70,94 @@
   },
   "clearSlot": {
     "message": "إفراغ الخانة $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "captureTitle": {
+    "message": "التقاط"
+  },
+  "screenshot": {
+    "message": "لقطة شاشة"
+  },
+  "shotArea": {
+    "message": "المنطقة المحددة"
+  },
+  "shotVisible": {
+    "message": "الجزء المرئي"
+  },
+  "shotFullPage": {
+    "message": "الصفحة كاملة"
+  },
+  "captureUnavailable": {
+    "message": "لا يمكن التقاط هذه الصفحة"
+  },
+  "captureLimited": {
+    "message": "يمكن التقاط الجزء المرئي فقط في هذه الصفحة"
+  },
+  "menuCapture": {
+    "message": "التقاط OmniKit"
+  },
+  "capturing": {
+    "message": "جارٍ الالتقاط ($N$/$M$)",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      },
+      "m": {
+        "content": "$2",
+        "example": "12"
+      }
+    }
+  },
+  "editorTitle": {
+    "message": "التقاط OmniKit"
+  },
+  "download": {
+    "message": "تنزيل"
+  },
+  "copy": {
+    "message": "نسخ"
+  },
+  "copied": {
+    "message": "تم النسخ"
+  },
+  "openInNewTab": {
+    "message": "فتح في علامة تبويب جديدة"
+  },
+  "exportTitle": {
+    "message": "تصدير"
+  },
+  "format": {
+    "message": "التنسيق"
+  },
+  "resolution": {
+    "message": "الدقة"
+  },
+  "original": {
+    "message": "الأصلي"
+  },
+  "captureMissing": {
+    "message": "لم يتم العثور على اللقطة"
+  },
+  "pageSplit": {
+    "message": "الصفحة طويلة لذا قُسمت إلى $N$ صور",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "pageTruncated": {
+    "message": "الصفحة طويلة جدًا لذا التُقط الجزء العلوي فقط"
+  },
+  "partLabel": {
+    "message": "الصورة $N$",
     "placeholders": {
       "n": {
         "content": "$1",

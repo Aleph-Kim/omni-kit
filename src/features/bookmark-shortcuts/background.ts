@@ -1,3 +1,4 @@
+import { flashBadge } from '../../badge'
 import { loadBarBookmarkIds, loadSlots, slotIndexFromCommand } from './slots'
 
 export async function openBookmarkSlot(command: string) {
@@ -51,13 +52,4 @@ async function bookmarkUrl(id: string): Promise<string | null> {
     // 연결 후 삭제된 북마크
     return null
   }
-}
-
-/**
- * 빈 칸이나 열 수 없는 북마크일 때 아이콘 배지로 알림
- */
-async function flashBadge() {
-  await chrome.action.setBadgeBackgroundColor({ color: '#ff3b30' })
-  await chrome.action.setBadgeText({ text: '!' })
-  setTimeout(() => chrome.action.setBadgeText({ text: '' }), 1500)
 }

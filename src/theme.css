@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light dark;
+  /* 애플 iOS 시스템 색 (그룹 목록 배경, 셀, 라벨) */
+  --ok-label: light-dark(#000, #fff);
+  --ok-label-2: light-dark(rgb(60 60 67 / 0.6), rgb(235 235 245 / 0.6));
+  --ok-label-3: light-dark(rgb(60 60 67 / 0.3), rgb(235 235 245 / 0.3));
+  --ok-fill: light-dark(rgb(118 118 128 / 0.12), rgb(118 118 128 / 0.24));
+  --ok-bg: light-dark(#f2f2f7, #000);
+  --ok-cell: light-dark(#fff, #1c1c1e);
+  --ok-accent: light-dark(#007aff, #0a84ff);
+  --ok-destructive: light-dark(#ff3b30, #ff453a);
+  --ok-on-accent: light-dark(#fff, #fff);
+}
+
+body {
+  margin: 0;
+  background: var(--ok-bg);
+  color: var(--ok-label);
+  font-family: -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+  font-size: 14px;
+}
+
+/* 버튼, 선택 상자, 검색창 지우기 버튼에 기본 화살표 커서 대신 손가락 커서 */
+button,
+select,
+input[type='search']::-webkit-search-cancel-button {
+  cursor: pointer;
+}
+
+/* macOS 스크롤바처럼 가늘고 둥근 막대 */
+.ok-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.ok-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ok-scroll::-webkit-scrollbar-thumb {
+  border: 3px solid transparent;
+  border-radius: 999px;
+  background: var(--ok-label-3) padding-box;
+}

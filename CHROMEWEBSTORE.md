@@ -11,6 +11,7 @@
 - [x] 스크린샷 2장 (1280x800), `store-assets/`에 저장
 - [x] 개인정보처리방침을 구글 문서로 만들고 링크 공유(링크가 있는 모든 사용자 보기) 후 주소 채우기
 - [x] 게시자 이름과 공개 연락 이메일 채우기 (둘 다 dev.aleph.kim@gmail.com)
+- [ ] 캡처 기능을 넣은 다음 버전 제출 전: 설명, 스크린샷, 전용 목적, 사용자 데이터, 개인정보처리방침을 `CAPTURE-PLAN.md`의 "나중에 같이 고칠 문서"대로 고치기 (권한 사유는 3-2에 반영함)
 
 ## 준비물
 
@@ -326,7 +327,9 @@ OmniKit opens the user's chosen bookmarks with keyboard shortcuts.
 
 ### 3-2. 권한 사유 (Permission justification)
 
-권한 이름이 적힌 칸마다 붙여 넣기. 호스트 권한과 콘텐츠 스크립트는 없어서 해당 칸도 없음
+권한 이름이 적힌 칸마다 붙여 넣기. 호스트 권한과 manifest에 적은 콘텐츠 스크립트는 없어서 해당 칸도 없음
+
+`activeTab`, `scripting`, `contextMenus` 칸과 `tabs`, `storage` 칸의 캡처 문장은 캡처 기능을 넣은 다음 버전부터 해당 (1.0.1에는 없음)
 
 **bookmarks** 칸
 
@@ -337,7 +340,7 @@ Reads the user's bookmarks so a keyboard shortcut can open the bookmark linked t
 **tabs** 칸
 
 ```
-Reads the addresses of open tabs only when a shortcut is pressed, to switch to a tab that already shows the same page instead of opening a duplicate. This must check tabs in every window, so activeTab, which only covers the current tab after a click, cannot replace it. Tab addresses are not stored or sent anywhere.
+Reads the addresses of open tabs only when a shortcut is pressed, to switch to a tab that already shows the same page instead of opening a duplicate. This must check tabs in every window, so activeTab, which only covers the current tab after a click, cannot replace it. It also reads the current tab's address when the popup opens, to turn off capture options on pages where Chrome does not let extensions capture. Tab addresses are not stored or sent anywhere.
 ```
 
 **favicon** 칸
@@ -349,7 +352,25 @@ Shows each site's icon next to its bookmark in the popup, using the icons Chrome
 **storage** 칸
 
 ```
-Saves which bookmark the user linked to each shortcut slot in chrome.storage.local. Nothing is sent off the device.
+Saves which bookmark the user linked to each shortcut slot in chrome.storage.local, and, while a screenshot editor tab is open, which screenshot that tab shows in chrome.storage.session. Nothing is sent off the device.
+```
+
+**activeTab** 칸
+
+```
+Captures a screenshot of the tab the user is viewing, only after the user clicks a capture option in the popup or the right-click menu. Access is limited to that one tab and ends when the tab moves to another site.
+```
+
+**scripting** 칸
+
+```
+Adds the area-selection overlay and scrolls the page for full-page screenshots on the tab the user chose to capture. No script runs on any page until the user starts a capture.
+```
+
+**contextMenus** 칸
+
+```
+Adds capture options (selected area, visible part, full page) to the right-click menu.
 ```
 
 ### 3-3. 원격 코드 (Remote code)
@@ -458,3 +479,4 @@ dev.aleph.kim@gmail.com
 
 - 기본 단축키는 크롬 제한으로 1~4번 칸만 지정, 5~9번은 사용자가 직접 지정
 - `tabs` 권한은 `activeTab`으로 대체 가능한지 물을 수 있음, 모든 창의 열린 탭을 찾아야 해서 대체 불가 (권한 사유에 포함)
+- 캡처는 호스트 권한(`<all_urls>`) 없이 `activeTab`만 사용, 다운로드와 클립보드 권한 대신 편집 화면에서 웹 표준 다운로드 링크와 복사 기능 사용

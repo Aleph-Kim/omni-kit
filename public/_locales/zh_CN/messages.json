@@ -6,7 +6,7 @@
     "message": "OmniKit"
   },
   "appDesc": {
-    "message": "常用浏览器工具合集。首个功能是书签快捷键：按 Option 或 Alt+Shift 加数字即可打开常用书签。"
+    "message": "常用浏览器工具合集：选定区域、可见部分、整个页面截图，以及用数字键打开书签的快捷键。"
   },
   "actionTitle": {
     "message": "打开 OmniKit"
@@ -70,6 +70,94 @@
   },
   "clearSlot": {
     "message": "清除槽位 $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "captureTitle": {
+    "message": "截取"
+  },
+  "screenshot": {
+    "message": "截图"
+  },
+  "shotArea": {
+    "message": "选定区域"
+  },
+  "shotVisible": {
+    "message": "可见部分"
+  },
+  "shotFullPage": {
+    "message": "整个页面"
+  },
+  "captureUnavailable": {
+    "message": "此页面无法截取"
+  },
+  "captureLimited": {
+    "message": "此页面只能截取可见部分"
+  },
+  "menuCapture": {
+    "message": "OmniKit 截取"
+  },
+  "capturing": {
+    "message": "正在截取 ($N$/$M$)",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      },
+      "m": {
+        "content": "$2",
+        "example": "12"
+      }
+    }
+  },
+  "editorTitle": {
+    "message": "OmniKit 截取"
+  },
+  "download": {
+    "message": "下载"
+  },
+  "copy": {
+    "message": "复制"
+  },
+  "copied": {
+    "message": "已复制"
+  },
+  "openInNewTab": {
+    "message": "在新标签页中打开"
+  },
+  "exportTitle": {
+    "message": "导出"
+  },
+  "format": {
+    "message": "格式"
+  },
+  "resolution": {
+    "message": "分辨率"
+  },
+  "original": {
+    "message": "原始大小"
+  },
+  "captureMissing": {
+    "message": "找不到截图"
+  },
+  "pageSplit": {
+    "message": "页面较长，已分成 $N$ 张",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "pageTruncated": {
+    "message": "页面过长，只截取了前面部分"
+  },
+  "partLabel": {
+    "message": "第 $N$ 张",
     "placeholders": {
       "n": {
         "content": "$1",

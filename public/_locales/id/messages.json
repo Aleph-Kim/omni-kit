@@ -6,7 +6,7 @@
     "message": "OmniKit"
   },
   "appDesc": {
-    "message": "Alat browser harian di satu tempat. Diawali pintasan bookmark: buka bookmark favorit dengan Option atau Alt+Shift dan angka."
+    "message": "Alat browser harian: tangkapan layar area, bagian terlihat, atau seluruh halaman, serta pintasan bookmark dengan angka."
   },
   "actionTitle": {
     "message": "Buka OmniKit"
@@ -70,6 +70,94 @@
   },
   "clearSlot": {
     "message": "Kosongkan slot $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "captureTitle": {
+    "message": "Tangkap"
+  },
+  "screenshot": {
+    "message": "Tangkapan layar"
+  },
+  "shotArea": {
+    "message": "Area terpilih"
+  },
+  "shotVisible": {
+    "message": "Bagian yang terlihat"
+  },
+  "shotFullPage": {
+    "message": "Seluruh halaman"
+  },
+  "captureUnavailable": {
+    "message": "Halaman ini tidak dapat ditangkap"
+  },
+  "captureLimited": {
+    "message": "Di halaman ini hanya bagian yang terlihat yang dapat ditangkap"
+  },
+  "menuCapture": {
+    "message": "Tangkapan OmniKit"
+  },
+  "capturing": {
+    "message": "Menangkap ($N$/$M$)",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      },
+      "m": {
+        "content": "$2",
+        "example": "12"
+      }
+    }
+  },
+  "editorTitle": {
+    "message": "Tangkapan OmniKit"
+  },
+  "download": {
+    "message": "Unduh"
+  },
+  "copy": {
+    "message": "Salin"
+  },
+  "copied": {
+    "message": "Disalin"
+  },
+  "openInNewTab": {
+    "message": "Buka di tab baru"
+  },
+  "exportTitle": {
+    "message": "Ekspor"
+  },
+  "format": {
+    "message": "Format"
+  },
+  "resolution": {
+    "message": "Resolusi"
+  },
+  "original": {
+    "message": "Asli"
+  },
+  "captureMissing": {
+    "message": "Tangkapan tidak ditemukan"
+  },
+  "pageSplit": {
+    "message": "Halaman panjang sehingga dibagi menjadi $N$ gambar",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "pageTruncated": {
+    "message": "Halaman terlalu panjang sehingga hanya bagian atas yang ditangkap"
+  },
+  "partLabel": {
+    "message": "Gambar $N$",
     "placeholders": {
       "n": {
         "content": "$1",

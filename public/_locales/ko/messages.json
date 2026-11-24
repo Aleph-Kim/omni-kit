@@ -6,7 +6,7 @@
     "message": "OmniKit"
   },
   "appDesc": {
-    "message": "자주 쓰는 브라우저 도구 모음입니다. 지금은 북마크 단축키를 지원해 Option(윈도우는 Alt+Shift)과 숫자로 자주 가는 북마크를 바로 엽니다."
+    "message": "자주 쓰는 브라우저 도구 모음입니다. 선택 영역, 보이는 화면, 전체 페이지 스크린샷과 숫자 키로 북마크를 바로 여는 단축키를 지원합니다."
   },
   "actionTitle": {
     "message": "OmniKit 열기"
@@ -70,6 +70,94 @@
   },
   "clearSlot": {
     "message": "$N$번 칸 비우기",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "captureTitle": {
+    "message": "캡처"
+  },
+  "screenshot": {
+    "message": "스크린샷"
+  },
+  "shotArea": {
+    "message": "선택 영역"
+  },
+  "shotVisible": {
+    "message": "보이는 화면"
+  },
+  "shotFullPage": {
+    "message": "전체 페이지"
+  },
+  "captureUnavailable": {
+    "message": "이 페이지는 캡처할 수 없음"
+  },
+  "captureLimited": {
+    "message": "이 페이지는 보이는 화면만 가능"
+  },
+  "menuCapture": {
+    "message": "OmniKit 캡처"
+  },
+  "capturing": {
+    "message": "캡처 중 ($N$/$M$)",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      },
+      "m": {
+        "content": "$2",
+        "example": "12"
+      }
+    }
+  },
+  "editorTitle": {
+    "message": "OmniKit 캡처"
+  },
+  "download": {
+    "message": "다운로드"
+  },
+  "copy": {
+    "message": "복사"
+  },
+  "copied": {
+    "message": "복사함"
+  },
+  "openInNewTab": {
+    "message": "새 탭에서 열기"
+  },
+  "exportTitle": {
+    "message": "내보내기"
+  },
+  "format": {
+    "message": "형식"
+  },
+  "resolution": {
+    "message": "해상도"
+  },
+  "original": {
+    "message": "원본"
+  },
+  "captureMissing": {
+    "message": "캡처를 찾을 수 없음"
+  },
+  "pageSplit": {
+    "message": "페이지가 길어 $N$장으로 나눔",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "pageTruncated": {
+    "message": "페이지가 너무 길어 앞부분만 찍음"
+  },
+  "partLabel": {
+    "message": "$N$번째 장",
     "placeholders": {
       "n": {
         "content": "$1",

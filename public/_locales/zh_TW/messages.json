@@ -6,7 +6,7 @@
     "message": "OmniKit"
   },
   "appDesc": {
-    "message": "常用瀏覽器工具合集。首個功能是書籤快速鍵：按 Option 或 Alt+Shift 加數字即可開啟常用書籤。"
+    "message": "常用瀏覽器工具合集：選取範圍、可見部分、整個頁面截圖，以及用數字鍵開啟書籤的快速鍵。"
   },
   "actionTitle": {
     "message": "開啟 OmniKit"
@@ -70,6 +70,94 @@
   },
   "clearSlot": {
     "message": "清除欄位 $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "captureTitle": {
+    "message": "擷取"
+  },
+  "screenshot": {
+    "message": "螢幕截圖"
+  },
+  "shotArea": {
+    "message": "選取範圍"
+  },
+  "shotVisible": {
+    "message": "可見部分"
+  },
+  "shotFullPage": {
+    "message": "整個頁面"
+  },
+  "captureUnavailable": {
+    "message": "此頁面無法擷取"
+  },
+  "captureLimited": {
+    "message": "此頁面只能擷取可見部分"
+  },
+  "menuCapture": {
+    "message": "OmniKit 擷取"
+  },
+  "capturing": {
+    "message": "正在擷取 ($N$/$M$)",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      },
+      "m": {
+        "content": "$2",
+        "example": "12"
+      }
+    }
+  },
+  "editorTitle": {
+    "message": "OmniKit 擷取"
+  },
+  "download": {
+    "message": "下載"
+  },
+  "copy": {
+    "message": "複製"
+  },
+  "copied": {
+    "message": "已複製"
+  },
+  "openInNewTab": {
+    "message": "在新分頁中開啟"
+  },
+  "exportTitle": {
+    "message": "匯出"
+  },
+  "format": {
+    "message": "格式"
+  },
+  "resolution": {
+    "message": "解析度"
+  },
+  "original": {
+    "message": "原始大小"
+  },
+  "captureMissing": {
+    "message": "找不到截圖"
+  },
+  "pageSplit": {
+    "message": "頁面較長，已分成 $N$ 張",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "pageTruncated": {
+    "message": "頁面過長，只擷取了前面部分"
+  },
+  "partLabel": {
+    "message": "第 $N$ 張",
     "placeholders": {
       "n": {
         "content": "$1",

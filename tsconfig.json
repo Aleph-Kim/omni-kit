@@ -13,7 +13,7 @@
     "allowImportingTsExtensions": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "types": ["chrome", "node", "vite/client"]
+    "types": ["chrome", "node", "vite/client", "@crxjs/vite-plugin/client"]
   },
-  "include": ["src", "vite.config.ts", "vitest.config.ts", "manifest.config.ts"]
+  "include": ["src", "e2e", "vite.config.ts", "vitest.config.ts", "manifest.config.ts"]
 }

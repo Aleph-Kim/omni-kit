@@ -6,7 +6,7 @@
     "message": "OmniKit"
   },
   "appDesc": {
-    "message": "Công cụ trình duyệt hằng ngày ở một nơi. Bắt đầu với phím tắt dấu trang: mở dấu trang yêu thích bằng Option hoặc Alt+Shift và số."
+    "message": "Công cụ trình duyệt hằng ngày ở một nơi: chụp vùng chọn, phần đang hiển thị hoặc toàn trang, và phím tắt dấu trang bằng số."
   },
   "actionTitle": {
     "message": "Mở OmniKit"
@@ -70,6 +70,94 @@
   },
   "clearSlot": {
     "message": "Xóa ô $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "captureTitle": {
+    "message": "Chụp"
+  },
+  "screenshot": {
+    "message": "Ảnh chụp màn hình"
+  },
+  "shotArea": {
+    "message": "Vùng đã chọn"
+  },
+  "shotVisible": {
+    "message": "Phần đang hiển thị"
+  },
+  "shotFullPage": {
+    "message": "Toàn trang"
+  },
+  "captureUnavailable": {
+    "message": "Không thể chụp trang này"
+  },
+  "captureLimited": {
+    "message": "Trang này chỉ có thể chụp phần đang hiển thị"
+  },
+  "menuCapture": {
+    "message": "Chụp bằng OmniKit"
+  },
+  "capturing": {
+    "message": "Đang chụp ($N$/$M$)",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      },
+      "m": {
+        "content": "$2",
+        "example": "12"
+      }
+    }
+  },
+  "editorTitle": {
+    "message": "Chụp bằng OmniKit"
+  },
+  "download": {
+    "message": "Tải xuống"
+  },
+  "copy": {
+    "message": "Sao chép"
+  },
+  "copied": {
+    "message": "Đã sao chép"
+  },
+  "openInNewTab": {
+    "message": "Mở trong thẻ mới"
+  },
+  "exportTitle": {
+    "message": "Xuất"
+  },
+  "format": {
+    "message": "Định dạng"
+  },
+  "resolution": {
+    "message": "Độ phân giải"
+  },
+  "original": {
+    "message": "Gốc"
+  },
+  "captureMissing": {
+    "message": "Không tìm thấy ảnh chụp"
+  },
+  "pageSplit": {
+    "message": "Trang dài nên đã chia thành $N$ ảnh",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "pageTruncated": {
+    "message": "Trang quá dài nên chỉ chụp phần đầu"
+  },
+  "partLabel": {
+    "message": "Ảnh $N$",
     "placeholders": {
       "n": {
         "content": "$1",

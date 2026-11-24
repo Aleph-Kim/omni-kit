@@ -32,6 +32,10 @@ export default defineManifest({
     default_popup: 'popup.html',
   },
   background: { service_worker: 'src/background/index.ts', type: 'module' },
-  permissions: ['storage', 'bookmarks', 'favicon', 'tabs'],
+  permissions: ['storage', 'bookmarks', 'favicon', 'tabs', 'activeTab', 'scripting', 'contextMenus'],
   commands: bookmarkCommands,
+  // 페이지에 넣는 코드(?iife)의 주소를 실행마다 바꿔 웹사이트가 확장 설치 여부를 알아내지 못하게 함
+  web_accessible_resources: [
+    { matches: ['http://*/*', 'https://*/*'], resources: ['<dynamic_resource>'], use_dynamic_url: true },
+  ],
 })

@@ -6,7 +6,7 @@
     "message": "OmniKit"
   },
   "appDesc": {
-    "message": "よく使うブラウザツールをひとつに。まずはブックマークショートカット：Option または Alt+Shift と数字でお気に入りのブックマークを開けます。"
+    "message": "よく使うブラウザツールをひとつに。選択範囲・表示部分・ページ全体のスクリーンショットと、数字キーでブックマークを開くショートカット。"
   },
   "actionTitle": {
     "message": "OmniKit を開く"
@@ -70,6 +70,94 @@
   },
   "clearSlot": {
     "message": "スロット $N$ をクリア",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "captureTitle": {
+    "message": "キャプチャ"
+  },
+  "screenshot": {
+    "message": "スクリーンショット"
+  },
+  "shotArea": {
+    "message": "選択範囲"
+  },
+  "shotVisible": {
+    "message": "表示部分"
+  },
+  "shotFullPage": {
+    "message": "ページ全体"
+  },
+  "captureUnavailable": {
+    "message": "このページはキャプチャできません"
+  },
+  "captureLimited": {
+    "message": "このページでは表示部分のみキャプチャできます"
+  },
+  "menuCapture": {
+    "message": "OmniKit キャプチャ"
+  },
+  "capturing": {
+    "message": "キャプチャ中 ($N$/$M$)",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      },
+      "m": {
+        "content": "$2",
+        "example": "12"
+      }
+    }
+  },
+  "editorTitle": {
+    "message": "OmniKit キャプチャ"
+  },
+  "download": {
+    "message": "ダウンロード"
+  },
+  "copy": {
+    "message": "コピー"
+  },
+  "copied": {
+    "message": "コピーしました"
+  },
+  "openInNewTab": {
+    "message": "新しいタブで開く"
+  },
+  "exportTitle": {
+    "message": "書き出し"
+  },
+  "format": {
+    "message": "形式"
+  },
+  "resolution": {
+    "message": "解像度"
+  },
+  "original": {
+    "message": "元のサイズ"
+  },
+  "captureMissing": {
+    "message": "キャプチャが見つかりません"
+  },
+  "pageSplit": {
+    "message": "ページが長いため $N$ 枚に分割しました",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "pageTruncated": {
+    "message": "ページが長すぎるため上部のみキャプチャしました"
+  },
+  "partLabel": {
+    "message": "$N$ 枚目",
     "placeholders": {
       "n": {
         "content": "$1",
