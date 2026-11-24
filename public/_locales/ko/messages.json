@@ -1,7 +1,80 @@
 {
-  "appName": { "message": "OmniKit - 매일 쓰는 브라우저 도구 모음" },
-  "appShortName": { "message": "OmniKit" },
-  "appDesc": { "message": "북마크 단축키, 전체 페이지 스크린샷 등 자주 쓰는 브라우저 도구를 한곳에 모았습니다." },
-  "actionTitle": { "message": "OmniKit 열기" },
-  "popupEmpty": { "message": "아직 추가된 도구가 없습니다." }
+  "appName": {
+    "message": "OmniKit - 매일 쓰는 브라우저 도구 모음"
+  },
+  "appShortName": {
+    "message": "OmniKit"
+  },
+  "appDesc": {
+    "message": "북마크 단축키, 전체 페이지 스크린샷 등 자주 쓰는 브라우저 도구를 한곳에 모았습니다."
+  },
+  "actionTitle": {
+    "message": "OmniKit 열기"
+  },
+  "bookmarkShortcutsTitle": {
+    "message": "북마크 단축키"
+  },
+  "slotEmpty": {
+    "message": "비어 있음"
+  },
+  "noShortcut": {
+    "message": "키 없음"
+  },
+  "clear": {
+    "message": "비우기"
+  },
+  "searchBookmarks": {
+    "message": "북마크 검색"
+  },
+  "noResults": {
+    "message": "검색 결과 없음"
+  },
+  "editShortcuts": {
+    "message": "단축키 변경"
+  },
+  "openBookmark1": {
+    "message": "북마크 1번 칸 열기"
+  },
+  "openBookmark2": {
+    "message": "북마크 2번 칸 열기"
+  },
+  "openBookmark3": {
+    "message": "북마크 3번 칸 열기"
+  },
+  "openBookmark4": {
+    "message": "북마크 4번 칸 열기"
+  },
+  "openBookmark5": {
+    "message": "북마크 5번 칸 열기"
+  },
+  "openBookmark6": {
+    "message": "북마크 6번 칸 열기"
+  },
+  "openBookmark7": {
+    "message": "북마크 7번 칸 열기"
+  },
+  "openBookmark8": {
+    "message": "북마크 8번 칸 열기"
+  },
+  "openBookmark9": {
+    "message": "북마크 9번 칸 열기"
+  },
+  "changeSlot": {
+    "message": "$N$번 칸 변경",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "clearSlot": {
+    "message": "$N$번 칸 비우기",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  }
 }

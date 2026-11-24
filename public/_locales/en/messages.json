@@ -1,7 +1,80 @@
 {
-  "appName": { "message": "OmniKit - Everyday Browser Tools" },
-  "appShortName": { "message": "OmniKit" },
-  "appDesc": { "message": "Handy browser tools in one place, such as bookmark shortcuts and full-page screenshots." },
-  "actionTitle": { "message": "Open OmniKit" },
-  "popupEmpty": { "message": "No tools yet." }
+  "appName": {
+    "message": "OmniKit - Everyday Browser Tools"
+  },
+  "appShortName": {
+    "message": "OmniKit"
+  },
+  "appDesc": {
+    "message": "Handy browser tools in one place, such as bookmark shortcuts and full-page screenshots."
+  },
+  "actionTitle": {
+    "message": "Open OmniKit"
+  },
+  "bookmarkShortcutsTitle": {
+    "message": "Bookmark shortcuts"
+  },
+  "slotEmpty": {
+    "message": "Not set"
+  },
+  "noShortcut": {
+    "message": "No key"
+  },
+  "clear": {
+    "message": "Clear"
+  },
+  "searchBookmarks": {
+    "message": "Search bookmarks"
+  },
+  "noResults": {
+    "message": "No bookmarks found"
+  },
+  "editShortcuts": {
+    "message": "Edit shortcuts"
+  },
+  "openBookmark1": {
+    "message": "Open bookmark slot 1"
+  },
+  "openBookmark2": {
+    "message": "Open bookmark slot 2"
+  },
+  "openBookmark3": {
+    "message": "Open bookmark slot 3"
+  },
+  "openBookmark4": {
+    "message": "Open bookmark slot 4"
+  },
+  "openBookmark5": {
+    "message": "Open bookmark slot 5"
+  },
+  "openBookmark6": {
+    "message": "Open bookmark slot 6"
+  },
+  "openBookmark7": {
+    "message": "Open bookmark slot 7"
+  },
+  "openBookmark8": {
+    "message": "Open bookmark slot 8"
+  },
+  "openBookmark9": {
+    "message": "Open bookmark slot 9"
+  },
+  "changeSlot": {
+    "message": "Change slot $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "clearSlot": {
+    "message": "Clear slot $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  }
 }

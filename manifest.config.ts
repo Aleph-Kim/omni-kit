@@ -1,5 +1,22 @@
 import { defineManifest } from '@crxjs/vite-plugin'
 import pkg from './package.json' with { type: 'json' }
+import { SLOT_COUNT, commandName } from './src/features/bookmark-shortcuts/slots.ts'
+
+// 크롬은 기본 단축키를 4개까지만 허용, 나머지 칸은 사용자가 chrome://extensions/shortcuts 에서 지정
+const SUGGESTED_KEY_LIMIT = 4
+
+const bookmarkCommands = Object.fromEntries(
+  Array.from({ length: SLOT_COUNT }, (_, index) => [
+    commandName(index),
+    {
+      description: `__MSG_openBookmark${index + 1}__`,
+      ...(index < SUGGESTED_KEY_LIMIT && {
+        // Mac은 Option+숫자, 그 외는 Alt+Shift+숫자
+        suggested_key: { default: `Alt+Shift+${index + 1}`, mac: `Alt+${index + 1}` },
+      }),
+    },
+  ]),
+)
 
 export default defineManifest({
   manifest_version: 3,
@@ -13,5 +30,6 @@ export default defineManifest({
     default_popup: 'popup.html',
   },
   background: { service_worker: 'src/background/index.ts', type: 'module' },
-  permissions: ['storage'],
+  permissions: ['storage', 'bookmarks', 'favicon', 'tabs'],
+  commands: bookmarkCommands,
 })
