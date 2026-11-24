@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light dark;
+  --ok-label: light-dark(rgb(0 0 0 / 0.85), rgb(255 255 255 / 0.88));
+  --ok-label-2: light-dark(rgb(0 0 0 / 0.5), rgb(255 255 255 / 0.55));
+  --ok-fill: light-dark(rgb(0 0 0 / 0.05), rgb(255 255 255 / 0.08));
+  --ok-bg: light-dark(#fff, #1e1e1e);
+}
+
+body {
+  margin: 0;
+  background: var(--ok-bg);
+  color: var(--ok-label);
+  font-family: system-ui, sans-serif;
+}

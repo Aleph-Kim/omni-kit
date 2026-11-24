@@ -1,0 +1,7 @@
+{
+  "appName": { "message": "OmniKit - Everyday Browser Tools" },
+  "appShortName": { "message": "OmniKit" },
+  "appDesc": { "message": "Handy browser tools in one place, such as bookmark shortcuts and full-page screenshots." },
+  "actionTitle": { "message": "Open OmniKit" },
+  "popupEmpty": { "message": "No tools yet." }
+}

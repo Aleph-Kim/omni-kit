@@ -1,0 +1,7 @@
+{
+  "appName": { "message": "OmniKit - 매일 쓰는 브라우저 도구 모음" },
+  "appShortName": { "message": "OmniKit" },
+  "appDesc": { "message": "북마크 단축키, 전체 페이지 스크린샷 등 자주 쓰는 브라우저 도구를 한곳에 모았습니다." },
+  "actionTitle": { "message": "OmniKit 열기" },
+  "popupEmpty": { "message": "아직 추가된 도구가 없습니다." }
+}
