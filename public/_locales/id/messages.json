@@ -1,0 +1,80 @@
+{
+  "appName": {
+    "message": "OmniKit - Alat Browser Sehari-hari"
+  },
+  "appShortName": {
+    "message": "OmniKit"
+  },
+  "appDesc": {
+    "message": "Alat browser harian di satu tempat. Diawali pintasan bookmark: buka bookmark favorit dengan Option atau Alt+Shift dan angka."
+  },
+  "actionTitle": {
+    "message": "Buka OmniKit"
+  },
+  "bookmarkShortcutsTitle": {
+    "message": "Pintasan bookmark"
+  },
+  "slotEmpty": {
+    "message": "Belum diatur"
+  },
+  "noShortcut": {
+    "message": "Tanpa tombol"
+  },
+  "clear": {
+    "message": "Kosongkan"
+  },
+  "searchBookmarks": {
+    "message": "Cari bookmark"
+  },
+  "noResults": {
+    "message": "Bookmark tidak ditemukan"
+  },
+  "editShortcuts": {
+    "message": "Ubah pintasan"
+  },
+  "openBookmark1": {
+    "message": "Buka slot bookmark 1"
+  },
+  "openBookmark2": {
+    "message": "Buka slot bookmark 2"
+  },
+  "openBookmark3": {
+    "message": "Buka slot bookmark 3"
+  },
+  "openBookmark4": {
+    "message": "Buka slot bookmark 4"
+  },
+  "openBookmark5": {
+    "message": "Buka slot bookmark 5"
+  },
+  "openBookmark6": {
+    "message": "Buka slot bookmark 6"
+  },
+  "openBookmark7": {
+    "message": "Buka slot bookmark 7"
+  },
+  "openBookmark8": {
+    "message": "Buka slot bookmark 8"
+  },
+  "openBookmark9": {
+    "message": "Buka slot bookmark 9"
+  },
+  "changeSlot": {
+    "message": "Ubah slot $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "clearSlot": {
+    "message": "Kosongkan slot $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  }
+}

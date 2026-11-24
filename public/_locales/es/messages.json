@@ -1,0 +1,80 @@
+{
+  "appName": {
+    "message": "OmniKit - Herramientas del navegador para cada día"
+  },
+  "appShortName": {
+    "message": "OmniKit"
+  },
+  "appDesc": {
+    "message": "Herramientas del navegador en un lugar. Empieza con atajos de marcadores: abre tus favoritos con Option o Alt+Shift y un número."
+  },
+  "actionTitle": {
+    "message": "Abrir OmniKit"
+  },
+  "bookmarkShortcutsTitle": {
+    "message": "Atajos de marcadores"
+  },
+  "slotEmpty": {
+    "message": "Sin asignar"
+  },
+  "noShortcut": {
+    "message": "Sin tecla"
+  },
+  "clear": {
+    "message": "Vaciar"
+  },
+  "searchBookmarks": {
+    "message": "Buscar marcadores"
+  },
+  "noResults": {
+    "message": "No se encontraron marcadores"
+  },
+  "editShortcuts": {
+    "message": "Editar atajos"
+  },
+  "openBookmark1": {
+    "message": "Abrir la ranura de marcador 1"
+  },
+  "openBookmark2": {
+    "message": "Abrir la ranura de marcador 2"
+  },
+  "openBookmark3": {
+    "message": "Abrir la ranura de marcador 3"
+  },
+  "openBookmark4": {
+    "message": "Abrir la ranura de marcador 4"
+  },
+  "openBookmark5": {
+    "message": "Abrir la ranura de marcador 5"
+  },
+  "openBookmark6": {
+    "message": "Abrir la ranura de marcador 6"
+  },
+  "openBookmark7": {
+    "message": "Abrir la ranura de marcador 7"
+  },
+  "openBookmark8": {
+    "message": "Abrir la ranura de marcador 8"
+  },
+  "openBookmark9": {
+    "message": "Abrir la ranura de marcador 9"
+  },
+  "changeSlot": {
+    "message": "Cambiar la ranura $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "clearSlot": {
+    "message": "Vaciar la ranura $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  }
+}

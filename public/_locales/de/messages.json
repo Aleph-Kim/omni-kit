@@ -1,0 +1,80 @@
+{
+  "appName": {
+    "message": "OmniKit - Browser-Tools für jeden Tag"
+  },
+  "appShortName": {
+    "message": "OmniKit"
+  },
+  "appDesc": {
+    "message": "Browser-Tools für jeden Tag an einem Ort. Zuerst Lesezeichen-Kürzel: Öffne Lesezeichen mit Option oder Alt+Umschalt und einer Zahl."
+  },
+  "actionTitle": {
+    "message": "OmniKit öffnen"
+  },
+  "bookmarkShortcutsTitle": {
+    "message": "Lesezeichen-Kürzel"
+  },
+  "slotEmpty": {
+    "message": "Nicht belegt"
+  },
+  "noShortcut": {
+    "message": "Keine Taste"
+  },
+  "clear": {
+    "message": "Leeren"
+  },
+  "searchBookmarks": {
+    "message": "Lesezeichen suchen"
+  },
+  "noResults": {
+    "message": "Keine Lesezeichen gefunden"
+  },
+  "editShortcuts": {
+    "message": "Kürzel bearbeiten"
+  },
+  "openBookmark1": {
+    "message": "Lesezeichen-Platz 1 öffnen"
+  },
+  "openBookmark2": {
+    "message": "Lesezeichen-Platz 2 öffnen"
+  },
+  "openBookmark3": {
+    "message": "Lesezeichen-Platz 3 öffnen"
+  },
+  "openBookmark4": {
+    "message": "Lesezeichen-Platz 4 öffnen"
+  },
+  "openBookmark5": {
+    "message": "Lesezeichen-Platz 5 öffnen"
+  },
+  "openBookmark6": {
+    "message": "Lesezeichen-Platz 6 öffnen"
+  },
+  "openBookmark7": {
+    "message": "Lesezeichen-Platz 7 öffnen"
+  },
+  "openBookmark8": {
+    "message": "Lesezeichen-Platz 8 öffnen"
+  },
+  "openBookmark9": {
+    "message": "Lesezeichen-Platz 9 öffnen"
+  },
+  "changeSlot": {
+    "message": "Platz $N$ ändern",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "clearSlot": {
+    "message": "Platz $N$ leeren",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  }
+}

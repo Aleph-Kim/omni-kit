@@ -1,0 +1,80 @@
+{
+  "appName": {
+    "message": "OmniKit - Công cụ trình duyệt hằng ngày"
+  },
+  "appShortName": {
+    "message": "OmniKit"
+  },
+  "appDesc": {
+    "message": "Công cụ trình duyệt hằng ngày ở một nơi. Bắt đầu với phím tắt dấu trang: mở dấu trang yêu thích bằng Option hoặc Alt+Shift và số."
+  },
+  "actionTitle": {
+    "message": "Mở OmniKit"
+  },
+  "bookmarkShortcutsTitle": {
+    "message": "Phím tắt dấu trang"
+  },
+  "slotEmpty": {
+    "message": "Chưa đặt"
+  },
+  "noShortcut": {
+    "message": "Chưa có phím"
+  },
+  "clear": {
+    "message": "Xóa"
+  },
+  "searchBookmarks": {
+    "message": "Tìm dấu trang"
+  },
+  "noResults": {
+    "message": "Không tìm thấy dấu trang"
+  },
+  "editShortcuts": {
+    "message": "Đổi phím tắt"
+  },
+  "openBookmark1": {
+    "message": "Mở ô dấu trang 1"
+  },
+  "openBookmark2": {
+    "message": "Mở ô dấu trang 2"
+  },
+  "openBookmark3": {
+    "message": "Mở ô dấu trang 3"
+  },
+  "openBookmark4": {
+    "message": "Mở ô dấu trang 4"
+  },
+  "openBookmark5": {
+    "message": "Mở ô dấu trang 5"
+  },
+  "openBookmark6": {
+    "message": "Mở ô dấu trang 6"
+  },
+  "openBookmark7": {
+    "message": "Mở ô dấu trang 7"
+  },
+  "openBookmark8": {
+    "message": "Mở ô dấu trang 8"
+  },
+  "openBookmark9": {
+    "message": "Mở ô dấu trang 9"
+  },
+  "changeSlot": {
+    "message": "Đổi ô $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "clearSlot": {
+    "message": "Xóa ô $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  }
+}

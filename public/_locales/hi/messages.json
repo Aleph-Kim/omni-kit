@@ -1,0 +1,80 @@
+{
+  "appName": {
+    "message": "OmniKit - रोज़ के ब्राउज़र टूल"
+  },
+  "appShortName": {
+    "message": "OmniKit"
+  },
+  "appDesc": {
+    "message": "रोज़ काम आने वाले ब्राउज़र टूल एक ही जगह। शुरुआत बुकमार्क शॉर्टकट से: Option या Alt+Shift और एक नंबर दबाकर पसंदीदा बुकमार्क खोलें।"
+  },
+  "actionTitle": {
+    "message": "OmniKit खोलें"
+  },
+  "bookmarkShortcutsTitle": {
+    "message": "बुकमार्क शॉर्टकट"
+  },
+  "slotEmpty": {
+    "message": "सेट नहीं है"
+  },
+  "noShortcut": {
+    "message": "कोई कुंजी नहीं"
+  },
+  "clear": {
+    "message": "खाली करें"
+  },
+  "searchBookmarks": {
+    "message": "बुकमार्क खोजें"
+  },
+  "noResults": {
+    "message": "कोई बुकमार्क नहीं मिला"
+  },
+  "editShortcuts": {
+    "message": "शॉर्टकट बदलें"
+  },
+  "openBookmark1": {
+    "message": "बुकमार्क स्लॉट 1 खोलें"
+  },
+  "openBookmark2": {
+    "message": "बुकमार्क स्लॉट 2 खोलें"
+  },
+  "openBookmark3": {
+    "message": "बुकमार्क स्लॉट 3 खोलें"
+  },
+  "openBookmark4": {
+    "message": "बुकमार्क स्लॉट 4 खोलें"
+  },
+  "openBookmark5": {
+    "message": "बुकमार्क स्लॉट 5 खोलें"
+  },
+  "openBookmark6": {
+    "message": "बुकमार्क स्लॉट 6 खोलें"
+  },
+  "openBookmark7": {
+    "message": "बुकमार्क स्लॉट 7 खोलें"
+  },
+  "openBookmark8": {
+    "message": "बुकमार्क स्लॉट 8 खोलें"
+  },
+  "openBookmark9": {
+    "message": "बुकमार्क स्लॉट 9 खोलें"
+  },
+  "changeSlot": {
+    "message": "स्लॉट $N$ बदलें",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "clearSlot": {
+    "message": "स्लॉट $N$ खाली करें",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  }
+}

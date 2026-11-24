@@ -1,0 +1,80 @@
+{
+  "appName": {
+    "message": "OmniKit - 日常浏览器工具"
+  },
+  "appShortName": {
+    "message": "OmniKit"
+  },
+  "appDesc": {
+    "message": "常用浏览器工具合集。首个功能是书签快捷键：按 Option 或 Alt+Shift 加数字即可打开常用书签。"
+  },
+  "actionTitle": {
+    "message": "打开 OmniKit"
+  },
+  "bookmarkShortcutsTitle": {
+    "message": "书签快捷键"
+  },
+  "slotEmpty": {
+    "message": "未设置"
+  },
+  "noShortcut": {
+    "message": "无快捷键"
+  },
+  "clear": {
+    "message": "清除"
+  },
+  "searchBookmarks": {
+    "message": "搜索书签"
+  },
+  "noResults": {
+    "message": "未找到书签"
+  },
+  "editShortcuts": {
+    "message": "修改快捷键"
+  },
+  "openBookmark1": {
+    "message": "打开书签槽位 1"
+  },
+  "openBookmark2": {
+    "message": "打开书签槽位 2"
+  },
+  "openBookmark3": {
+    "message": "打开书签槽位 3"
+  },
+  "openBookmark4": {
+    "message": "打开书签槽位 4"
+  },
+  "openBookmark5": {
+    "message": "打开书签槽位 5"
+  },
+  "openBookmark6": {
+    "message": "打开书签槽位 6"
+  },
+  "openBookmark7": {
+    "message": "打开书签槽位 7"
+  },
+  "openBookmark8": {
+    "message": "打开书签槽位 8"
+  },
+  "openBookmark9": {
+    "message": "打开书签槽位 9"
+  },
+  "changeSlot": {
+    "message": "更改槽位 $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "clearSlot": {
+    "message": "清除槽位 $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  }
+}

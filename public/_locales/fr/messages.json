@@ -1,0 +1,80 @@
+{
+  "appName": {
+    "message": "OmniKit - Outils du navigateur au quotidien"
+  },
+  "appShortName": {
+    "message": "OmniKit"
+  },
+  "appDesc": {
+    "message": "Vos outils de navigateur au même endroit. D'abord des raccourcis de favoris : ouvrez-les avec Option ou Alt+Maj et un chiffre."
+  },
+  "actionTitle": {
+    "message": "Ouvrir OmniKit"
+  },
+  "bookmarkShortcutsTitle": {
+    "message": "Raccourcis de favoris"
+  },
+  "slotEmpty": {
+    "message": "Non défini"
+  },
+  "noShortcut": {
+    "message": "Aucune touche"
+  },
+  "clear": {
+    "message": "Vider"
+  },
+  "searchBookmarks": {
+    "message": "Rechercher des favoris"
+  },
+  "noResults": {
+    "message": "Aucun favori trouvé"
+  },
+  "editShortcuts": {
+    "message": "Modifier les raccourcis"
+  },
+  "openBookmark1": {
+    "message": "Ouvrir l'emplacement de favori 1"
+  },
+  "openBookmark2": {
+    "message": "Ouvrir l'emplacement de favori 2"
+  },
+  "openBookmark3": {
+    "message": "Ouvrir l'emplacement de favori 3"
+  },
+  "openBookmark4": {
+    "message": "Ouvrir l'emplacement de favori 4"
+  },
+  "openBookmark5": {
+    "message": "Ouvrir l'emplacement de favori 5"
+  },
+  "openBookmark6": {
+    "message": "Ouvrir l'emplacement de favori 6"
+  },
+  "openBookmark7": {
+    "message": "Ouvrir l'emplacement de favori 7"
+  },
+  "openBookmark8": {
+    "message": "Ouvrir l'emplacement de favori 8"
+  },
+  "openBookmark9": {
+    "message": "Ouvrir l'emplacement de favori 9"
+  },
+  "changeSlot": {
+    "message": "Modifier l'emplacement $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "clearSlot": {
+    "message": "Vider l'emplacement $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  }
+}

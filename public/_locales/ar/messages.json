@@ -1,0 +1,80 @@
+{
+  "appName": {
+    "message": "OmniKit - أدوات المتصفح اليومية"
+  },
+  "appShortName": {
+    "message": "OmniKit"
+  },
+  "appDesc": {
+    "message": "أدوات المتصفح اليومية في مكان واحد. البداية مع اختصارات الإشارات المرجعية: افتح إشاراتك المفضلة بـ Option أو Alt+Shift ورقم."
+  },
+  "actionTitle": {
+    "message": "فتح OmniKit"
+  },
+  "bookmarkShortcutsTitle": {
+    "message": "اختصارات الإشارات المرجعية"
+  },
+  "slotEmpty": {
+    "message": "غير معيّن"
+  },
+  "noShortcut": {
+    "message": "بلا مفتاح"
+  },
+  "clear": {
+    "message": "إفراغ"
+  },
+  "searchBookmarks": {
+    "message": "البحث في الإشارات المرجعية"
+  },
+  "noResults": {
+    "message": "لم يتم العثور على إشارات مرجعية"
+  },
+  "editShortcuts": {
+    "message": "تعديل الاختصارات"
+  },
+  "openBookmark1": {
+    "message": "فتح خانة الإشارة المرجعية 1"
+  },
+  "openBookmark2": {
+    "message": "فتح خانة الإشارة المرجعية 2"
+  },
+  "openBookmark3": {
+    "message": "فتح خانة الإشارة المرجعية 3"
+  },
+  "openBookmark4": {
+    "message": "فتح خانة الإشارة المرجعية 4"
+  },
+  "openBookmark5": {
+    "message": "فتح خانة الإشارة المرجعية 5"
+  },
+  "openBookmark6": {
+    "message": "فتح خانة الإشارة المرجعية 6"
+  },
+  "openBookmark7": {
+    "message": "فتح خانة الإشارة المرجعية 7"
+  },
+  "openBookmark8": {
+    "message": "فتح خانة الإشارة المرجعية 8"
+  },
+  "openBookmark9": {
+    "message": "فتح خانة الإشارة المرجعية 9"
+  },
+  "changeSlot": {
+    "message": "تغيير الخانة $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "clearSlot": {
+    "message": "إفراغ الخانة $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  }
+}

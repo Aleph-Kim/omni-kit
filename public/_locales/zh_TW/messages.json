@@ -1,0 +1,80 @@
+{
+  "appName": {
+    "message": "OmniKit - 日常瀏覽器工具"
+  },
+  "appShortName": {
+    "message": "OmniKit"
+  },
+  "appDesc": {
+    "message": "常用瀏覽器工具合集。首個功能是書籤快速鍵：按 Option 或 Alt+Shift 加數字即可開啟常用書籤。"
+  },
+  "actionTitle": {
+    "message": "開啟 OmniKit"
+  },
+  "bookmarkShortcutsTitle": {
+    "message": "書籤快速鍵"
+  },
+  "slotEmpty": {
+    "message": "未設定"
+  },
+  "noShortcut": {
+    "message": "無快速鍵"
+  },
+  "clear": {
+    "message": "清除"
+  },
+  "searchBookmarks": {
+    "message": "搜尋書籤"
+  },
+  "noResults": {
+    "message": "找不到書籤"
+  },
+  "editShortcuts": {
+    "message": "變更快速鍵"
+  },
+  "openBookmark1": {
+    "message": "開啟書籤欄位 1"
+  },
+  "openBookmark2": {
+    "message": "開啟書籤欄位 2"
+  },
+  "openBookmark3": {
+    "message": "開啟書籤欄位 3"
+  },
+  "openBookmark4": {
+    "message": "開啟書籤欄位 4"
+  },
+  "openBookmark5": {
+    "message": "開啟書籤欄位 5"
+  },
+  "openBookmark6": {
+    "message": "開啟書籤欄位 6"
+  },
+  "openBookmark7": {
+    "message": "開啟書籤欄位 7"
+  },
+  "openBookmark8": {
+    "message": "開啟書籤欄位 8"
+  },
+  "openBookmark9": {
+    "message": "開啟書籤欄位 9"
+  },
+  "changeSlot": {
+    "message": "變更欄位 $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "clearSlot": {
+    "message": "清除欄位 $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  }
+}

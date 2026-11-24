@@ -1,0 +1,80 @@
+{
+  "appName": {
+    "message": "OmniKit - Ferramentas do navegador para o dia a dia"
+  },
+  "appShortName": {
+    "message": "OmniKit"
+  },
+  "appDesc": {
+    "message": "Ferramentas do navegador em um só lugar. Começa com atalhos de favoritos: abra seus favoritos com Option ou Alt+Shift e um número."
+  },
+  "actionTitle": {
+    "message": "Abrir o OmniKit"
+  },
+  "bookmarkShortcutsTitle": {
+    "message": "Atalhos de favoritos"
+  },
+  "slotEmpty": {
+    "message": "Não definido"
+  },
+  "noShortcut": {
+    "message": "Sem tecla"
+  },
+  "clear": {
+    "message": "Limpar"
+  },
+  "searchBookmarks": {
+    "message": "Pesquisar favoritos"
+  },
+  "noResults": {
+    "message": "Nenhum favorito encontrado"
+  },
+  "editShortcuts": {
+    "message": "Editar atalhos"
+  },
+  "openBookmark1": {
+    "message": "Abrir o espaço de favorito 1"
+  },
+  "openBookmark2": {
+    "message": "Abrir o espaço de favorito 2"
+  },
+  "openBookmark3": {
+    "message": "Abrir o espaço de favorito 3"
+  },
+  "openBookmark4": {
+    "message": "Abrir o espaço de favorito 4"
+  },
+  "openBookmark5": {
+    "message": "Abrir o espaço de favorito 5"
+  },
+  "openBookmark6": {
+    "message": "Abrir o espaço de favorito 6"
+  },
+  "openBookmark7": {
+    "message": "Abrir o espaço de favorito 7"
+  },
+  "openBookmark8": {
+    "message": "Abrir o espaço de favorito 8"
+  },
+  "openBookmark9": {
+    "message": "Abrir o espaço de favorito 9"
+  },
+  "changeSlot": {
+    "message": "Alterar o espaço $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "clearSlot": {
+    "message": "Limpar o espaço $N$",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  }
+}

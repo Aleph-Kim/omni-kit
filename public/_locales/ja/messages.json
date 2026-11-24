@@ -1,0 +1,80 @@
+{
+  "appName": {
+    "message": "OmniKit - 毎日使うブラウザツール"
+  },
+  "appShortName": {
+    "message": "OmniKit"
+  },
+  "appDesc": {
+    "message": "よく使うブラウザツールをひとつに。まずはブックマークショートカット：Option または Alt+Shift と数字でお気に入りのブックマークを開けます。"
+  },
+  "actionTitle": {
+    "message": "OmniKit を開く"
+  },
+  "bookmarkShortcutsTitle": {
+    "message": "ブックマークショートカット"
+  },
+  "slotEmpty": {
+    "message": "未設定"
+  },
+  "noShortcut": {
+    "message": "キーなし"
+  },
+  "clear": {
+    "message": "クリア"
+  },
+  "searchBookmarks": {
+    "message": "ブックマークを検索"
+  },
+  "noResults": {
+    "message": "ブックマークが見つかりません"
+  },
+  "editShortcuts": {
+    "message": "ショートカットを編集"
+  },
+  "openBookmark1": {
+    "message": "ブックマークのスロット 1 を開く"
+  },
+  "openBookmark2": {
+    "message": "ブックマークのスロット 2 を開く"
+  },
+  "openBookmark3": {
+    "message": "ブックマークのスロット 3 を開く"
+  },
+  "openBookmark4": {
+    "message": "ブックマークのスロット 4 を開く"
+  },
+  "openBookmark5": {
+    "message": "ブックマークのスロット 5 を開く"
+  },
+  "openBookmark6": {
+    "message": "ブックマークのスロット 6 を開く"
+  },
+  "openBookmark7": {
+    "message": "ブックマークのスロット 7 を開く"
+  },
+  "openBookmark8": {
+    "message": "ブックマークのスロット 8 を開く"
+  },
+  "openBookmark9": {
+    "message": "ブックマークのスロット 9 を開く"
+  },
+  "changeSlot": {
+    "message": "スロット $N$ を変更",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  },
+  "clearSlot": {
+    "message": "スロット $N$ をクリア",
+    "placeholders": {
+      "n": {
+        "content": "$1",
+        "example": "3"
+      }
+    }
+  }
+}
