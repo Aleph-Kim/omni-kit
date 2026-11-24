@@ -8,16 +8,17 @@
 
 - [x] 아이콘 16, 32, 48, 128px PNG 만들고 manifest에 연결
 - [x] 확장 설명(`appDesc`)에서 아직 없는 기능(전체 페이지 스크린샷) 문구 빼기
-- [ ] 스크린샷 1장 이상 (1280x800), `store-assets/`에 저장
-- [ ] 개인정보처리방침을 구글 문서로 만들고 링크 공유(링크가 있는 모든 사용자 보기) 후 주소 채우기
-- [ ] 게시자 이름과 공개 연락 이메일 채우기
+- [x] 스크린샷 2장 (1280x800), `store-assets/`에 저장
+- [x] 개인정보처리방침을 구글 문서로 만들고 링크 공유(링크가 있는 모든 사용자 보기) 후 주소 채우기
+- [x] 게시자 이름과 공개 연락 이메일 채우기 (둘 다 dev.aleph.kim@gmail.com)
 
 ## 준비물
 
 - 업로드할 파일: `npm run package`로 만든 `omni-kit-1.0.0.zip`
 - 스토어 아이콘: `public/icons/icon-128.png`
-- 스크린샷: (미정) `store-assets/` 아래 1280x800 PNG
-- 개인정보처리방침 주소: (미정) 아래 "개인정보처리방침 본문"을 구글 문서 "OmniKit Privacy Policy"로 만들고 링크 공유 주소 사용
+- 스크린샷: `store-assets/screenshot-light.png`, `store-assets/screenshot-dark.png` (1280x800)
+- 개인정보처리방침 주소: 구글 문서 "OmniKit Privacy Policy"의 링크 공유 주소 (링크가 있는 모든 사용자 보기 권한, 로그인 없이 열림 확인)
+  `https://docs.google.com/document/d/1-aPlBzz-Nhzss8FJsEQcar6_SAuBXZzZ44C8juDgouk/edit?usp=sharing`
 
 ## 1단계. zip 올리기
 
@@ -87,14 +88,14 @@ ko
 | 카테고리 (Category) | 생산성 (Productivity) |
 | 언어 (Language) | 영어 (English) |
 | 스토어 아이콘 (Store icon) | `public/icons/icon-128.png` 업로드 |
-| 전 언어 공통 스크린샷 (Global screenshots) | `store-assets/`의 스크린샷 업로드 |
+| 전 언어 공통 스크린샷 (Global screenshots) | `store-assets/screenshot-light.png`, `store-assets/screenshot-dark.png` 업로드 (언어별 현지화 스크린샷 칸은 비워 둠) |
 | 작은 프로모션 타일, 마키 타일, YouTube, 홈페이지 URL, 지원 URL | 비워 둠 (선택 항목) |
 | 성인용 콘텐츠 (Mature content) | 끔 |
 
-스크린샷 구성안
+스크린샷 구성 (실제 빌드한 팝업 화면에 예시 북마크를 넣어 촬영, 개인 북마크 노출 방지)
 
-1. 팝업을 연 모습: 북마크바 북마크가 칸마다 아이콘과 이름으로 표시된 화면
-2. 칸을 펼쳐 북마크를 검색하는 화면
+1. `screenshot-light.png`: 라이트 모드, 9칸에 아이콘과 이름, 단축키가 표시된 팝업
+2. `screenshot-dark.png`: 다크 모드, 3번 칸을 펼쳐 북마크를 검색하는 팝업 (크롬 팝업 최대 높이 600px로 자름)
 
 오른쪽 위 **임시저장 (Save draft)** 클릭
 
@@ -176,7 +177,7 @@ Changes to this policy
 If this policy changes, the updated version will be posted at this address with a new date.
 
 Contact
-(contact email)
+dev.aleph.kim@gmail.com
 ```
 
 오른쪽 위 **임시저장** 클릭
@@ -201,8 +202,8 @@ Contact
 
 ## 개발자 정보
 
-- 게시자 이름: (미정)
-- 연락 이메일 (스토어에 공개): (미정)
+- 게시자 이름: dev.aleph.kim@gmail.com
+- 연락 이메일 (스토어에 공개): dev.aleph.kim@gmail.com
 
 ## 버전 기록
 
