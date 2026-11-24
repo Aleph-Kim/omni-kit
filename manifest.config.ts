@@ -24,9 +24,11 @@ export default defineManifest({
   description: '__MSG_appDesc__',
   default_locale: 'en',
   minimum_chrome_version: '128',
+  icons: { 16: 'icons/icon-16.png', 32: 'icons/icon-32.png', 48: 'icons/icon-48.png', 128: 'icons/icon-128.png' },
   version: pkg.version,
   action: {
     default_title: '__MSG_actionTitle__',
+    default_icon: { 16: 'icons/icon-16.png', 32: 'icons/icon-32.png' },
     default_popup: 'popup.html',
   },
   background: { service_worker: 'src/background/index.ts', type: 'module' },

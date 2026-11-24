@@ -5,7 +5,7 @@
 ## 구성
 
 - Manifest V3, Vite + CRXJS + React 19 + Tailwind 4 + TypeScript, 테스트는 vitest
-- 아이콘은 아직 없음 (OmniView 로고를 쓰지 않으려고 manifest에서 생략, 크롬 기본 아이콘 표시)
+- 아이콘은 `public/icons`의 16, 32, 48, 128px PNG, OmniView 아이콘과 같은 스타일(파란 `#007aff` 배경, 남색 `#5856d6` 앞 물체와 흰 테두리, 반투명 흰색 뒤 물체)로 겹친 공구함 두 개
 - 언어는 `public/_locales`의 en(기본)과 ko, 화면 문구는 `src/i18n.ts`의 `t()`로 `chrome.i18n` 사용
 
 ## 명령
@@ -96,4 +96,4 @@
 ## 남은 일
 
 - 전체 페이지 스크린샷 등 다른 기능은 아직 없음
-- 아이콘과 스토어 등록 문서(CHROMEWEBSTORE.md)는 아직 없음
+- 스토어 제출 전 남은 일은 `CHROMEWEBSTORE.md`의 "제출 전 남은 일" 참고

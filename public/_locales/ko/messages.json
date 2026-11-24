@@ -6,7 +6,7 @@
     "message": "OmniKit"
   },
   "appDesc": {
-    "message": "북마크 단축키, 전체 페이지 스크린샷 등 자주 쓰는 브라우저 도구를 한곳에 모았습니다."
+    "message": "자주 쓰는 브라우저 도구 모음입니다. 지금은 북마크 단축키를 지원해 Option(윈도우는 Alt+Shift)과 숫자로 자주 가는 북마크를 바로 엽니다."
   },
   "actionTitle": {
     "message": "OmniKit 열기"
