@@ -18,7 +18,7 @@
 - 스토어 아이콘: `public/icons/icon-128.png`
 - 스크린샷: `store-assets/screenshot-light.png`, `store-assets/screenshot-dark.png` (1280x800)
 - 개인정보처리방침 주소: 구글 문서 "OmniKit Privacy Policy"의 링크 공유 주소 (링크가 있는 모든 사용자 보기 권한, 로그인 없이 열림 확인)
-  `https://docs.google.com/document/d/1-aPlBzz-Nhzss8FJsEQcar6_SAuBXZzZ44C8juDgouk/edit?usp=sharing`
+  `https://docs.google.com/document/d/1XemSNDAWv9wfWYxrJtoz5U8VORFr2NuJjwyqCF605Uk/edit?usp=sharing`
 
 ## 1단계. zip 올리기
 
@@ -85,7 +85,7 @@ ko
 
 | 칸 | 넣을 값 |
 |---|---|
-| 카테고리 (Category) | 생산성 (Productivity) |
+| 카테고리 (Category) | 도구 (Tools), 생산성은 묶음 제목이라 고를 수 없고 그 아래 항목 중 선택 |
 | 언어 (Language) | 영어 (English) |
 | 스토어 아이콘 (Store icon) | `public/icons/icon-128.png` 업로드 |
 | 전 언어 공통 스크린샷 (Global screenshots) | `store-assets/screenshot-light.png`, `store-assets/screenshot-dark.png` 업로드 (언어별 현지화 스크린샷 칸은 비워 둠) |
@@ -154,7 +154,7 @@ Saves which bookmark the user linked to each shortcut slot in chrome.storage.loc
 
 **개인정보처리방침 URL** 칸에 준비물의 링크 공유 주소 붙여 넣기. 데이터 체크 항목을 바꾸면 처리방침도 함께 고침
 
-개인정보처리방침 본문
+개인정보처리방침 본문 (구글 문서에 영어 다음 한국어 순서로 넣음)
 
 ```
 Privacy Policy for OmniKit
@@ -177,6 +177,30 @@ Changes to this policy
 If this policy changes, the updated version will be posted at this address with a new date.
 
 Contact
+dev.aleph.kim@gmail.com
+```
+
+```
+OmniKit 개인정보처리방침
+
+최종 수정일: 2026년 11월 24일
+
+OmniKit이 사용하는 데이터
+OmniKit은 북마크를 단축키로 열고 팝업에서 검색할 수 있도록 북마크를 읽습니다. 단축키를 누르면 같은 페이지가 이미 열린 탭으로 이동하려고 열려 있는 탭의 주소를 확인합니다. 사이트 아이콘은 크롬이 기기에 이미 저장해 둔 것을 보여 줍니다. 이 모든 처리는 기기 안에서 이루어집니다.
+
+데이터 저장
+OmniKit이 저장하는 것은 단축키 칸마다 연결한 북마크뿐입니다. 이 정보는 기기에만 저장되며 동기화하거나 업로드하지 않습니다.
+
+데이터 공유
+OmniKit은 어떤 데이터도 기기 밖으로 보내지 않습니다. 분석 도구, 광고, 외부 서비스를 사용하지 않으며 데이터를 공유하거나 판매하지 않습니다.
+
+데이터 삭제
+팝업에서 칸을 비우면 그 칸에 저장된 북마크가 지워지고, 확장 프로그램을 삭제하면 저장된 모든 데이터가 지워집니다.
+
+방침 변경
+이 방침이 바뀌면 새 날짜와 함께 바뀐 내용을 이 주소에 올립니다.
+
+문의
 dev.aleph.kim@gmail.com
 ```
 
@@ -204,12 +228,13 @@ dev.aleph.kim@gmail.com
 
 - 게시자 이름: dev.aleph.kim@gmail.com
 - 연락 이메일 (스토어에 공개): dev.aleph.kim@gmail.com
+- 항목 ID: `lfjjclkojbgjgjbjjpfippbjbemjmoci`
 
 ## 버전 기록
 
 | 버전 | 날짜 | 변경 | 상태 |
 |---|---|---|---|
-| 1.0.0 | 2026-11-24 | 북마크 단축키 첫 공개 | 준비 중 |
+| 1.0.0 | 2026-11-24 | 북마크 단축키 첫 공개 | 검토 대기 중 (2026-11-24 제출, 통과하면 자동 게시) |
 
 ## 심사 참고
 
