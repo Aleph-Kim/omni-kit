@@ -4,7 +4,7 @@
 
 ## 구성
 
-- Manifest V3, Vite + CRXJS + React 19 + Tailwind 4 + TypeScript, 테스트는 vitest, 크롬에서 직접 확인하는 하네스는 puppeteer
+- Manifest V3, Vite + CRXJS + React 19 + Tailwind 4 + TypeScript, 테스트는 vitest
 - 캡처 편집 화면의 그림 꾸미기는 `konva`, `react-konva`(요소 고르기, 크기 조절, 회전이 들어 있음). 아이콘은 Lucide의 SVG 내용만 `src/features/capture/page/editor/icons.ts`에 복사. 세 라이선스 문구는 `public/THIRD_PARTY_NOTICES.txt`
 - 아이콘은 `public/icons`의 16, 32, 48, 128px PNG, OmniView 아이콘과 같은 스타일(파란 `#007aff` 배경, 남색 `#5856d6` 앞 물체와 흰 테두리, 반투명 흰색 뒤 물체)로 겹친 공구함 두 개
 - 언어는 `public/_locales`의 13개(en 기본, ko, ja, zh_CN, zh_TW, es, pt_BR, de, fr, id, vi, hi, ar), OmniView와 같은 목록. 화면 문구는 `src/i18n.ts`의 `t()`로 `chrome.i18n` 사용(브라우저 언어를 따르고 없는 언어는 en)
@@ -14,7 +14,6 @@
 
 - `npm run check`: 타입 검사, 테스트, 빌드를 차례로 실행
 - `npm run package`: check 후 스토어용(release 모드)으로 `dist-release`에 다시 빌드해 zip으로 묶음. release가 아닌 빌드(`dist`)는 이름이 `OmniKit DEV`이고 툴바 아이콘 오른쪽 위에 주황 점(`src/background/dev-icon.ts`)을 찍어 스토어에서 설치한 출시 버전과 구분
-- `npm run e2e`: 사용자가 돌리라고 할 때만 실행(검증은 `npm run check`까지). 빌드 후 `e2e/capture.ts` 하네스로 캡처 기능을 화면 배율 1과 2에서 시험. 시험용 크롬(puppeteer)을 창 없이(headless) 띄워 사용자 화면을 가리지 않음, 시험 페이지는 이 컴퓨터 안의 서버에서 제공. 툴바 아이콘 클릭은 `page.triggerExtensionAction`으로 흉내, 우클릭 메뉴는 시험하지 못함
 - 크롬 확인: `chrome://extensions`에서 `dist` 폴더를 압축해제된 확장으로 로드. manifest의 기본 단축키를 바꿨다면 새로고침이 아니라 삭제 후 다시 로드해야 반영됨
 
 ## 구조
@@ -27,7 +26,6 @@
 - `capture.html`: 캡처 편집 화면, 팝업이 아닌 확장 페이지라 `vite.config.ts` 빌드 입력에 따로 등록
 - `src/theme.css`: 팝업과 편집 화면이 같이 쓰는 색 변수와 기본 글꼴
 - `src/ui/`, `src/badge.ts`: 여러 기능이 같이 쓰는 화면 부품(`Chevron`, 끝에 버튼을 둘 수 있는 섹션 이름 `SectionTitle`)과 실패 배지(`flashBadge`)
-- `e2e/`: 크롬에서 직접 확인하는 하네스
 
 ## 기능 추가 방법
 

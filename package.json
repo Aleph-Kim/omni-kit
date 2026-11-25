@@ -9,8 +9,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "check": "npm run typecheck && npm test && npm run build",
-    "package": "npm run check && vite build --mode release --outDir dist-release && rm -f omni-kit-$npm_package_version.zip && cd dist-release && zip -qr ../omni-kit-$npm_package_version.zip . && cd .. && echo omni-kit-$npm_package_version.zip",
-    "e2e": "npm run build && node e2e/capture.ts --scale=1 && node e2e/capture.ts --scale=2"
+    "package": "npm run check && vite build --mode release --outDir dist-release && rm -f omni-kit-$npm_package_version.zip && cd dist-release && zip -qr ../omni-kit-$npm_package_version.zip . && cd .. && echo omni-kit-$npm_package_version.zip"
   },
   "dependencies": {
     "konva": "^10.11.0",
@@ -26,7 +25,6 @@
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.2.1",
-    "puppeteer": "^25.14.0",
     "tailwindcss": "^4.3.4",
     "typescript": "^7.0.2",
     "vite": "^8.3.5",
