@@ -1,21 +1,65 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import { t } from '../../i18n'
-import { Chevron } from '../../ui/Chevron'
+import { SectionTitle } from '../../ui/SectionTitle'
 import type { CaptureMessage } from './background'
 import pageScrollScript from './content/page-scroll.ts?iife'
 import { captureSupport, frameOriginPattern, isPdf, type CaptureMode, type CaptureSupport } from './shot'
 
-const OPTIONS: { mode: CaptureMode; titleKey: string }[] = [
-  { mode: 'area', titleKey: 'shotArea' },
-  { mode: 'element', titleKey: 'shotElement' },
-  { mode: 'visible', titleKey: 'shotVisible' },
-  { mode: 'full', titleKey: 'shotFullPage' },
+const OPTIONS: { mode: CaptureMode; titleKey: string; hintKey: string; icon: ReactNode }[] = [
+  {
+    mode: 'area',
+    titleKey: 'shotArea',
+    hintKey: 'shotAreaHint',
+    icon: (
+      <>
+        <rect className="ok-shot-accent" x="6" y="4" width="28" height="20" rx="1" strokeDasharray="4 3" />
+        <path className="ok-shot-stroke" d="M36 20v12M30 26h12" />
+      </>
+    ),
+  },
+  {
+    mode: 'element',
+    titleKey: 'shotElement',
+    hintKey: 'shotElementHint',
+    icon: (
+      <>
+        <rect className="ok-shot-block" x="6" y="4" width="36" height="6" rx="1.5" />
+        <rect className="ok-shot-accent" x="6" y="13" width="20" height="19" rx="1.5" />
+        <rect className="ok-shot-block" x="29" y="13" width="13" height="19" rx="1.5" />
+        <path className="ok-shot-pointer" d="M17 17v12l3-3 2.3 4.6 2-1-2.3-4.4H26z" />
+      </>
+    ),
+  },
+  {
+    mode: 'visible',
+    titleKey: 'shotVisible',
+    hintKey: 'shotVisibleHint',
+    icon: (
+      <>
+        <rect className="ok-shot-frame" x="6" y="4" width="36" height="22" rx="2.5" />
+        <rect className="ok-shot-fill" x="9" y="7" width="30" height="16" rx="1" />
+        <path className="ok-shot-stroke" d="M24 26v4M18 31h12" />
+      </>
+    ),
+  },
+  {
+    mode: 'full',
+    titleKey: 'shotFullPage',
+    hintKey: 'shotFullPageHint',
+    icon: (
+      <>
+        <rect className="ok-shot-frame" x="13" y="4" width="22" height="28" rx="2" />
+        <path className="ok-shot-line" d="M17 9h14M17 13.5h14M17 18h9" />
+        <path className="ok-shot-arrow" d="M20 21l4 3.5 4-3.5M20 26l4 3.5 4-3.5" />
+      </>
+    ),
+  },
 ]
 
-export function CapturePanel() {
+export function CapturePanel({ titleId, title }: { titleId: string; title: string }) {
   const [tabId, setTabId] = useState<number | null>(null)
   const [support, setSupport] = useState<CaptureSupport | null>(null)
-  const [open, setOpen] = useState(false)
+  const [hovered, setHovered] = useState<CaptureMode | null>(null)
   const [frameOrigin, setFrameOrigin] = useState<string | null>(null)
   const [pdf, setPdf] = useState(false)
 
@@ -26,13 +70,10 @@ export function CapturePanel() {
       setTabId(tab?.id ?? null)
       setPdf(support === 'full' && tab?.id !== undefined && (await isPdf(tab.id)))
       setSupport(support)
+      // 권한 요청은 클릭 안에서 바로 해야 해서 미리 확인
+      if (support === 'full' && tab?.id !== undefined) setFrameOrigin(await frameNeedingPermission(tab.id))
     })()
   }, [])
-
-  // 권한 요청은 클릭 안에서 바로 해야 해서 펼칠 때 미리 확인
-  useEffect(() => {
-    if (open && support === 'full' && tabId !== null) void frameNeedingPermission(tabId).then(setFrameOrigin)
-  }, [open, support, tabId])
 
   if (!support) return null
 
@@ -54,41 +95,34 @@ export function CapturePanel() {
       .finally(() => window.close())
   }
 
+  const notice = support !== 'full' ? t(support === 'visible' ? 'captureLimited' : 'captureUnavailable') : pdf ? t('captureNoFullPdf') : null
+  const hint = hovered ? t(OPTIONS.find((option) => option.mode === hovered)!.hintKey) : notice
+
   return (
-    <div className="overflow-hidden rounded-xl bg-(--ok-cell)">
-      <button
-        type="button"
-        aria-expanded={open}
-        className="flex w-full items-center gap-3 px-3 py-2.5 text-start hover:bg-(--ok-fill)"
-        onClick={() => setOpen(!open)}
-      >
-        <ScreenshotIcon />
-        <span className="flex-1">{t('screenshot')}</span>
-        <Chevron open={open} />
-      </button>
-      {open && (
-        <div className="mt-2 flex flex-col gap-2 px-3 pb-3 ps-10">
-          <ul>
-            {OPTIONS.map(({ mode, titleKey }) => (
-              <li key={mode}>
-                <button
-                  type="button"
-                  disabled={!enabled(mode)}
-                  className="flex w-full rounded-lg px-2 py-1.5 text-start enabled:hover:bg-(--ok-fill) disabled:cursor-default disabled:text-(--ok-label-2)"
-                  onClick={() => capture(mode)}
-                >
-                  {t(titleKey)}
-                </button>
-              </li>
-            ))}
-          </ul>
-          {support !== 'full' && (
-            <p className="px-2 text-xs text-(--ok-label-2)">{t(support === 'visible' ? 'captureLimited' : 'captureUnavailable')}</p>
-          )}
-          {pdf && <p className="px-2 text-xs text-(--ok-label-2)">{t('captureNoFullPdf')}</p>}
-        </div>
-      )}
-    </div>
+    <>
+      <SectionTitle id={titleId}>{title}</SectionTitle>
+      <div className="grid grid-cols-4 gap-1 rounded-xl bg-(--ok-cell) p-1.5">
+        {OPTIONS.map(({ mode, titleKey, icon }) => (
+          <button
+            key={mode}
+            type="button"
+            disabled={!enabled(mode)}
+            className="flex min-w-0 flex-col items-center gap-1.5 rounded-lg px-0.5 pt-2.5 pb-2 enabled:hover:bg-(--ok-fill) disabled:cursor-default disabled:opacity-35"
+            onClick={() => capture(mode)}
+            onPointerEnter={() => setHovered(mode)}
+            onPointerLeave={() => setHovered(null)}
+            onFocus={() => setHovered(mode)}
+            onBlur={() => setHovered(null)}
+          >
+            <svg viewBox="0 0 48 36" aria-hidden="true" className="h-9 w-12">
+              {icon}
+            </svg>
+            <span className="text-center text-xs leading-tight">{t(titleKey)}</span>
+          </button>
+        ))}
+      </div>
+      <p className="mx-3 mt-1.5 min-h-4 text-xs text-(--ok-label-2)">{hint}</p>
+    </>
   )
 }
 
@@ -104,19 +138,4 @@ async function frameNeedingPermission(tabId: number): Promise<string | null> {
   } catch {
     return null
   }
-}
-
-function ScreenshotIcon() {
-  return (
-    <svg viewBox="0 0 16 16" aria-hidden="true" className="size-4 shrink-0 translate-y-px text-(--ok-label-2)">
-      <path
-        d="M1.5 5V3.5a2 2 0 0 1 2-2H5M11 1.5h1.5a2 2 0 0 1 2 2V5M14.5 11v1.5a2 2 0 0 1-2 2H11M5 14.5H3.5a2 2 0 0 1-2-2V11"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="round"
-      />
-      <circle cx="8" cy="8" r="2.5" fill="none" stroke="currentColor" strokeWidth="1.5" />
-    </svg>
-  )
 }

@@ -32,6 +32,9 @@
   "editShortcuts": {
     "message": "शॉर्टकट बदलें"
   },
+  "editBookmarks": {
+    "message": "बदलें"
+  },
   "openBookmark1": {
     "message": "बुकमार्क स्लॉट 1 खोलें"
   },
@@ -80,9 +83,6 @@
   "captureTitle": {
     "message": "कैप्चर"
   },
-  "screenshot": {
-    "message": "स्क्रीनशॉट"
-  },
   "shotArea": {
     "message": "चुना हुआ हिस्सा"
   },
@@ -127,6 +127,18 @@
   },
   "shotFullPage": {
     "message": "पूरा पेज"
+  },
+  "shotAreaHint": {
+    "message": "सिर्फ़ खींचकर चुना हिस्सा कैप्चर करें"
+  },
+  "shotElementHint": {
+    "message": "सिर्फ़ चुना गया एलिमेंट कैप्चर करें"
+  },
+  "shotVisibleHint": {
+    "message": "स्क्रीन पर दिख रहा हिस्सा कैप्चर करें"
+  },
+  "shotFullPageHint": {
+    "message": "आख़िर तक स्क्रॉल करके एक इमेज में कैप्चर करें"
   },
   "captureUnavailable": {
     "message": "यह पेज कैप्चर नहीं किया जा सकता"

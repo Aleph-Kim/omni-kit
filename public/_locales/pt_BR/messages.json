@@ -32,6 +32,9 @@
   "editShortcuts": {
     "message": "Editar atalhos"
   },
+  "editBookmarks": {
+    "message": "Editar"
+  },
   "openBookmark1": {
     "message": "Abrir o espaço de favorito 1"
   },
@@ -80,9 +83,6 @@
   "captureTitle": {
     "message": "Captura"
   },
-  "screenshot": {
-    "message": "Captura de tela"
-  },
   "shotArea": {
     "message": "Área selecionada"
   },
@@ -127,6 +127,18 @@
   },
   "shotFullPage": {
     "message": "Página inteira"
+  },
+  "shotAreaHint": {
+    "message": "Captura só a parte que você arrastar"
+  },
+  "shotElementHint": {
+    "message": "Captura só o elemento que você escolher"
+  },
+  "shotVisibleHint": {
+    "message": "Captura o que está visível na tela"
+  },
+  "shotFullPageHint": {
+    "message": "Rola até o fim e captura tudo em uma imagem"
   },
   "captureUnavailable": {
     "message": "Esta página não pode ser capturada"

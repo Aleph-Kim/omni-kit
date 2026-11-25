@@ -32,6 +32,9 @@
   "editShortcuts": {
     "message": "Ubah pintasan"
   },
+  "editBookmarks": {
+    "message": "Edit"
+  },
   "openBookmark1": {
     "message": "Buka slot bookmark 1"
   },
@@ -80,9 +83,6 @@
   "captureTitle": {
     "message": "Tangkap"
   },
-  "screenshot": {
-    "message": "Tangkapan layar"
-  },
   "shotArea": {
     "message": "Area terpilih"
   },
@@ -127,6 +127,18 @@
   },
   "shotFullPage": {
     "message": "Seluruh halaman"
+  },
+  "shotAreaHint": {
+    "message": "Tangkap hanya bagian yang diseret"
+  },
+  "shotElementHint": {
+    "message": "Tangkap hanya elemen yang dipilih"
+  },
+  "shotVisibleHint": {
+    "message": "Tangkap yang terlihat di layar"
+  },
+  "shotFullPageHint": {
+    "message": "Gulir sampai akhir dan tangkap jadi satu gambar"
   },
   "captureUnavailable": {
     "message": "Halaman ini tidak dapat ditangkap"

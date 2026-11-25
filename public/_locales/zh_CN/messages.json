@@ -32,6 +32,9 @@
   "editShortcuts": {
     "message": "修改快捷键"
   },
+  "editBookmarks": {
+    "message": "编辑"
+  },
   "openBookmark1": {
     "message": "打开书签槽位 1"
   },
@@ -80,9 +83,6 @@
   "captureTitle": {
     "message": "截取"
   },
-  "screenshot": {
-    "message": "截图"
-  },
   "shotArea": {
     "message": "选定区域"
   },
@@ -127,6 +127,18 @@
   },
   "shotFullPage": {
     "message": "整个页面"
+  },
+  "shotAreaHint": {
+    "message": "只截取拖动选择的部分"
+  },
+  "shotElementHint": {
+    "message": "只截取鼠标选中的元素"
+  },
+  "shotVisibleHint": {
+    "message": "截取当前屏幕上可见的内容"
+  },
+  "shotFullPageHint": {
+    "message": "滚动到底，截成一整张"
   },
   "captureUnavailable": {
     "message": "此页面无法截取"

@@ -1,6 +1,8 @@
 import { flashBadge } from '../../badge'
 import { loadBarBookmarkIds, loadSlots, slotIndexFromCommand } from './slots'
 
+export type BookmarkMessage = { type: 'open-bookmark'; index: number }
+
 export async function openBookmarkSlot(command: string) {
   const index = slotIndexFromCommand(command)
   if (index === null) return

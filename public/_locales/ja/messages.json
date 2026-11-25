@@ -32,6 +32,9 @@
   "editShortcuts": {
     "message": "ショートカットを編集"
   },
+  "editBookmarks": {
+    "message": "編集"
+  },
   "openBookmark1": {
     "message": "ブックマークのスロット 1 を開く"
   },
@@ -80,9 +83,6 @@
   "captureTitle": {
     "message": "キャプチャ"
   },
-  "screenshot": {
-    "message": "スクリーンショット"
-  },
   "shotArea": {
     "message": "選択範囲"
   },
@@ -127,6 +127,18 @@
   },
   "shotFullPage": {
     "message": "ページ全体"
+  },
+  "shotAreaHint": {
+    "message": "ドラッグで選んだ部分だけを撮影"
+  },
+  "shotElementHint": {
+    "message": "マウスで選んだ要素だけを撮影"
+  },
+  "shotVisibleHint": {
+    "message": "いま画面に見えている部分を撮影"
+  },
+  "shotFullPageHint": {
+    "message": "最後までスクロールして1枚に撮影"
   },
   "captureUnavailable": {
     "message": "このページはキャプチャできません"

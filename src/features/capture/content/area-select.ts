@@ -2,6 +2,7 @@ import type { Rect } from '../shot'
 
 const HOST_ID = 'omni-kit-area-select'
 const SHADE = 'rgb(0 0 0 / 0.3)'
+const ACCENT = '#007aff'
 
 // 넣을 때마다 다시 실행되므로 이미 고르는 중이면 그대로 둠
 if (!document.getElementById(HOST_ID)) start()
@@ -17,7 +18,7 @@ function start() {
   doc.documentElement.style.cssText = 'height:100%'
   doc.body.style.cssText = `margin:0;height:100%;cursor:crosshair;touch-action:none;user-select:none;background:${SHADE}`
   const box = doc.createElement('div')
-  box.style.cssText = `position:fixed;display:none;outline:1px solid #fff;box-shadow:0 0 0 100vmax ${SHADE}`
+  box.style.cssText = `position:fixed;display:none;outline:2px solid ${ACCENT};box-shadow:0 0 0 100vmax ${SHADE}`
   doc.body.append(box)
   // 키 입력도 바깥 페이지 대신 iframe으로 오게 함
   frameWindow.focus()

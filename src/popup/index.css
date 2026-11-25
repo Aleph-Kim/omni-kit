@@ -5,3 +5,55 @@ html {
   scrollbar-width: none;
   overscroll-behavior: none;
 }
+
+/* 캡처 방식 그림의 선과 면 (다크모드에서도 보이게 화면 색 변수 사용) */
+.ok-shot-frame {
+  fill: none;
+  stroke: var(--ok-label-2);
+  stroke-width: 1.8;
+}
+
+.ok-shot-block {
+  fill: var(--ok-label-3);
+}
+
+.ok-shot-line,
+.ok-shot-stroke {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.ok-shot-line {
+  stroke: var(--ok-label-3);
+  stroke-width: 2.4;
+}
+
+.ok-shot-stroke {
+  stroke: var(--ok-label-2);
+  stroke-width: 1.8;
+}
+
+.ok-shot-accent {
+  fill: color-mix(in srgb, var(--ok-accent) 18%, transparent);
+  stroke: var(--ok-accent);
+  stroke-width: 1.8;
+}
+
+.ok-shot-fill {
+  fill: var(--ok-accent);
+}
+
+.ok-shot-arrow {
+  fill: none;
+  stroke: var(--ok-accent);
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.ok-shot-pointer {
+  fill: var(--ok-label);
+  stroke: var(--ok-cell);
+  stroke-width: 1.2;
+  stroke-linejoin: round;
+}

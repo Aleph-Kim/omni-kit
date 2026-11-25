@@ -32,6 +32,9 @@
   "editShortcuts": {
     "message": "단축키 변경"
   },
+  "editBookmarks": {
+    "message": "편집"
+  },
   "openBookmark1": {
     "message": "북마크 1번 칸 열기"
   },
@@ -80,9 +83,6 @@
   "captureTitle": {
     "message": "캡처"
   },
-  "screenshot": {
-    "message": "스크린샷"
-  },
   "shotArea": {
     "message": "선택 영역"
   },
@@ -127,6 +127,18 @@
   },
   "shotFullPage": {
     "message": "전체 페이지"
+  },
+  "shotAreaHint": {
+    "message": "끌어서 고른 부분만 찍어요"
+  },
+  "shotElementHint": {
+    "message": "마우스로 고른 요소 하나만 찍어요"
+  },
+  "shotVisibleHint": {
+    "message": "지금 화면에 보이는 그대로 찍어요"
+  },
+  "shotFullPageHint": {
+    "message": "끝까지 내려서 한 장으로 찍어요"
   },
   "captureUnavailable": {
     "message": "이 페이지는 캡처할 수 없어요"

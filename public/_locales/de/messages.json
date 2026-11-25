@@ -32,6 +32,9 @@
   "editShortcuts": {
     "message": "Kürzel bearbeiten"
   },
+  "editBookmarks": {
+    "message": "Bearbeiten"
+  },
   "openBookmark1": {
     "message": "Lesezeichen-Platz 1 öffnen"
   },
@@ -80,9 +83,6 @@
   "captureTitle": {
     "message": "Aufnahme"
   },
-  "screenshot": {
-    "message": "Screenshot"
-  },
   "shotArea": {
     "message": "Ausgewählter Bereich"
   },
@@ -127,6 +127,18 @@
   },
   "shotFullPage": {
     "message": "Ganze Seite"
+  },
+  "shotAreaHint": {
+    "message": "Nur den gezogenen Bereich aufnehmen"
+  },
+  "shotElementHint": {
+    "message": "Nur das gewählte Element aufnehmen"
+  },
+  "shotVisibleHint": {
+    "message": "Den sichtbaren Bildschirm aufnehmen"
+  },
+  "shotFullPageHint": {
+    "message": "Bis zum Ende scrollen und als ein Bild aufnehmen"
   },
   "captureUnavailable": {
     "message": "Diese Seite kann nicht aufgenommen werden"

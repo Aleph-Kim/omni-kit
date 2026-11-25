@@ -32,6 +32,9 @@
   "editShortcuts": {
     "message": "Đổi phím tắt"
   },
+  "editBookmarks": {
+    "message": "Chỉnh sửa"
+  },
   "openBookmark1": {
     "message": "Mở ô dấu trang 1"
   },
@@ -80,9 +83,6 @@
   "captureTitle": {
     "message": "Chụp"
   },
-  "screenshot": {
-    "message": "Ảnh chụp màn hình"
-  },
   "shotArea": {
     "message": "Vùng đã chọn"
   },
@@ -127,6 +127,18 @@
   },
   "shotFullPage": {
     "message": "Toàn trang"
+  },
+  "shotAreaHint": {
+    "message": "Chỉ chụp phần bạn kéo chọn"
+  },
+  "shotElementHint": {
+    "message": "Chỉ chụp phần tử bạn chọn"
+  },
+  "shotVisibleHint": {
+    "message": "Chụp phần đang hiển thị trên màn hình"
+  },
+  "shotFullPageHint": {
+    "message": "Cuộn đến cuối và chụp thành một ảnh"
   },
   "captureUnavailable": {
     "message": "Không thể chụp trang này"

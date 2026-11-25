@@ -32,6 +32,9 @@
   "editShortcuts": {
     "message": "تعديل الاختصارات"
   },
+  "editBookmarks": {
+    "message": "تعديل"
+  },
   "openBookmark1": {
     "message": "فتح خانة الإشارة المرجعية 1"
   },
@@ -80,9 +83,6 @@
   "captureTitle": {
     "message": "التقاط"
   },
-  "screenshot": {
-    "message": "لقطة شاشة"
-  },
   "shotArea": {
     "message": "المنطقة المحددة"
   },
@@ -127,6 +127,18 @@
   },
   "shotFullPage": {
     "message": "الصفحة كاملة"
+  },
+  "shotAreaHint": {
+    "message": "التقاط الجزء الذي تسحبه فقط"
+  },
+  "shotElementHint": {
+    "message": "التقاط العنصر الذي تختاره فقط"
+  },
+  "shotVisibleHint": {
+    "message": "التقاط ما يظهر على الشاشة"
+  },
+  "shotFullPageHint": {
+    "message": "التمرير حتى النهاية والتقاط صورة واحدة"
   },
   "captureUnavailable": {
     "message": "لا يمكن التقاط هذه الصفحة"

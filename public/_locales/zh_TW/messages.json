@@ -32,6 +32,9 @@
   "editShortcuts": {
     "message": "變更快速鍵"
   },
+  "editBookmarks": {
+    "message": "編輯"
+  },
   "openBookmark1": {
     "message": "開啟書籤欄位 1"
   },
@@ -80,9 +83,6 @@
   "captureTitle": {
     "message": "擷取"
   },
-  "screenshot": {
-    "message": "螢幕截圖"
-  },
   "shotArea": {
     "message": "選取範圍"
   },
@@ -127,6 +127,18 @@
   },
   "shotFullPage": {
     "message": "整個頁面"
+  },
+  "shotAreaHint": {
+    "message": "只擷取拖曳選取的部分"
+  },
+  "shotElementHint": {
+    "message": "只擷取滑鼠選取的元素"
+  },
+  "shotVisibleHint": {
+    "message": "擷取目前畫面上可見的內容"
+  },
+  "shotFullPageHint": {
+    "message": "捲動到底，擷取成一整張"
   },
   "captureUnavailable": {
     "message": "此頁面無法擷取"

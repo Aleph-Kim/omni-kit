@@ -21,7 +21,7 @@ const STYLE = `
   .zoom .box, .zoom .label { transition: left 0.15s ease-out, top 0.15s ease-out, width 0.15s ease-out, height 0.15s ease-out }
   .label, .guide { position: fixed; pointer-events: none; display: flex; flex-direction: column; gap: 6px }
   .label { display: none; padding: 6px 8px; border-radius: 8px; background: ${ACCENT}; box-shadow: 0 2px 8px rgb(0 0 0 / 0.3) }
-  .guide { bottom: 24px; left: 50%; transform: translateX(-50%); padding: 14px 18px; border-radius: 12px; background: rgb(0 0 0 / 0.85); box-shadow: 0 4px 16px rgb(0 0 0 / 0.3); font-size: 13px }
+  .guide { bottom: 24px; left: 50%; transform: translateX(-50%); padding: 14px 18px; border-radius: 12px; background: rgb(0 0 0 / 0.85); border: 1px solid rgb(255 255 255 / 0.2); box-shadow: 0 4px 16px rgb(0 0 0 / 0.3); font-size: 13px }
   .guide-body { display: flex; align-items: center; gap: 16px }
   .label-rows { display: grid; grid-template-columns: auto auto; align-items: center; gap: 6px 10px }
   .label-rows .row { display: contents }

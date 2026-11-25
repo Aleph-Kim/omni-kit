@@ -1,4 +1,5 @@
-import { openBookmarkSlot } from '../features/bookmark-shortcuts/background'
+import { openBookmarkSlot, type BookmarkMessage } from '../features/bookmark-shortcuts/background'
+import { commandName } from '../features/bookmark-shortcuts/slots'
 import {
   createCaptureMenus,
   deleteOldCaptures,
@@ -19,7 +20,8 @@ chrome.runtime.onInstalled.addListener(() => {
 
 chrome.contextMenus.onClicked.addListener((info, tab) => onCaptureMenuClick(info.menuItemId, tab))
 
-chrome.runtime.onMessage.addListener((message: CaptureMessage, sender) => {
+chrome.runtime.onMessage.addListener((message: CaptureMessage | BookmarkMessage, sender) => {
+  if (message.type === 'open-bookmark') return void openBookmarkSlot(commandName(message.index))
   void handleCaptureMessage(message, sender)
 })
 

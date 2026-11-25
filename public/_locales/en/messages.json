@@ -32,6 +32,9 @@
   "editShortcuts": {
     "message": "Edit shortcuts"
   },
+  "editBookmarks": {
+    "message": "Edit"
+  },
   "openBookmark1": {
     "message": "Open bookmark slot 1"
   },
@@ -80,9 +83,6 @@
   "captureTitle": {
     "message": "Capture"
   },
-  "screenshot": {
-    "message": "Screenshot"
-  },
   "shotArea": {
     "message": "Selected area"
   },
@@ -127,6 +127,18 @@
   },
   "shotFullPage": {
     "message": "Full page"
+  },
+  "shotAreaHint": {
+    "message": "Capture only the part you drag"
+  },
+  "shotElementHint": {
+    "message": "Capture only the element you pick"
+  },
+  "shotVisibleHint": {
+    "message": "Capture what's on screen now"
+  },
+  "shotFullPageHint": {
+    "message": "Scroll to the end and capture it as one image"
   },
   "captureUnavailable": {
     "message": "This page can't be captured"

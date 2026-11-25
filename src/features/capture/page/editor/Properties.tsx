@@ -169,7 +169,7 @@ export function Properties({ kind, style, onStyle, customColors, onCustomColor, 
 
 const selectClass = 'bg-transparent text-end text-(--ok-label-2) outline-none'
 
-const swatch = 'size-5 rounded-full ring-1 ring-(--ok-fill) aria-pressed:ring-2 aria-pressed:ring-(--ok-accent) aria-pressed:ring-offset-2 aria-pressed:ring-offset-(--ok-cell)'
+const swatch = 'size-5 rounded-full ring-1 ring-(--ok-label-3) aria-pressed:ring-2 aria-pressed:ring-(--ok-accent) aria-pressed:ring-offset-2 aria-pressed:ring-offset-(--ok-cell)'
 
 const ORDERS: { order: Order; label: string; icon: string }[] = [
   { order: 'front', label: 'orderFront', icon: UI_ICONS.toFront },
