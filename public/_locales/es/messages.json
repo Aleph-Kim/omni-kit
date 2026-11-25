@@ -195,6 +195,12 @@
   "captureMissing": {
     "message": "No se encontró la captura"
   },
+  "captureMissingHint": {
+    "message": "Se cerró la pestaña del editor o la captura se eliminó pasado un día. Vuelve a capturar desde el icono de OmniKit en la barra de herramientas."
+  },
+  "closeTab": {
+    "message": "Cerrar pestaña"
+  },
   "pageSplit": {
     "message": "La página es larga y se dividió en $N$ imágenes",
     "placeholders": {
@@ -287,6 +293,9 @@
   },
   "zoomFit": {
     "message": "Ajustar a la ventana"
+  },
+  "actualSize": {
+    "message": "Tamaño real"
   },
   "textPlaceholder": {
     "message": "Escribe texto"

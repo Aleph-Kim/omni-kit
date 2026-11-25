@@ -195,6 +195,12 @@
   "captureMissing": {
     "message": "Capture not found"
   },
+  "captureMissingHint": {
+    "message": "The editor tab was closed, or the capture was deleted after a day. Capture again from the OmniKit icon in the toolbar."
+  },
+  "closeTab": {
+    "message": "Close tab"
+  },
   "pageSplit": {
     "message": "The page is long, so it was split into $N$ images",
     "placeholders": {
@@ -287,6 +293,9 @@
   },
   "zoomFit": {
     "message": "Fit to window"
+  },
+  "actualSize": {
+    "message": "Actual size"
   },
   "textPlaceholder": {
     "message": "Enter text"

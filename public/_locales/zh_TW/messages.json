@@ -195,6 +195,12 @@
   "captureMissing": {
     "message": "找不到截圖"
   },
+  "captureMissingHint": {
+    "message": "編輯分頁已關閉，或截圖已超過一天被刪除。請透過工具列中的 OmniKit 圖示重新截圖。"
+  },
+  "closeTab": {
+    "message": "關閉分頁"
+  },
   "pageSplit": {
     "message": "頁面較長，已分成 $N$ 張",
     "placeholders": {
@@ -287,6 +293,9 @@
   },
   "zoomFit": {
     "message": "符合視窗"
+  },
+  "actualSize": {
+    "message": "實際大小"
   },
   "textPlaceholder": {
     "message": "輸入文字"

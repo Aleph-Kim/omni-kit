@@ -195,6 +195,12 @@
   "captureMissing": {
     "message": "キャプチャが見つかりません"
   },
+  "captureMissingHint": {
+    "message": "編集タブを閉じたか、1日が過ぎて削除されました。ツールバーの OmniKit アイコンからもう一度撮影してください。"
+  },
+  "closeTab": {
+    "message": "タブを閉じる"
+  },
   "pageSplit": {
     "message": "ページが長いため $N$ 枚に分割しました",
     "placeholders": {
@@ -287,6 +293,9 @@
   },
   "zoomFit": {
     "message": "画面に合わせる"
+  },
+  "actualSize": {
+    "message": "実寸表示"
   },
   "textPlaceholder": {
     "message": "テキストを入力"

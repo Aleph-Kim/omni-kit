@@ -195,6 +195,12 @@
   "captureMissing": {
     "message": "لم يتم العثور على اللقطة"
   },
+  "captureMissingHint": {
+    "message": "تم إغلاق علامة تبويب المحرر أو حُذفت اللقطة بعد يوم. التقط مرة أخرى من أيقونة OmniKit في شريط الأدوات."
+  },
+  "closeTab": {
+    "message": "إغلاق علامة التبويب"
+  },
   "pageSplit": {
     "message": "الصفحة طويلة لذا قُسمت إلى $N$ صور",
     "placeholders": {
@@ -287,6 +293,9 @@
   },
   "zoomFit": {
     "message": "ملاءمة النافذة"
+  },
+  "actualSize": {
+    "message": "الحجم الفعلي"
   },
   "textPlaceholder": {
     "message": "أدخل النص"

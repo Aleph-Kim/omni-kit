@@ -43,4 +43,5 @@ export const UI_ICONS = {
   forward: "<path d=\"m5 12 7-7 7 7\"/><path d=\"M12 19V5\"/>",
   backward: "<path d=\"M12 5v14\"/><path d=\"m19 12-7 7-7-7\"/>",
   toBack: "<path d=\"M12 17V3\"/><path d=\"m6 11 6 6 6-6\"/><path d=\"M19 21H5\"/>",
+  imageOff: "<rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"2\"/><circle cx=\"9\" cy=\"9\" r=\"2\"/><path d=\"m21 15-3.1-3.1a2 2 0 0 0-2.8 0L6 21\"/><path d=\"m2 2 20 20\"/>",
 }

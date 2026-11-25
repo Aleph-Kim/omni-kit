@@ -195,6 +195,12 @@
   "captureMissing": {
     "message": "Không tìm thấy ảnh chụp"
   },
+  "captureMissingHint": {
+    "message": "Thẻ trình chỉnh sửa đã bị đóng hoặc ảnh chụp đã bị xóa sau một ngày. Hãy chụp lại từ biểu tượng OmniKit trên thanh công cụ."
+  },
+  "closeTab": {
+    "message": "Đóng thẻ"
+  },
   "pageSplit": {
     "message": "Trang dài nên đã chia thành $N$ ảnh",
     "placeholders": {
@@ -287,6 +293,9 @@
   },
   "zoomFit": {
     "message": "Vừa cửa sổ"
+  },
+  "actualSize": {
+    "message": "Kích thước thực"
   },
   "textPlaceholder": {
     "message": "Nhập chữ"

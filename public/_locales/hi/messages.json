@@ -195,6 +195,12 @@
   "captureMissing": {
     "message": "कैप्चर नहीं मिला"
   },
+  "captureMissingHint": {
+    "message": "एडिटर टैब बंद हो गया या कैप्चर एक दिन बाद हटा दिया गया। टूलबार में OmniKit आइकन से दोबारा कैप्चर करें।"
+  },
+  "closeTab": {
+    "message": "टैब बंद करें"
+  },
   "pageSplit": {
     "message": "पेज लंबा है, इसलिए इसे $N$ इमेज में बांटा गया",
     "placeholders": {
@@ -287,6 +293,9 @@
   },
   "zoomFit": {
     "message": "विंडो में फ़िट करें"
+  },
+  "actualSize": {
+    "message": "वास्तविक आकार"
   },
   "textPlaceholder": {
     "message": "टेक्स्ट लिखें"

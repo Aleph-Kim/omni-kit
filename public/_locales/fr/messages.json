@@ -195,6 +195,12 @@
   "captureMissing": {
     "message": "Capture introuvable"
   },
+  "captureMissingHint": {
+    "message": "L'onglet de l'éditeur a été fermé ou la capture a été supprimée après un jour. Refaites une capture avec l'icône OmniKit de la barre d'outils."
+  },
+  "closeTab": {
+    "message": "Fermer l'onglet"
+  },
   "pageSplit": {
     "message": "La page est longue et a été divisée en $N$ images",
     "placeholders": {
@@ -287,6 +293,9 @@
   },
   "zoomFit": {
     "message": "Ajuster à la fenêtre"
+  },
+  "actualSize": {
+    "message": "Taille réelle"
   },
   "textPlaceholder": {
     "message": "Saisir du texte"

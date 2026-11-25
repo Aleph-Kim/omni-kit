@@ -195,6 +195,12 @@
   "captureMissing": {
     "message": "캡처를 찾을 수 없어요"
   },
+  "captureMissingHint": {
+    "message": "편집 탭을 닫았거나 하루가 지나 지워졌어요. 툴바의 OmniKit 아이콘으로 다시 찍어 주세요."
+  },
+  "closeTab": {
+    "message": "탭 닫기"
+  },
   "pageSplit": {
     "message": "페이지가 길어 $N$장으로 나눴어요",
     "placeholders": {
@@ -287,6 +293,9 @@
   },
   "zoomFit": {
     "message": "화면에 맞춤"
+  },
+  "actualSize": {
+    "message": "원본 보기"
   },
   "textPlaceholder": {
     "message": "글자 입력"

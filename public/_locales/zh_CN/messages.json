@@ -195,6 +195,12 @@
   "captureMissing": {
     "message": "找不到截图"
   },
+  "captureMissingHint": {
+    "message": "编辑标签页已关闭，或截图已超过一天被删除。请通过工具栏中的 OmniKit 图标重新截图。"
+  },
+  "closeTab": {
+    "message": "关闭标签页"
+  },
   "pageSplit": {
     "message": "页面较长，已分成 $N$ 张",
     "placeholders": {
@@ -287,6 +293,9 @@
   },
   "zoomFit": {
     "message": "适合窗口"
+  },
+  "actualSize": {
+    "message": "实际大小"
   },
   "textPlaceholder": {
     "message": "输入文字"

@@ -195,6 +195,12 @@
   "captureMissing": {
     "message": "Tangkapan tidak ditemukan"
   },
+  "captureMissingHint": {
+    "message": "Tab editor ditutup atau tangkapan dihapus setelah sehari. Tangkap lagi dari ikon OmniKit di bilah alat."
+  },
+  "closeTab": {
+    "message": "Tutup tab"
+  },
   "pageSplit": {
     "message": "Halaman panjang sehingga dibagi menjadi $N$ gambar",
     "placeholders": {
@@ -287,6 +293,9 @@
   },
   "zoomFit": {
     "message": "Sesuaikan dengan jendela"
+  },
+  "actualSize": {
+    "message": "Ukuran asli"
   },
   "textPlaceholder": {
     "message": "Masukkan teks"
