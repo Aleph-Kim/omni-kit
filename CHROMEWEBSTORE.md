@@ -12,7 +12,7 @@
 - [x] 개인정보처리방침을 구글 문서로 만들고 링크 공유(링크가 있는 모든 사용자 보기) 후 주소 채우기
 - [x] 게시자 이름과 공개 연락 이메일 채우기 (둘 다 dev.aleph.kim@gmail.com)
 - [x] 캡처 기능을 넣은 다음 버전(1.1.0) 제출 전: 설명, 스크린샷, 전용 목적, 사용자 데이터, 개인정보처리방침 고치기 (권한 사유는 3-2)
-- [ ] 1.1.0: 구글 문서 개인정보처리방침을 3-5 본문으로 바꾸기
+- [x] 1.1.0: 개인정보처리방침을 3-5 본문으로 바꾸기 (새 구글 문서를 만들어 주소를 바꿈, 예전 문서는 1.0.x 내용 그대로 남아 있음)
 
 ## 준비물
 
@@ -20,7 +20,7 @@
 - 스토어 아이콘: `public/icons/icon-128.png`
 - 스크린샷: `store-assets/screenshot-capture.png`, `store-assets/screenshot-editor.png`, `store-assets/screenshot-light.png`, `store-assets/screenshot-dark.png` (1280x800, 이 순서로 올림)
 - 개인정보처리방침 주소: 구글 문서 "OmniKit Privacy Policy"의 링크 공유 주소 (링크가 있는 모든 사용자 보기 권한, 로그인 없이 열림 확인)
-  `https://docs.google.com/document/d/1XemSNDAWv9wfWYxrJtoz5U8VORFr2NuJjwyqCF605Uk/edit?usp=sharing`
+  `https://docs.google.com/document/d/1sGd32lTq3sTiYn3jhmwASDvhPUfhIt49H4Nvorv1hno/edit?usp=sharing` (1.1.0부터, 1.0.x는 `1XemSNDAWv9wfWYxrJtoz5U8VORFr2NuJjwyqCF605Uk`)
 
 ## 1단계. zip 올리기
 
@@ -584,8 +584,8 @@ dev.aleph.kim@gmail.com
 | 버전 | 날짜 | 변경 | 상태 |
 |---|---|---|---|
 | 1.0.0 | 2026-11-24 | 북마크 단축키 첫 제출 (en, ko) | 13개 언어를 넣으려고 리뷰 취소 |
-| 1.0.1 | 2026-11-24 | 13개 언어 추가, 아랍어 화면 좌우 반전 | 검토 대기 중 (2026-11-24 제출, 통과하면 자동 게시) |
-| 1.1.0 | 2026-11-25 | 스크린샷 캡처(선택 영역, 보이는 화면, 전체 페이지, 우클릭 메뉴, 편집 화면에서 내보내기) | 제출 준비 |
+| 1.0.1 | 2026-11-24 | 13개 언어 추가, 아랍어 화면 좌우 반전 | 게시됨 - 공개 |
+| 1.1.0 | 2026-11-25 | 스크린샷 캡처(선택 영역, 보이는 화면, 전체 페이지, 우클릭 메뉴, 편집 화면에서 내보내기) | 검토 대기 중 (2026-11-25 제출, 통과하면 자동 게시) |
 
 ## 심사 참고
 
