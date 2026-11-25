@@ -18,9 +18,10 @@ const bookmarkCommands = Object.fromEntries(
   ]),
 )
 
-export default defineManifest({
+// 스토어용 zip(npm run package)만 release, 직접 로드하는 dist는 출시 버전과 구분되게 이름에 DEV
+export default defineManifest(({ mode }) => ({
   manifest_version: 3,
-  name: '__MSG_appName__',
+  name: mode === 'release' ? '__MSG_appName__' : 'OmniKit DEV',
   description: '__MSG_appDesc__',
   default_locale: 'en',
   minimum_chrome_version: '128',
@@ -40,4 +41,4 @@ export default defineManifest({
   web_accessible_resources: [
     { matches: ['http://*/*', 'https://*/*'], resources: ['<dynamic_resource>'], use_dynamic_url: true },
   ],
-})
+}))

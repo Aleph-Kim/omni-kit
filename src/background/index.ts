@@ -7,6 +7,7 @@ import {
   onEditorTabRemoved,
   type CaptureMessage,
 } from '../features/capture/background'
+import { markDevIcon } from './dev-icon'
 
 chrome.commands.onCommand.addListener((command) => {
   void openBookmarkSlot(command)
@@ -27,3 +28,5 @@ chrome.tabs.onRemoved.addListener((tabId) => {
 })
 
 void deleteOldCaptures()
+
+if (import.meta.env.MODE !== 'release') void markDevIcon()

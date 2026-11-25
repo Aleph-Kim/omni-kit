@@ -9,7 +9,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "check": "npm run typecheck && npm test && npm run build",
-    "package": "npm run check && rm -f omni-kit-$npm_package_version.zip && cd dist && zip -qr ../omni-kit-$npm_package_version.zip . && cd .. && echo omni-kit-$npm_package_version.zip",
+    "package": "npm run check && vite build --mode release --outDir dist-release && rm -f omni-kit-$npm_package_version.zip && cd dist-release && zip -qr ../omni-kit-$npm_package_version.zip . && cd .. && echo omni-kit-$npm_package_version.zip",
     "e2e": "npm run build && node e2e/capture.ts --scale=1 && node e2e/capture.ts --scale=2"
   },
   "dependencies": {

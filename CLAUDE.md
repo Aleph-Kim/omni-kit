@@ -12,7 +12,7 @@
 ## 명령
 
 - `npm run check`: 타입 검사, 테스트, 빌드를 차례로 실행
-- `npm run package`: check 후 `dist`를 zip으로 묶음
+- `npm run package`: check 후 스토어용(release 모드)으로 `dist-release`에 다시 빌드해 zip으로 묶음. release가 아닌 빌드(`dist`)는 이름이 `OmniKit DEV`이고 툴바 아이콘 오른쪽 위에 주황 점(`src/background/dev-icon.ts`)을 찍어 스토어에서 설치한 출시 버전과 구분
 - `npm run e2e`: 빌드 후 `e2e/capture.ts` 하네스로 캡처 기능을 화면 배율 1과 2에서 시험. 시험용 크롬(puppeteer)을 창 없이(headless) 띄워 사용자 화면을 가리지 않음, 시험 페이지는 이 컴퓨터 안의 서버에서 제공. 툴바 아이콘 클릭은 `page.triggerExtensionAction`으로 흉내, 우클릭 메뉴는 시험하지 못함
 - 크롬 확인: `chrome://extensions`에서 `dist` 폴더를 압축해제된 확장으로 로드. manifest의 기본 단축키를 바꿨다면 새로고침이 아니라 삭제 후 다시 로드해야 반영됨
 
