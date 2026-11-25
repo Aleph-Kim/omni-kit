@@ -327,7 +327,7 @@ OmniKit opens the user's chosen bookmarks with keyboard shortcuts.
 
 ### 3-2. 권한 사유 (Permission justification)
 
-권한 이름이 적힌 칸마다 붙여 넣기. 호스트 권한과 manifest에 적은 콘텐츠 스크립트는 없어서 해당 칸도 없음
+권한 이름이 적힌 칸마다 붙여 넣기. manifest에 적은 콘텐츠 스크립트는 없어서 해당 칸도 없음. 호스트 권한은 선택 권한(`optional_host_permissions`)만 있음
 
 `activeTab`, `scripting`, `contextMenus` 칸과 `tabs`, `storage` 칸의 캡처 문장은 캡처 기능을 넣은 다음 버전부터 해당 (1.0.1에는 없음)
 
@@ -371,6 +371,12 @@ Adds the area-selection overlay and scrolls the page for full-page screenshots o
 
 ```
 Adds capture options (selected area, visible part, full page) to the right-click menu.
+```
+
+**호스트 권한** 칸 (선택 권한 `http://*/*`, `https://*/*`, 캡처 기능을 넣은 다음 버전부터)
+
+```
+Optional, never granted at install. Some pages show their content inside a frame from another address and only that frame scrolls. When the user picks a full-page screenshot on such a page, the extension asks Chrome for access to that one frame address, and Chrome shows its own permission prompt. If allowed, the extension scrolls that frame to capture it. If declined, it captures the visible part only.
 ```
 
 ### 3-3. 원격 코드 (Remote code)
@@ -479,4 +485,4 @@ dev.aleph.kim@gmail.com
 
 - 기본 단축키는 크롬 제한으로 1~4번 칸만 지정, 5~9번은 사용자가 직접 지정
 - `tabs` 권한은 `activeTab`으로 대체 가능한지 물을 수 있음, 모든 창의 열린 탭을 찾아야 해서 대체 불가 (권한 사유에 포함)
-- 캡처는 호스트 권한(`<all_urls>`) 없이 `activeTab`만 사용, 다운로드와 클립보드 권한 대신 편집 화면에서 웹 표준 다운로드 링크와 복사 기능 사용
+- 캡처는 설치 때 받는 호스트 권한(`<all_urls>`) 없이 `activeTab`만 사용, 다른 주소의 iframe 안에서만 스크롤되는 페이지의 전체 페이지만 그 iframe 주소를 선택 권한으로 요청, 다운로드와 클립보드 권한 대신 편집 화면에서 웹 표준 다운로드 링크와 복사 기능 사용

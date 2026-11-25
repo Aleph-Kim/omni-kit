@@ -2,7 +2,8 @@ import { useEffect, useState } from 'react'
 import { t } from '../../i18n'
 import { Chevron } from '../../ui/Chevron'
 import type { CaptureMessage } from './background'
-import { captureSupport, type CaptureMode, type CaptureSupport } from './shot'
+import pageScrollScript from './content/page-scroll.ts?iife'
+import { captureSupport, frameOriginPattern, type CaptureMode, type CaptureSupport } from './shot'
 
 const OPTIONS: { mode: CaptureMode; titleKey: string }[] = [
   { mode: 'area', titleKey: 'shotArea' },
@@ -14,6 +15,7 @@ export function CapturePanel() {
   const [tabId, setTabId] = useState<number | null>(null)
   const [support, setSupport] = useState<CaptureSupport | null>(null)
   const [open, setOpen] = useState(false)
+  const [frameOrigin, setFrameOrigin] = useState<string | null>(null)
 
   useEffect(() => {
     void (async () => {
@@ -23,14 +25,28 @@ export function CapturePanel() {
     })()
   }, [])
 
+  // 권한 요청은 클릭 안에서 바로 해야 해서 펼칠 때 미리 확인
+  useEffect(() => {
+    if (open && support === 'full' && tabId !== null) void frameNeedingPermission(tabId).then(setFrameOrigin)
+  }, [open, support, tabId])
+
   if (!support) return null
 
   const enabled = (mode: CaptureMode) => tabId !== null && (support === 'full' || (support === 'visible' && mode === 'visible'))
 
   // 영역 고르기 화면이 팝업에 가려지지 않게 요청 후 바로 닫음
   const capture = (mode: CaptureMode) => {
-    void chrome.runtime.sendMessage({ type: 'capture', mode, tabId: tabId! } satisfies CaptureMessage)
-    window.close()
+    if (mode !== 'full' || !frameOrigin) {
+      void chrome.runtime.sendMessage({ type: 'capture', mode, tabId: tabId! } satisfies CaptureMessage)
+      window.close()
+      return
+    }
+    // 권한 요청은 클릭 안에서만 가능, 허용 창이 뜨면서 팝업이 닫힐 수 있어 찍기 요청을 먼저 보내고 백그라운드가 결과를 기다림
+    void chrome.runtime.sendMessage({ type: 'capture', mode, tabId: tabId!, frameOrigin } satisfies CaptureMessage)
+    void chrome.permissions
+      .request({ origins: [frameOriginPattern(frameOrigin)] })
+      .then((granted) => !granted && chrome.runtime.sendMessage({ type: 'frame-permission-denied' } satisfies CaptureMessage))
+      .finally(() => window.close())
   }
 
   return (
@@ -68,6 +84,20 @@ export function CapturePanel() {
       )}
     </div>
   )
+}
+
+/**
+ * 내용이 다른 주소의 iframe 안에서만 스크롤되는 페이지면 아직 권한이 없는 그 주소
+ */
+async function frameNeedingPermission(tabId: number): Promise<string | null> {
+  try {
+    await chrome.scripting.executeScript({ target: { tabId }, files: [pageScrollScript] })
+    const [{ result: frame }] = await chrome.scripting.executeScript({ target: { tabId }, func: () => window.omniKitPageScroll!.findFrame() })
+    if (!frame || (await chrome.permissions.contains({ origins: [frameOriginPattern(frame.origin)] }))) return null
+    return frame.origin
+  } catch {
+    return null
+  }
 }
 
 function ScreenshotIcon() {

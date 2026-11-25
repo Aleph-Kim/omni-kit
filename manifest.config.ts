@@ -33,6 +33,8 @@ export default defineManifest({
   },
   background: { service_worker: 'src/background/index.ts', type: 'module' },
   permissions: ['storage', 'bookmarks', 'favicon', 'tabs', 'activeTab', 'scripting', 'contextMenus'],
+  // 내용이 다른 주소의 iframe 안에 있는 페이지를 전체 페이지로 찍을 때만 그 주소를 요청 (설치 화면에는 경고 없음)
+  optional_host_permissions: ['http://*/*', 'https://*/*'],
   commands: bookmarkCommands,
   // 페이지에 넣는 코드(?iife)의 주소를 실행마다 바꿔 웹사이트가 확장 설치 여부를 알아내지 못하게 함
   web_accessible_resources: [

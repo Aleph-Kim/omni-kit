@@ -23,6 +23,9 @@ export function captureSupport(url: string | undefined, fileAccess: boolean): Ca
   return 'visible'
 }
 
+/** iframe 안까지 찍을 때 요청하는 권한 주소 */
+export const frameOriginPattern = (origin: string) => `${origin}/*`
+
 /**
  * 전체 페이지를 한 화면씩 찍을 스크롤 위치, 마지막 장은 페이지 끝에 맞춰 앞 장과 겹침
  */

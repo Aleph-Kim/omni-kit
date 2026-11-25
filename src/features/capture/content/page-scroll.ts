@@ -1,8 +1,10 @@
 import type { Rect } from '../shot'
 
 export type PageInfo = { total: number; viewport: number; rect: Rect; viewportWidth: number }
+export type FrameInfo = { origin: string; rect: Rect; viewportWidth: number }
 
 export type PageScroll = {
+  findFrame(): FrameInfo | null
   prepare(maxSteps: number): Promise<PageInfo>
   scrollTo(y: number): Promise<number>
   hideFixed(): void
@@ -26,8 +28,12 @@ window.omniKitPageScroll = createPageScroll()
 function createPageScroll(): PageScroll {
   const root = (document.scrollingElement ?? document.documentElement) as HTMLElement
   const restores: (() => void)[] = []
+  const handled = new Set<Element>()
+  // 맨 위에 있을 때의 위치 지정, 스크롤하면 고정으로 바뀌는 요소를 되돌릴 때 사용
+  const initial = new WeakMap<Element, { position: string; top: string; bottom: string }>()
   let target = root
   let startTop = 0
+  let unpinning = false
 
   const setStyle = (el: HTMLElement, name: string, value: string) => {
     const previous = [el.style.getPropertyValue(name), el.style.getPropertyPriority(name)] as const
@@ -35,7 +41,41 @@ function createPageScroll(): PageScroll {
     restores.push(() => el.style.setProperty(name, ...previous))
   }
 
+  const isPinned = (position: string) => position === 'fixed' || position === 'sticky'
+
+  const unpinNow = () => {
+    for (const el of document.querySelectorAll<HTMLElement>('body *')) {
+      if (handled.has(el) || !isPinned(getComputedStyle(el).position)) continue
+      handled.add(el)
+      // 스크롤하면 고정되는 머리글과 옆 칸(네이버 검색창, 오른쪽 칸 등)은 숨기면 빈칸이 생겨 맨 위에 있을 때의 자리로 되돌림
+      const start = initial.get(el)
+      if (start && !isPinned(start.position)) {
+        setStyle(el, 'position', start.position)
+        setStyle(el, 'top', start.top)
+        setStyle(el, 'bottom', start.bottom)
+      } else setStyle(el, 'opacity', '0')
+    }
+  }
+
   return {
+    /**
+     * 문서도 안쪽 상자도 스크롤되지 않고 내용이 다른 주소의 큰 iframe 안에 있는 페이지(claude.ai 아티팩트 등)의 그 iframe
+     */
+    findFrame() {
+      if (root.scrollHeight > root.clientHeight || findScrollTarget(root) !== root) return null
+      let best: FrameInfo | null = null
+      let bestArea = innerWidth * innerHeight * 0.5
+      for (const frame of document.querySelectorAll('iframe')) {
+        const origin = URL.parse(frame.src, location.href)?.origin
+        if (!origin || origin === location.origin || !/^https?:/.test(origin)) continue
+        const rect = clientRect(frame, root)
+        if (rect.width * rect.height < bestArea) continue
+        best = { origin, rect, viewportWidth: innerWidth }
+        bestArea = rect.width * rect.height
+      }
+      return best
+    },
+
     async prepare(maxSteps) {
       // 찍는 동안 사용자의 클릭과 스크롤을 막는 투명한 막
       const blocker = document.createElement('div')
@@ -48,16 +88,40 @@ function createPageScroll(): PageScroll {
       setStyle(target, 'scroll-behavior', 'auto')
       startTop = target.scrollTop
 
+      // 스크롤 막대를 없애 폭이 바뀐 배치를 페이지가 다시 그린 뒤 높이를 잼
+      await nextFrame()
+      await nextFrame()
+
+      // 무한 스크롤 페이지(유튜브 등)는 내려가면 항목이 계속 붙어서 찍기를 누른 때 불러온 항목까지만 찍음
+      const startHeight = target.scrollHeight
+      const tail = tailElements(target, startHeight)
+
       // 스크롤해야 불러오는 그림을 미리 불러오도록 끝까지 한 번 내렸다가 올라옴
-      for (let i = 0; i < maxSteps && target.scrollTop + target.clientHeight < target.scrollHeight; i++) {
+      for (let i = 0; i < maxSteps && target.scrollTop + target.clientHeight < Math.min(target.scrollHeight, startHeight); i++) {
         target.scrollTop += target.clientHeight
         await wait(100)
       }
       target.scrollTop = 0
       await wait(300)
 
+      // 끝에 있던 "불러오는 중" 자리(유튜브 회색 카드 등)가 사라졌거나 그 앞에 새 항목이 끼어들었으면 원래 바로 앞 요소(처음 불러온 마지막 항목)의 끝에서 자름
+      // 내려가는 동안 위쪽 항목도 길어져서(유튜브는 제목과 정보를 뒤늦게 채움) 처음에 잰 위치가 아니라 지금 위치로 잼
+      // 페이지가 길어졌을 때만, 일반 페이지 끝에서 바뀌기만 하는 광고 등으로 잘리지 않게
+      const shown = (el: Element | null): el is Element => !!el?.isConnected && el.getClientRects().length > 0
+      const ends =
+        target.scrollHeight > startHeight
+          ? tail
+              .filter(({ el, parent, prev }) => (!shown(el) || el.previousElementSibling !== prev) && shown(parent) && shown(prev))
+              .map(({ prev }) => contentBottom(target, prev!))
+          : []
+      const total = Math.min(target.scrollHeight, ...(ends.length ? ends : [startHeight]))
+      for (const el of document.querySelectorAll('body *')) {
+        const { position, top, bottom } = getComputedStyle(el)
+        initial.set(el, { position, top, bottom })
+      }
+
       const rect = clientRect(target, root)
-      return { total: target.scrollHeight, viewport: rect.height, rect, viewportWidth: innerWidth }
+      return { total, viewport: rect.height, rect, viewportWidth: innerWidth }
     },
 
     async scrollTo(y) {
@@ -65,18 +129,23 @@ function createPageScroll(): PageScroll {
       await nextFrame()
       await nextFrame()
       await wait(100)
+      // 스크롤해야 고정되는 요소가 있어 찍을 때마다 다시 찾음
+      if (unpinning) {
+        unpinNow()
+        await nextFrame()
+      }
       return target.scrollTop
     },
 
-    // 첫 장을 찍은 뒤 호출, 고정 머리글과 떠 있는 버튼이 장마다 반복해서 찍히지 않게 숨김
+    // 첫 장을 찍은 뒤 호출, 고정 머리글과 떠 있는 버튼이 장마다 반복해서 찍히지 않게 숨기거나 제자리로 되돌림
     hideFixed() {
-      for (const el of document.querySelectorAll<HTMLElement>('body *')) {
-        const { position } = getComputedStyle(el)
-        if (position === 'fixed' || position === 'sticky') setStyle(el, 'opacity', '0')
-      }
+      unpinning = true
+      unpinNow()
     },
 
     restore() {
+      unpinning = false
+      handled.clear()
       target.scrollTop = startTop
       while (restores.length) restores.pop()!()
       document.getElementById(BLOCKER_ID)?.remove()
@@ -102,6 +171,25 @@ function findScrollTarget(root: HTMLElement): HTMLElement {
     }
   }
   return best
+}
+
+/** 스크롤 내용 맨 위에서 요소 끝까지의 거리 */
+function contentBottom(target: HTMLElement, el: Element): number {
+  const origin = target === document.scrollingElement ? 0 : target.getBoundingClientRect().top + target.clientTop
+  return el.getBoundingClientRect().bottom - origin + target.scrollTop
+}
+
+/**
+ * 페이지 끝 한 화면 안에서 끝나는 요소와 그 부모, 바로 앞 요소
+ */
+function tailElements(target: HTMLElement, height: number) {
+  const tail = []
+  for (const el of target.querySelectorAll('*')) {
+    if (el.getClientRects().length > 0 && contentBottom(target, el) >= height - target.clientHeight) {
+      tail.push({ el, parent: el.parentElement, prev: el.previousElementSibling })
+    }
+  }
+  return tail
 }
 
 function clientRect(el: HTMLElement, root: HTMLElement): Rect {
