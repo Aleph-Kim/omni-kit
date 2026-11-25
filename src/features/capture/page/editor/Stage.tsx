@@ -3,6 +3,7 @@ import { useEffect, useImperativeHandle, useRef, useState, type Ref } from 'reac
 import { Arrow, Circle, Group, Image, Layer, Line, Rect, Shape, Stage as KonvaStage, Text, Transformer } from 'react-konva'
 import { t } from '../../../../i18n'
 import type { Rect as Box } from '../../shot'
+import { clampPoint, fitItems, localBox, overflow, shiftInside, union } from './bounds'
 import { STAMP_ICONS } from './icons'
 import { isTiny, placeItem, resize, smoothCurve, startItem } from './items'
 import { drawShape } from './shapes'
@@ -33,6 +34,37 @@ export const visibleRect = (image: HTMLImageElement, doc: Doc, tool: Tool): Box 
 
 const LINE_HEIGHT = 1.2
 
+const textProps = (item: Extract<Item, { kind: 'text' }>) => ({ text: item.text, fontFamily: FONT_FAMILY[item.font], fontSize: item.fontSize, lineHeight: LINE_HEIGHT })
+const arrowProps = (item: Extract<Item, { kind: 'arrow' }>) => ({
+  points: item.points,
+  strokeWidth: item.thickness,
+  tension: item.curve ? 0.5 : 0,
+  pointerLength: item.thickness * 3 + 6,
+  pointerWidth: item.thickness * 3 + 6,
+})
+const penProps = (item: Extract<Item, { kind: 'pen' }>) => ({ points: item.points, strokeWidth: item.thickness, tension: 0.4 })
+
+// 글자 폭과 곡선이 부푼 자리는 konva가 그리는 것과 같게 재려고 같은 값의 도형으로 잼 (stroke가 있어야 선 굵기가 상자에 들어감)
+function measure(item: Item): Box {
+  const local = { skipTransform: true }
+  switch (item.kind) {
+    case 'text':
+      return new Konva.Text(textProps(item)).getClientRect(local)
+    case 'arrow':
+      return new Konva.Arrow({ ...arrowProps(item), stroke: 'black' }).getClientRect(local)
+    case 'pen':
+      return new Konva.Line({ ...penProps(item), stroke: 'black' }).getClientRect(local)
+    default:
+      return localBox(item)
+  }
+}
+
+/** 요소들을 묶음 전체가 영역(그림 좌표) 안에 들어오게 같이 옮김, 회전한 요소는 돌린 모양을 감싼 상자 기준 */
+export const fitInside = (items: Item[], bounds: Box): Item[] => fitItems(items, bounds, measure)
+
+type Placement = { x: number; y: number; scaleX: number; scaleY: number; rotation: number }
+const placement = (node: Konva.Node): Placement => ({ x: node.x(), y: node.y(), scaleX: node.scaleX(), scaleY: node.scaleY(), rotation: node.rotation() })
+
 export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelect, onCommit, onCropDone, full, onFull }: Props) {
   const stageRef = useRef<Konva.Stage>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
@@ -47,9 +79,15 @@ export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelec
   const docRef = useRef(doc)
   docRef.current = doc
   const pendingSync = useRef<Set<string> | null>(null)
+  // 여러 개를 같이 끌면 konva가 요소마다 따로 끌기 제한을 불러서, 묶음 상자에서 각 요소까지의 거리를 끌기 시작 때 한 번 재 둠
+  const dragGroup = useRef(new Map<string, { dx: number; dy: number; width: number; height: number }>())
+  // 크기 조절, 회전 중 마지막으로 영역 밖으로 더 나가지 않은 상태
+  const lastFit = useRef<{ nodes: [Konva.Node, Placement][]; rotation: number; overflow: number } | null>(null)
   const size = { width: image.naturalWidth, height: image.naturalHeight }
   const view = visibleRect(image, doc, tool)
   const selected = tool === 'select' ? doc.items.filter((item) => selectedIds.includes(item.id)) : []
+  // konva 끌기, 크기 조절은 절대 좌표(배율 곱한 화면 좌표)라 보이는 영역도 같은 좌표로
+  const area = { x: 0, y: 0, width: view.width * zoom, height: view.height * zoom }
 
   useImperativeHandle(ref, () => ({
     exportCanvas: () => {
@@ -86,8 +124,9 @@ export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelec
   const onPointerDown = (event: Konva.KonvaEventObject<PointerEvent>) => {
     // konva가 누르기의 기본 동작을 막아 초점이 주소창이나 선택 상자에 남고 단축키가 그쪽으로 가는 문제 방지
     wrapperRef.current!.focus({ preventScroll: true })
+    dragGroup.current.clear()
     if (event.evt.button !== 0 || editing) return
-    const start = pointer()
+    let start = pointer()
     if (tool === 'select') {
       // 요소나 크기, 회전 손잡이를 누른 것은 빈 곳이 아님
       if (event.target.findAncestor('.item', true) || event.target.findAncestor('Transformer')) return
@@ -123,7 +162,7 @@ export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelec
     }
     if (tool === 'icon') {
       if (full) return onFull()
-      const item = placeItem(start, style, doc)
+      const item = fitInside([placeItem(start, style, doc)], view)[0]!
       onCommit({ ...doc, items: [...doc.items, item] })
       onSelect([item.id])
       return
@@ -142,16 +181,21 @@ export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelec
       )
       return
     }
+    // 선 굵기와 화살촉이 그림 밖으로 나가지 않게 그 폭만큼 안쪽까지
+    const margin = tool === 'arrow' ? style.thickness * 2 + 3 : tool === 'pen' || tool === 'shape' ? style.thickness / 2 : 0
+    start = clampPoint(start, view, margin)
     let item = startItem(tool, start, style)
     if (!item) return
     if (full) return onFull()
     setDraft(item)
     track(
-      (at) => setDraft((item = resize(item!, start, at))),
+      (at) => setDraft((item = resize(item!, start, clampPoint(at, view, margin)))),
       () => {
         setDraft(null)
         if (isTiny(item!)) return
         if (item!.kind === 'arrow' && item!.curve) item = { ...item!, points: smoothCurve(item!.points, zoom) }
+        // 곡선은 점 사이가 부풀어 끝점을 제한해도 밖으로 나갈 수 있음
+        item = fitInside([item!], view)[0]!
         onCommit({ ...doc, items: [...doc.items, item!] })
         onSelect([item!.id])
       },
@@ -170,7 +214,11 @@ export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelec
       pendingSync.current = null
       const layer = layerRef.current!
       const current = docRef.current
-      onCommit({ ...current, items: current.items.map((item) => (synced.has(item.id) ? fromNode(item, layer.findOne(`#${item.id}`)!) : item)) })
+      // 상자 안 빈 곳을 끌면 첫 움직임은 끌기 제한 없이 옮겨져서 끝난 자리를 한 번 더 맞춤
+      const fitted = new Map(fitInside(current.items.filter((item) => synced.has(item.id)).map((item) => fromNode(item, layer.findOne(`#${item.id}`)!)), view).map((item) => [item.id, item]))
+      // 기록한 값이 끌기 전 값과 같으면 react-konva가 자리를 다시 넣지 않아서 직접 옮김
+      fitted.forEach((item) => layer.findOne(`#${item.id}`)!.position({ x: item.x, y: item.y }))
+      onCommit({ ...current, items: current.items.map((item) => fitted.get(item.id) ?? item) })
     })
   }
 
@@ -182,9 +230,28 @@ export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelec
       if (exists) onCommit({ ...doc, items: doc.items.filter((other) => other.id !== item.id) })
       return
     }
-    if (exists) update(item.id, { text })
-    else onCommit({ ...doc, items: [...doc.items, { ...item, text }] })
+    const fitted = fitInside([{ ...(doc.items.find((other) => other.id === item.id) ?? item), text } as Item], view)[0]!
+    if (exists) update(item.id, fitted)
+    else onCommit({ ...doc, items: [...doc.items, fitted] })
     onSelect([item.id])
+  }
+
+  const nodesOverflow = (nodes: Konva.Node[]) => overflow(union(nodes.map((node) => node.getClientRect())), area)
+
+  const dragBound = (node: Konva.Node, pos: { x: number; y: number }) => {
+    const group = dragGroup.current
+    if (!group.has(node.id())) {
+      const nodes = transformerRef.current!.nodes()
+      const together = nodes.includes(node) ? nodes : [node]
+      const box = union(together.map((other) => other.getClientRect()))
+      for (const other of together) {
+        const at = other.absolutePosition()
+        group.set(other.id(), { dx: box.x - at.x, dy: box.y - at.y, width: box.width, height: box.height })
+      }
+    }
+    const { dx, dy, width, height } = group.get(node.id())!
+    const shift = shiftInside({ x: pos.x + dx, y: pos.y + dy, width, height }, area)
+    return { x: pos.x + shift.dx, y: pos.y + shift.dy }
   }
 
   const items = draft ? [...doc.items, draft] : doc.items
@@ -211,9 +278,15 @@ export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelec
               scaleY={item.scaleY}
               visible={item.id !== editing?.id}
               draggable={tool === 'select'}
+              dragBoundFunc={function (this: Konva.Node, pos) {
+                return dragBound(this, pos)
+              }}
               onPointerDown={() => tool === 'select' && !selectedIds.includes(item.id) && onSelect([item.id])}
               onDblClick={() => item.kind === 'text' && setEditing(item)}
-              onDragEnd={() => syncNodes(selectedIds.includes(item.id) ? selectedIds : [item.id])}
+              onDragEnd={() => {
+                dragGroup.current.clear()
+                syncNodes(selectedIds.includes(item.id) ? selectedIds : [item.id])
+              }}
             >
               <ItemShape item={item} image={image} />
             </Group>
@@ -221,10 +294,29 @@ export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelec
           <Transformer
             ref={transformerRef}
             rotateEnabled={!selected.some((item) => item.kind === 'mosaic' || item.kind === 'blur')}
+            onTransformStart={() => {
+              const transformer = transformerRef.current!
+              lastFit.current = { nodes: transformer.nodes().map((node) => [node, placement(node)]), rotation: transformer.rotation(), overflow: nodesOverflow(transformer.nodes()) }
+            }}
+            // 영역 밖으로 더 나가면 직전 상태로 되돌림 (자른 뒤 이미 밖에 있는 요소도 줄이거나 안으로 돌릴 수는 있게 늘어날 때만 막음)
+            onTransform={() => {
+              const transformer = transformerRef.current!
+              const last = lastFit.current!
+              const now = nodesOverflow(transformer.nodes())
+              if (now <= last.overflow + 0.5) {
+                lastFit.current = { nodes: transformer.nodes().map((node) => [node, placement(node)]), rotation: transformer.rotation(), overflow: Math.min(last.overflow, now) }
+                return
+              }
+              last.nodes.forEach(([node, at]) => node.setAttrs(at))
+              transformer.rotation(last.rotation)
+            }}
             onTransformEnd={() => syncNodes(selectedIds)}
             // 고른 요소들을 감싼 상자 안 빈 곳을 끌어도 같이 옮김
             shouldOverdrawWholeArea
-            onDragEnd={() => syncNodes(selectedIds)}
+            onDragEnd={() => {
+              dragGroup.current.clear()
+              syncNodes(selectedIds)
+            }}
             // 상자가 요소를 덮어서 글자 하나만 고른 경우 상자를 두 번 눌러도 글자 고치기
             onDblClick={() => selected.length === 1 && selected[0]!.kind === 'text' && setEditing(selected[0]!)}
             ignoreStroke
@@ -257,24 +349,20 @@ function fromNode(item: Item, node: Konva.Node): Item {
 function ItemShape({ item, image }: { item: Item; image: HTMLImageElement }) {
   switch (item.kind) {
     case 'text':
-      return <Text text={item.text} fill={item.color} fontFamily={FONT_FAMILY[item.font]} fontSize={item.fontSize} lineHeight={LINE_HEIGHT} />
+      return <Text {...textProps(item)} fill={item.color} />
     case 'arrow':
       return (
         <Arrow
-          points={item.points}
+          {...arrowProps(item)}
           stroke={item.color}
           fill={item.color}
-          strokeWidth={item.thickness}
-          tension={item.curve ? 0.5 : 0}
-          pointerLength={item.thickness * 3 + 6}
-          pointerWidth={item.thickness * 3 + 6}
           lineCap="round"
           lineJoin="round"
           hitStrokeWidth={Math.max(item.thickness, 16)}
         />
       )
     case 'pen':
-      return <Line points={item.points} stroke={item.color} strokeWidth={item.thickness} tension={0.4} lineCap="round" lineJoin="round" hitStrokeWidth={Math.max(item.thickness, 16)} />
+      return <Line {...penProps(item)} stroke={item.color} lineCap="round" lineJoin="round" hitStrokeWidth={Math.max(item.thickness, 16)} />
     case 'shape':
       // 채우기가 없어도 안쪽을 눌러 고를 수 있게 투명하게 채움
       return (
