@@ -180,9 +180,6 @@
   "openInNewTab": {
     "message": "Ouvrir dans un nouvel onglet"
   },
-  "exportTitle": {
-    "message": "Exporter"
-  },
   "format": {
     "message": "Format"
   },
@@ -193,10 +190,10 @@
     "message": "Originale"
   },
   "captureMissing": {
-    "message": "Capture introuvable"
+    "message": "Capture d’écran introuvable"
   },
   "captureMissingHint": {
-    "message": "L'onglet de l'éditeur a été fermé ou la capture a été supprimée après un jour. Refaites une capture avec l'icône OmniKit de la barre d'outils."
+    "message": "L’onglet de l’éditeur a été fermé ou la capture a été supprimée après un jour.\nUtilisez un outil de capture pour réessayer."
   },
   "closeTab": {
     "message": "Fermer l'onglet"
@@ -294,8 +291,41 @@
   "zoomFit": {
     "message": "Ajuster à la fenêtre"
   },
-  "actualSize": {
-    "message": "Taille réelle"
+  "settings": {
+    "message": "Réglages"
+  },
+  "workArea": {
+    "message": "Zone de travail"
+  },
+  "workAreaFill": {
+    "message": "Remplir"
+  },
+  "workAreaResize": {
+    "message": "Personnalisé"
+  },
+  "resizeWidth": {
+    "message": "Ajuster la largeur"
+  },
+  "resizeHeight": {
+    "message": "Ajuster la hauteur"
+  },
+  "resizeBoth": {
+    "message": "Ajuster la taille"
+  },
+  "toolbarMove": {
+    "message": "Déplacer la barre d’outils"
+  },
+  "toolbarHorizontal": {
+    "message": "Placer à l’horizontale"
+  },
+  "toolbarVertical": {
+    "message": "Placer à la verticale"
+  },
+  "toolbarCollapse": {
+    "message": "Réduire la barre d’outils"
+  },
+  "toolbarExpand": {
+    "message": "Développer la barre d’outils"
   },
   "textPlaceholder": {
     "message": "Saisir du texte"

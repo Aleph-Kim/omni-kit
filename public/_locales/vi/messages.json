@@ -180,9 +180,6 @@
   "openInNewTab": {
     "message": "Mở trong thẻ mới"
   },
-  "exportTitle": {
-    "message": "Xuất"
-  },
   "format": {
     "message": "Định dạng"
   },
@@ -193,10 +190,10 @@
     "message": "Gốc"
   },
   "captureMissing": {
-    "message": "Không tìm thấy ảnh chụp"
+    "message": "Không tìm thấy ảnh chụp màn hình"
   },
   "captureMissingHint": {
-    "message": "Thẻ trình chỉnh sửa đã bị đóng hoặc ảnh chụp đã bị xóa sau một ngày. Hãy chụp lại từ biểu tượng OmniKit trên thanh công cụ."
+    "message": "Thẻ trình chỉnh sửa đã bị đóng hoặc ảnh chụp đã bị xóa sau một ngày.\nHãy dùng công cụ chụp để thử lại."
   },
   "closeTab": {
     "message": "Đóng thẻ"
@@ -294,8 +291,41 @@
   "zoomFit": {
     "message": "Vừa cửa sổ"
   },
-  "actualSize": {
-    "message": "Kích thước thực"
+  "settings": {
+    "message": "Cài đặt"
+  },
+  "workArea": {
+    "message": "Vùng làm việc"
+  },
+  "workAreaFill": {
+    "message": "Lấp đầy"
+  },
+  "workAreaResize": {
+    "message": "Tùy chỉnh"
+  },
+  "resizeWidth": {
+    "message": "Chỉnh chiều rộng"
+  },
+  "resizeHeight": {
+    "message": "Chỉnh chiều cao"
+  },
+  "resizeBoth": {
+    "message": "Chỉnh kích thước"
+  },
+  "toolbarMove": {
+    "message": "Di chuyển thanh công cụ"
+  },
+  "toolbarHorizontal": {
+    "message": "Đặt ngang"
+  },
+  "toolbarVertical": {
+    "message": "Đặt dọc"
+  },
+  "toolbarCollapse": {
+    "message": "Thu gọn thanh công cụ"
+  },
+  "toolbarExpand": {
+    "message": "Mở rộng thanh công cụ"
   },
   "textPlaceholder": {
     "message": "Nhập chữ"

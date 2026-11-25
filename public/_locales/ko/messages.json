@@ -180,9 +180,6 @@
   "openInNewTab": {
     "message": "새 탭에서 열기"
   },
-  "exportTitle": {
-    "message": "내보내기"
-  },
   "format": {
     "message": "형식"
   },
@@ -193,10 +190,10 @@
     "message": "원본"
   },
   "captureMissing": {
-    "message": "캡처를 찾을 수 없어요"
+    "message": "스크린샷을 찾을 수 없어요"
   },
   "captureMissingHint": {
-    "message": "편집 탭을 닫았거나 하루가 지나 지워졌어요. 툴바의 OmniKit 아이콘으로 다시 찍어 주세요."
+    "message": "편집 탭을 닫았거나 하루가 지나 지워졌어요.\n캡처 도구를 사용해 다시 시도해주세요."
   },
   "closeTab": {
     "message": "탭 닫기"
@@ -294,8 +291,41 @@
   "zoomFit": {
     "message": "화면에 맞춤"
   },
-  "actualSize": {
-    "message": "원본 보기"
+  "settings": {
+    "message": "설정"
+  },
+  "workArea": {
+    "message": "작업 영역"
+  },
+  "workAreaFill": {
+    "message": "꽉 채움"
+  },
+  "workAreaResize": {
+    "message": "조절"
+  },
+  "resizeWidth": {
+    "message": "너비 조절"
+  },
+  "resizeHeight": {
+    "message": "높이 조절"
+  },
+  "resizeBoth": {
+    "message": "크기 조절"
+  },
+  "toolbarMove": {
+    "message": "도구 줄 옮기기"
+  },
+  "toolbarHorizontal": {
+    "message": "가로로 놓기"
+  },
+  "toolbarVertical": {
+    "message": "세로로 놓기"
+  },
+  "toolbarCollapse": {
+    "message": "도구 줄 접기"
+  },
+  "toolbarExpand": {
+    "message": "도구 줄 펼치기"
   },
   "textPlaceholder": {
     "message": "글자 입력"

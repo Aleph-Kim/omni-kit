@@ -180,9 +180,6 @@
   "openInNewTab": {
     "message": "In neuem Tab öffnen"
   },
-  "exportTitle": {
-    "message": "Exportieren"
-  },
   "format": {
     "message": "Format"
   },
@@ -193,10 +190,10 @@
     "message": "Original"
   },
   "captureMissing": {
-    "message": "Aufnahme nicht gefunden"
+    "message": "Screenshot nicht gefunden"
   },
   "captureMissingHint": {
-    "message": "Der Editor-Tab wurde geschlossen oder die Aufnahme wurde nach einem Tag gelöscht. Nimm sie über das OmniKit-Symbol in der Symbolleiste erneut auf."
+    "message": "Der Editor-Tab wurde geschlossen oder der Screenshot wurde nach einem Tag gelöscht.\nVersuche es mit einem Aufnahmewerkzeug erneut."
   },
   "closeTab": {
     "message": "Tab schließen"
@@ -294,8 +291,41 @@
   "zoomFit": {
     "message": "An Fenster anpassen"
   },
-  "actualSize": {
-    "message": "Originalgröße"
+  "settings": {
+    "message": "Einstellungen"
+  },
+  "workArea": {
+    "message": "Arbeitsbereich"
+  },
+  "workAreaFill": {
+    "message": "Ausfüllen"
+  },
+  "workAreaResize": {
+    "message": "Anpassen"
+  },
+  "resizeWidth": {
+    "message": "Breite anpassen"
+  },
+  "resizeHeight": {
+    "message": "Höhe anpassen"
+  },
+  "resizeBoth": {
+    "message": "Größe anpassen"
+  },
+  "toolbarMove": {
+    "message": "Werkzeugleiste verschieben"
+  },
+  "toolbarHorizontal": {
+    "message": "Waagerecht anordnen"
+  },
+  "toolbarVertical": {
+    "message": "Senkrecht anordnen"
+  },
+  "toolbarCollapse": {
+    "message": "Werkzeugleiste einklappen"
+  },
+  "toolbarExpand": {
+    "message": "Werkzeugleiste ausklappen"
   },
   "textPlaceholder": {
     "message": "Text eingeben"

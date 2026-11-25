@@ -180,9 +180,6 @@
   "openInNewTab": {
     "message": "فتح في علامة تبويب جديدة"
   },
-  "exportTitle": {
-    "message": "تصدير"
-  },
   "format": {
     "message": "التنسيق"
   },
@@ -193,10 +190,10 @@
     "message": "الأصلي"
   },
   "captureMissing": {
-    "message": "لم يتم العثور على اللقطة"
+    "message": "لم يتم العثور على لقطة الشاشة"
   },
   "captureMissingHint": {
-    "message": "تم إغلاق علامة تبويب المحرر أو حُذفت اللقطة بعد يوم. التقط مرة أخرى من أيقونة OmniKit في شريط الأدوات."
+    "message": "تم إغلاق علامة تبويب المحرر أو حُذفت لقطة الشاشة بعد يوم.\nاستخدم أداة التقاط للمحاولة مرة أخرى."
   },
   "closeTab": {
     "message": "إغلاق علامة التبويب"
@@ -294,8 +291,41 @@
   "zoomFit": {
     "message": "ملاءمة النافذة"
   },
-  "actualSize": {
-    "message": "الحجم الفعلي"
+  "settings": {
+    "message": "الإعدادات"
+  },
+  "workArea": {
+    "message": "منطقة العمل"
+  },
+  "workAreaFill": {
+    "message": "ملء"
+  },
+  "workAreaResize": {
+    "message": "مخصص"
+  },
+  "resizeWidth": {
+    "message": "ضبط العرض"
+  },
+  "resizeHeight": {
+    "message": "ضبط الارتفاع"
+  },
+  "resizeBoth": {
+    "message": "ضبط الحجم"
+  },
+  "toolbarMove": {
+    "message": "نقل شريط الأدوات"
+  },
+  "toolbarHorizontal": {
+    "message": "وضع أفقي"
+  },
+  "toolbarVertical": {
+    "message": "وضع عمودي"
+  },
+  "toolbarCollapse": {
+    "message": "طي شريط الأدوات"
+  },
+  "toolbarExpand": {
+    "message": "توسيع شريط الأدوات"
   },
   "textPlaceholder": {
     "message": "أدخل النص"

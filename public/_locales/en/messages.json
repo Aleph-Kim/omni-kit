@@ -180,9 +180,6 @@
   "openInNewTab": {
     "message": "Open in new tab"
   },
-  "exportTitle": {
-    "message": "Export"
-  },
   "format": {
     "message": "Format"
   },
@@ -193,10 +190,10 @@
     "message": "Original"
   },
   "captureMissing": {
-    "message": "Capture not found"
+    "message": "Screenshot not found"
   },
   "captureMissingHint": {
-    "message": "The editor tab was closed, or the capture was deleted after a day. Capture again from the OmniKit icon in the toolbar."
+    "message": "The editor tab was closed, or the screenshot was deleted after a day.\nUse a capture tool to try again."
   },
   "closeTab": {
     "message": "Close tab"
@@ -294,8 +291,41 @@
   "zoomFit": {
     "message": "Fit to window"
   },
-  "actualSize": {
-    "message": "Actual size"
+  "settings": {
+    "message": "Settings"
+  },
+  "workArea": {
+    "message": "Work area"
+  },
+  "workAreaFill": {
+    "message": "Fill"
+  },
+  "workAreaResize": {
+    "message": "Custom"
+  },
+  "resizeWidth": {
+    "message": "Resize width"
+  },
+  "resizeHeight": {
+    "message": "Resize height"
+  },
+  "resizeBoth": {
+    "message": "Resize"
+  },
+  "toolbarMove": {
+    "message": "Move toolbar"
+  },
+  "toolbarHorizontal": {
+    "message": "Make horizontal"
+  },
+  "toolbarVertical": {
+    "message": "Make vertical"
+  },
+  "toolbarCollapse": {
+    "message": "Collapse toolbar"
+  },
+  "toolbarExpand": {
+    "message": "Expand toolbar"
   },
   "textPlaceholder": {
     "message": "Enter text"

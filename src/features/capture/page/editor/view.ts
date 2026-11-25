@@ -8,8 +8,9 @@ const MAX_ZOOM = 4
 /** 캔버스 한 변이 크롬 캔버스 한도(32767)를 넘지 않는 최대 배율 (고해상도 화면은 캔버스가 배율만큼 더 큼) */
 export const maxZoom = (image: Size, dpr: number) => Math.min(MAX_ZOOM, 16000 / (dpr * Math.max(image.width, image.height)))
 
-/** 그림 전체가 보이는 배율, 작은 그림은 키우지 않음 */
-export const fitZoom = (image: Size, box: Size) => Math.max(0.01, Math.min(1, box.width / image.width, box.height / image.height))
+/** 그림 전체가 보이는 배율, 원래 크기(화면 점 1개에 그림 점 1개)보다 키우지 않음 (키우면 흐려짐) */
+export const fitZoom = (image: Size, box: Size, dpr: number) =>
+  Math.max(0.01, Math.min(1 / dpr, box.width / image.width, box.height / image.height))
 
 /** 확대, 축소 버튼의 다음 배율, 지금 배율을 10% 단위로 반올림한 뒤 10%씩 (69%에서 확대하면 80%) */
 export function stepZoom(current: number, direction: 1 | -1, max = MAX_ZOOM): number {

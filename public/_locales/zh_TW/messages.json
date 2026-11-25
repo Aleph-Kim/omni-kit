@@ -180,9 +180,6 @@
   "openInNewTab": {
     "message": "在新分頁中開啟"
   },
-  "exportTitle": {
-    "message": "匯出"
-  },
   "format": {
     "message": "格式"
   },
@@ -196,7 +193,7 @@
     "message": "找不到截圖"
   },
   "captureMissingHint": {
-    "message": "編輯分頁已關閉，或截圖已超過一天被刪除。請透過工具列中的 OmniKit 圖示重新截圖。"
+    "message": "編輯分頁已關閉，或截圖已超過一天被刪除。\n請使用截圖工具重試。"
   },
   "closeTab": {
     "message": "關閉分頁"
@@ -294,8 +291,41 @@
   "zoomFit": {
     "message": "符合視窗"
   },
-  "actualSize": {
-    "message": "實際大小"
+  "settings": {
+    "message": "設定"
+  },
+  "workArea": {
+    "message": "工作區"
+  },
+  "workAreaFill": {
+    "message": "填滿"
+  },
+  "workAreaResize": {
+    "message": "自訂"
+  },
+  "resizeWidth": {
+    "message": "調整寬度"
+  },
+  "resizeHeight": {
+    "message": "調整高度"
+  },
+  "resizeBoth": {
+    "message": "調整大小"
+  },
+  "toolbarMove": {
+    "message": "移動工具列"
+  },
+  "toolbarHorizontal": {
+    "message": "橫向放置"
+  },
+  "toolbarVertical": {
+    "message": "直向放置"
+  },
+  "toolbarCollapse": {
+    "message": "收合工具列"
+  },
+  "toolbarExpand": {
+    "message": "展開工具列"
   },
   "textPlaceholder": {
     "message": "輸入文字"

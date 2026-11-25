@@ -180,9 +180,6 @@
   "openInNewTab": {
     "message": "新しいタブで開く"
   },
-  "exportTitle": {
-    "message": "書き出し"
-  },
   "format": {
     "message": "形式"
   },
@@ -193,10 +190,10 @@
     "message": "元のサイズ"
   },
   "captureMissing": {
-    "message": "キャプチャが見つかりません"
+    "message": "スクリーンショットが見つかりません"
   },
   "captureMissingHint": {
-    "message": "編集タブを閉じたか、1日が過ぎて削除されました。ツールバーの OmniKit アイコンからもう一度撮影してください。"
+    "message": "編集タブを閉じたか、1日が過ぎて削除されました。\nキャプチャツールでもう一度お試しください。"
   },
   "closeTab": {
     "message": "タブを閉じる"
@@ -294,8 +291,41 @@
   "zoomFit": {
     "message": "画面に合わせる"
   },
-  "actualSize": {
-    "message": "実寸表示"
+  "settings": {
+    "message": "設定"
+  },
+  "workArea": {
+    "message": "作業領域"
+  },
+  "workAreaFill": {
+    "message": "全体に広げる"
+  },
+  "workAreaResize": {
+    "message": "調整"
+  },
+  "resizeWidth": {
+    "message": "幅を調整"
+  },
+  "resizeHeight": {
+    "message": "高さを調整"
+  },
+  "resizeBoth": {
+    "message": "サイズを調整"
+  },
+  "toolbarMove": {
+    "message": "ツールバーを移動"
+  },
+  "toolbarHorizontal": {
+    "message": "横に置く"
+  },
+  "toolbarVertical": {
+    "message": "縦に置く"
+  },
+  "toolbarCollapse": {
+    "message": "ツールバーを折りたたむ"
+  },
+  "toolbarExpand": {
+    "message": "ツールバーを展開"
   },
   "textPlaceholder": {
     "message": "テキストを入力"

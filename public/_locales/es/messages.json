@@ -180,9 +180,6 @@
   "openInNewTab": {
     "message": "Abrir en una pestaña nueva"
   },
-  "exportTitle": {
-    "message": "Exportar"
-  },
   "format": {
     "message": "Formato"
   },
@@ -193,10 +190,10 @@
     "message": "Original"
   },
   "captureMissing": {
-    "message": "No se encontró la captura"
+    "message": "No se encontró la captura de pantalla"
   },
   "captureMissingHint": {
-    "message": "Se cerró la pestaña del editor o la captura se eliminó pasado un día. Vuelve a capturar desde el icono de OmniKit en la barra de herramientas."
+    "message": "Se cerró la pestaña del editor o la captura se eliminó pasado un día.\nUsa una herramienta de captura para intentarlo de nuevo."
   },
   "closeTab": {
     "message": "Cerrar pestaña"
@@ -294,8 +291,41 @@
   "zoomFit": {
     "message": "Ajustar a la ventana"
   },
-  "actualSize": {
-    "message": "Tamaño real"
+  "settings": {
+    "message": "Ajustes"
+  },
+  "workArea": {
+    "message": "Área de trabajo"
+  },
+  "workAreaFill": {
+    "message": "Rellenar"
+  },
+  "workAreaResize": {
+    "message": "Personalizado"
+  },
+  "resizeWidth": {
+    "message": "Ajustar ancho"
+  },
+  "resizeHeight": {
+    "message": "Ajustar alto"
+  },
+  "resizeBoth": {
+    "message": "Ajustar tamaño"
+  },
+  "toolbarMove": {
+    "message": "Mover barra de herramientas"
+  },
+  "toolbarHorizontal": {
+    "message": "Colocar en horizontal"
+  },
+  "toolbarVertical": {
+    "message": "Colocar en vertical"
+  },
+  "toolbarCollapse": {
+    "message": "Contraer barra de herramientas"
+  },
+  "toolbarExpand": {
+    "message": "Expandir barra de herramientas"
   },
   "textPlaceholder": {
     "message": "Escribe texto"

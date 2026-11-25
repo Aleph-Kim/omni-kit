@@ -180,9 +180,6 @@
   "openInNewTab": {
     "message": "Abrir em nova guia"
   },
-  "exportTitle": {
-    "message": "Exportar"
-  },
   "format": {
     "message": "Formato"
   },
@@ -193,10 +190,10 @@
     "message": "Original"
   },
   "captureMissing": {
-    "message": "Captura não encontrada"
+    "message": "Captura de tela não encontrada"
   },
   "captureMissingHint": {
-    "message": "A guia do editor foi fechada ou a captura foi excluída após um dia. Capture novamente pelo ícone do OmniKit na barra de ferramentas."
+    "message": "A guia do editor foi fechada ou a captura foi excluída após um dia.\nUse uma ferramenta de captura para tentar novamente."
   },
   "closeTab": {
     "message": "Fechar guia"
@@ -294,8 +291,41 @@
   "zoomFit": {
     "message": "Ajustar à janela"
   },
-  "actualSize": {
-    "message": "Tamanho real"
+  "settings": {
+    "message": "Configurações"
+  },
+  "workArea": {
+    "message": "Área de trabalho"
+  },
+  "workAreaFill": {
+    "message": "Preencher"
+  },
+  "workAreaResize": {
+    "message": "Personalizar"
+  },
+  "resizeWidth": {
+    "message": "Ajustar largura"
+  },
+  "resizeHeight": {
+    "message": "Ajustar altura"
+  },
+  "resizeBoth": {
+    "message": "Ajustar tamanho"
+  },
+  "toolbarMove": {
+    "message": "Mover barra de ferramentas"
+  },
+  "toolbarHorizontal": {
+    "message": "Colocar na horizontal"
+  },
+  "toolbarVertical": {
+    "message": "Colocar na vertical"
+  },
+  "toolbarCollapse": {
+    "message": "Recolher barra de ferramentas"
+  },
+  "toolbarExpand": {
+    "message": "Expandir barra de ferramentas"
   },
   "textPlaceholder": {
     "message": "Digite o texto"

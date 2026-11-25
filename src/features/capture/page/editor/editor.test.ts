@@ -78,9 +78,15 @@ describe('editorAction', () => {
 
 describe('view', () => {
   it('맞춤 배율은 그림 전체가 보이고 작은 그림은 키우지 않음', () => {
-    expect(fitZoom({ width: 2000, height: 1000 }, { width: 1000, height: 1000 })).toBe(0.5)
-    expect(fitZoom({ width: 1000, height: 4000 }, { width: 1000, height: 1000 })).toBe(0.25)
-    expect(fitZoom({ width: 100, height: 100 }, { width: 1000, height: 1000 })).toBe(1)
+    expect(fitZoom({ width: 2000, height: 1000 }, { width: 1000, height: 1000 }, 1)).toBe(0.5)
+    expect(fitZoom({ width: 1000, height: 4000 }, { width: 1000, height: 1000 }, 1)).toBe(0.25)
+    expect(fitZoom({ width: 100, height: 100 }, { width: 1000, height: 1000 }, 1)).toBe(1)
+  })
+
+  it('맞춤 배율은 원래 크기보다 키우지 않음', () => {
+    expect(fitZoom({ width: 100, height: 100 }, { width: 1000, height: 1000 }, 2)).toBe(0.5)
+    expect(fitZoom({ width: 2000, height: 1000 }, { width: 1000, height: 1000 }, 2)).toBe(0.5)
+    expect(fitZoom({ width: 4000, height: 1000 }, { width: 1000, height: 1000 }, 2)).toBe(0.25)
   })
 
   it('확대, 축소는 10% 단위로 반올림한 뒤 10%씩', () => {

@@ -180,9 +180,6 @@
   "openInNewTab": {
     "message": "नए टैब में खोलें"
   },
-  "exportTitle": {
-    "message": "एक्सपोर्ट"
-  },
   "format": {
     "message": "फ़ॉर्मैट"
   },
@@ -193,10 +190,10 @@
     "message": "मूल"
   },
   "captureMissing": {
-    "message": "कैप्चर नहीं मिला"
+    "message": "स्क्रीनशॉट नहीं मिला"
   },
   "captureMissingHint": {
-    "message": "एडिटर टैब बंद हो गया या कैप्चर एक दिन बाद हटा दिया गया। टूलबार में OmniKit आइकन से दोबारा कैप्चर करें।"
+    "message": "एडिटर टैब बंद हो गया या स्क्रीनशॉट एक दिन बाद हटा दिया गया।\nकैप्चर टूल से दोबारा कोशिश करें।"
   },
   "closeTab": {
     "message": "टैब बंद करें"
@@ -294,8 +291,41 @@
   "zoomFit": {
     "message": "विंडो में फ़िट करें"
   },
-  "actualSize": {
-    "message": "वास्तविक आकार"
+  "settings": {
+    "message": "सेटिंग"
+  },
+  "workArea": {
+    "message": "कार्य क्षेत्र"
+  },
+  "workAreaFill": {
+    "message": "पूरा भरें"
+  },
+  "workAreaResize": {
+    "message": "अनुकूलित"
+  },
+  "resizeWidth": {
+    "message": "चौड़ाई बदलें"
+  },
+  "resizeHeight": {
+    "message": "ऊँचाई बदलें"
+  },
+  "resizeBoth": {
+    "message": "आकार बदलें"
+  },
+  "toolbarMove": {
+    "message": "टूलबार हिलाएँ"
+  },
+  "toolbarHorizontal": {
+    "message": "क्षैतिज रखें"
+  },
+  "toolbarVertical": {
+    "message": "लंबवत रखें"
+  },
+  "toolbarCollapse": {
+    "message": "टूलबार समेटें"
+  },
+  "toolbarExpand": {
+    "message": "टूलबार फैलाएँ"
   },
   "textPlaceholder": {
     "message": "टेक्स्ट लिखें"

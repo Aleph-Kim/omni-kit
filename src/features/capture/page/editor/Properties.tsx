@@ -1,5 +1,6 @@
 import { useEffect, useRef, type ReactNode } from 'react'
 import { t } from '../../../../i18n'
+import { Chevron } from '../../../../ui/Chevron'
 import { STAMP_ICONS, UI_ICONS } from './icons'
 import { NUMBER, type Order } from './items'
 import { keyLabel } from './keys'
@@ -36,9 +37,12 @@ type Props = {
   onOrder?: (order: Order) => void
   onDelete?: () => void
   onResetCrop?: () => void
+  /** 도구 줄 옆에 떠 있는 카드의 펼침 */
+  open: boolean
+  onToggle: () => void
 }
 
-export function Properties({ kind, style, onStyle, customColors, onCustomColor, onOrder, onDelete, onResetCrop }: Props) {
+export function Properties({ kind, style, onStyle, customColors, onCustomColor, onOrder, onDelete, onResetCrop, open, onToggle }: Props) {
   const fields = FIELDS[kind] ?? []
   if (!fields.length && !onDelete && !onResetCrop) return null
   const rows: ReactNode[] = []
@@ -153,17 +157,19 @@ export function Properties({ kind, style, onStyle, customColors, onCustomColor, 
     )
 
   return (
-    <>
-      <h2 className="mt-5 mb-1.5 px-3 text-xs text-(--ok-label-2)">{t('propertiesTitle')}</h2>
-      <div className="overflow-hidden rounded-xl bg-(--ok-cell)">
-        {rows.map((row, index) => (
+    <div className="ok-scroll min-h-0 w-64 overflow-y-auto rounded-xl bg-(--ok-cell) shadow-lg ring-1 ring-(--ok-fill)">
+      <button type="button" aria-expanded={open} className="flex w-full items-center gap-3 px-3 py-2.5 text-start text-xs text-(--ok-label-2) hover:bg-(--ok-fill)" onClick={onToggle}>
+        <span className="flex-1">{t('propertiesTitle')}</span>
+        <Chevron open={open} />
+      </button>
+      {open &&
+        rows.map((row, index) => (
           <div key={index}>
-            {index > 0 && <div className="ms-3 h-px bg-(--ok-fill)" />}
+            <div className="ms-3 h-px bg-(--ok-fill)" />
             {row}
           </div>
         ))}
-      </div>
-    </>
+    </div>
   )
 }
 

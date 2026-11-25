@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useRef, useState, type ReactNode } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState, type ComponentProps } from 'react'
 import { t } from '../../../i18n'
 import { fileName, type ImageType } from '../shot'
 import { loadCapture, type Capture } from '../store'
@@ -7,19 +7,17 @@ import { UI_ICONS } from './editor/icons'
 import { addCustomColor, loadCustomColors, saveCustomColors } from './editor/colors'
 import { applyStyle, DEFAULT_STYLE, pasted, reorder, styleOf, type Order } from './editor/items'
 import { loadItemLimit, MAX_ITEMS, saveItemLimit } from './editor/limit'
-import { editorAction, holdKeyLabel, IS_MAC, isHoldKey, keyLabel, toolKeyAction } from './editor/keys'
+import { editorAction, IS_MAC, isHoldKey, keyLabel, toolKeyAction } from './editor/keys'
+import { Parts } from './editor/Parts'
 import { Properties } from './editor/Properties'
-import { Stage, visibleRect, type StageApi } from './editor/Stage'
+import { Settings } from './editor/Settings'
+import { fitInside, Stage, visibleRect, type StageApi } from './editor/Stage'
 import { Glyph, iconButton, Toolbar } from './editor/Toolbar'
 import type { Doc, Item, Style, Tool } from './editor/types'
 import { fitZoom, maxZoom, stepZoom } from './editor/view'
-
-const TYPES: { type: ImageType; label: string }[] = [
-  { type: 'image/png', label: 'PNG' },
-  { type: 'image/jpeg', label: 'JPEG' },
-  { type: 'image/webp', label: 'WebP' },
-]
-const RESOLUTIONS = [1, 0.5, 0.25]
+import { loadWork, saveWork, workSize, type Work, type WorkMode } from './editor/work'
+import { WorkArea } from './editor/WorkArea'
+import { WorkSelect } from './editor/WorkSelect'
 
 const secondaryButton = 'rounded-lg bg-(--ok-cell) px-3 py-1.5 text-(--ok-accent) hover:bg-(--ok-fill)'
 
@@ -39,22 +37,28 @@ export function App() {
   const [selectedIds, setSelectedIds] = useState<string[]>([])
   // Cmd(그 외 Ctrl)를 누르고 있는 동안은 어떤 도구든 잠깐 선택 도구처럼 요소를 고르고 옮김
   const [holding, setHolding] = useState(false)
-  // null은 화면에 맞춤, 창 크기가 바뀌면 다시 맞춤
+  // null은 화면에 맞춤(원래 크기보다 키우지 않음), 창이나 작업 칸 크기가 바뀌면 다시 맞춤
   const [zoomSetting, setZoomSetting] = useState<number | null>(null)
-  const [box, setBox] = useState({ width: 0, height: 0 })
-  const boxRef = useRef<HTMLDivElement>(null)
+  // 헤더 아래 영역 크기, 작업 칸과 떠 있는 도구 줄이 이 안에 있음
+  const [area, setArea] = useState({ width: 0, height: 0 })
+  const areaRef = useRef<HTMLDivElement>(null)
+  const [work, setWork] = useState<Work>({ mode: 'fill', size: null })
+  const workRef = useRef(work)
+  workRef.current = work
   const stageApi = useRef<StageApi>(null)
   const clipboard = useRef<Item[]>([])
   // 직접 고른 색은 다음에 편집 화면을 열어도 쓰도록 확장 저장소에 보관
   const [customColors, setCustomColors] = useState<string[]>([])
   // 요소 개수 제한도 다음에 편집 화면을 열 때 그대로 쓰도록 확장 저장소에 보관
   const [limited, setLimited] = useState(true)
-  const [confirmingOff, setConfirmingOff] = useState(false)
   const limitDialog = useRef<HTMLDialogElement>(null)
+  // 떠 있는 속성 카드의 접힘, 속성 카드는 보여 줄 값이 없으면 사라져서 여기에 둠
+  const [propertiesOpen, setPropertiesOpen] = useState(true)
 
   useEffect(() => {
     void loadCustomColors().then(setCustomColors)
     void loadItemLimit().then(setLimited)
+    void loadWork().then(setWork)
   }, [])
 
   useEffect(() => {
@@ -78,9 +82,9 @@ export function App() {
   }, [capture, part])
 
   useLayoutEffect(() => {
-    const element = boxRef.current
+    const element = areaRef.current
     if (!element) return
-    const observer = new ResizeObserver(() => setBox({ width: element.clientWidth - 32, height: element.clientHeight - 32 }))
+    const observer = new ResizeObserver(() => setArea({ width: element.clientWidth, height: element.clientHeight }))
     observer.observe(element)
     return () => observer.disconnect()
   }, [capture])
@@ -90,7 +94,10 @@ export function App() {
   const selected = doc.items.filter((item) => selectedIds.includes(item.id))
   const view = image && visibleRect(image, doc, tool)
   const limit = view ? maxZoom(view, devicePixelRatio) : 1
-  const zoom = Math.min(limit, zoomSetting ?? (view && box.width > 0 ? fitZoom(view, box) : 1))
+  const frame = work.mode === 'resize' ? workSize(work.size, area) : area
+  // 스크롤 상자 안쪽 여백 p-4를 뺀 크기
+  const box = { width: frame.width - 32, height: frame.height - 32 }
+  const zoom = Math.min(limit, zoomSetting ?? (view && box.width > 0 && box.height > 0 ? fitZoom(view, box, devicePixelRatio) : 1))
 
   const full = limited && doc.items.length >= MAX_ITEMS
   const showLimit = () => limitDialog.current!.showModal()
@@ -107,8 +114,12 @@ export function App() {
   const changeStyle = (patch: Partial<Style>) => {
     setStyle((current) => ({ ...current, ...patch }))
     // 그리는 도구에서 아이콘 종류, 화살표 모양, 도형 모양을 바꾸면 방금 그린 요소는 두고 다음에 그릴 요소만 바꿈
-    if (selected.length && !(tool !== 'select' && ('icon' in patch || 'curve' in patch || 'shape' in patch)))
-      commitDoc({ ...doc, items: doc.items.map((item) => (selected.includes(item) ? applyStyle(item, patch) : item)) })
+    if (selected.length && !(tool !== 'select' && ('icon' in patch || 'curve' in patch || 'shape' in patch))) {
+      const changed = selected.map((item) => applyStyle(item, patch))
+      // 굵기나 크기를 키워 그림 밖으로 나간 요소는 다시 안으로
+      const fitted = new Map((view ? fitInside(changed, view) : changed).map((item) => [item.id, item]))
+      commitDoc({ ...doc, items: doc.items.map((item) => fitted.get(item.id) ?? item) })
+    }
   }
 
   const pickCustomColor = (field: 'color' | 'fill', color: string) => {
@@ -130,11 +141,12 @@ export function App() {
     if (next !== 'select') setSelectedIds([])
   }
 
-  // 붙일 때마다 앞서 붙인 자리에서 비껴 놓으려고 붙인 요소를 다음 복사 원본으로 둠
+  // 붙일 때마다 앞서 붙인 자리에서 비껴 놓으려고 그림 안으로 맞춘 요소를 다음 복사 원본으로 둠
   const paste = () => {
     if (!clipboard.current.length) return
     if (limited && doc.items.length + clipboard.current.length > MAX_ITEMS) return showLimit()
-    const items = clipboard.current.map(pasted)
+    const moved = clipboard.current.map(pasted)
+    const items = image ? fitInside(moved, visibleRect(image, doc, 'select')) : moved
     clipboard.current = items
     commitDoc({ ...doc, items: [...doc.items, ...items] })
     setTool('select')
@@ -143,11 +155,26 @@ export function App() {
 
   const changeLimit = (next: boolean) => {
     setLimited(next)
-    setConfirmingOff(false)
     void saveItemLimit(next)
   }
 
   const zoomBy = (direction: 1 | -1 | 0) => setZoomSetting(direction === 0 ? null : stepZoom(zoom, direction, limit))
+
+  const changeMode = (mode: WorkMode) => {
+    const next = { ...workRef.current, mode }
+    setWork(next)
+    void saveWork(next)
+    setZoomSetting(null)
+  }
+
+  // 끄는 동안은 저장하지 않고 끝에 한 번 저장
+  const resizeWork = (size: { width: number; height: number }) => {
+    // 방향키는 onSize 바로 뒤에 onSizeEnd가 와서 다시 그리기 전에 저장할 값을 ref에 먼저 넣음
+    const next = { ...workRef.current, size }
+    workRef.current = next
+    setWork(next)
+    setZoomSetting(null)
+  }
 
   const actions = {
     undo: () => setHistory(undo),
@@ -164,8 +191,8 @@ export function App() {
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
-      // 한도 알림이 떠 있는 동안은 Esc로 닫는 것 말고 편집 키를 받지 않음
-      if (limitDialog.current!.open) return
+      // 한도 알림이나 메뉴가 떠 있는 동안은 Esc로 닫는 것 말고 편집 키를 받지 않음
+      if (limitDialog.current!.open || document.querySelector(':popover-open')) return
       const typing = event.target instanceof Element && event.target.matches('input:not([type=range]), textarea, select, [contenteditable]')
       const action = editorAction(event, IS_MAC, typing)
       const run = action && actionsRef.current[action]
@@ -194,7 +221,19 @@ export function App() {
   }, [])
 
   if (capture === undefined) return null
-  if (capture === null) return <p className="p-8 text-(--ok-label-2)">{t('captureMissing')}</p>
+  if (capture === null)
+    return (
+      <main className="grid min-h-screen place-items-center p-4">
+        <div className="w-full max-w-xs rounded-xl bg-(--ok-cell) px-6 py-5 text-center">
+          <Glyph body={UI_ICONS.imageOff} className="mx-auto size-9 text-(--ok-label-3)" />
+          <h1 className="mt-2 mb-1 text-base font-bold">{t('captureMissing')}</h1>
+          <p className="text-xs whitespace-pre-line text-(--ok-label-2)">{t('captureMissingHint')}</p>
+          <button type="button" className="mt-3.5 rounded-lg bg-(--ok-accent) px-3 py-1.5 font-semibold text-(--ok-on-accent) hover:opacity-90" onClick={() => window.close()}>
+            {t('closeTab')}
+          </button>
+        </div>
+      </main>
+    )
 
   const split = capture.parts.length > 1
   const render = (forType: ImageType) => renderImage(stageApi.current!.exportCanvas(), forType, resolution)
@@ -217,11 +256,20 @@ export function App() {
   const openInNewTab = async () => {
     window.open(URL.createObjectURL(await render(type)), '_blank')
   }
-
+  const properties: Omit<ComponentProps<typeof Properties>, 'open' | 'onToggle'> = {
+    kind: tool !== 'select' ? tool : selected.length && selected.every((item) => item.kind === selected[0]!.kind) ? selected[0]!.kind : 'select',
+    style: tool === 'select' && selected.length ? styleOf(selected[0]!, style) : style,
+    onStyle: changeStyle,
+    customColors,
+    onCustomColor: pickCustomColor,
+    onOrder: tool === 'select' && selected.length ? changeOrder : undefined,
+    onDelete: selected.length ? removeSelected : undefined,
+    onResetCrop: doc.crop ? () => commitDoc({ ...doc, crop: null }) : undefined,
+  }
 
   return (
-    <main className="mx-auto flex max-w-screen-2xl flex-col gap-4 p-4 lg:h-screen">
-      <header className="flex flex-wrap items-center gap-2">
+    <main className="flex h-screen flex-col">
+      <header className="flex flex-wrap items-center gap-2 p-4">
         <h1 className="px-3 text-xl font-bold">{t('editorTitle')}</h1>
         <div className="me-auto flex gap-0.5">
           <button type="button" aria-label={t('undo')} title={`${t('undo')} ${keyLabel('undo')}`} className={iconButton} disabled={!history?.past.length} onClick={actions.undo}>
@@ -231,6 +279,7 @@ export function App() {
             <Glyph body={UI_ICONS.redo} className="size-5 rtl:-scale-x-100" />
           </button>
         </div>
+        <WorkSelect value={work.mode} onChange={changeMode} />
         <button type="button" className={secondaryButton} onClick={copy}>
           {copied ? t('copied') : t('copy')}
         </button>
@@ -240,37 +289,16 @@ export function App() {
         <button type="button" className="rounded-lg bg-(--ok-accent) px-3 py-1.5 font-semibold text-(--ok-on-accent) hover:opacity-90" onClick={download}>
           {t('download')}
         </button>
+        <Settings type={type} onType={setType} resolution={resolution} onResolution={setResolution} limited={limited} onLimit={changeLimit} />
       </header>
-      <div className="flex min-h-0 flex-1 flex-col gap-4 lg:flex-row">
-        <Toolbar tool={tool} onTool={changeTool} zoom={zoom} onZoom={zoomBy} />
-        <section className="flex min-h-0 min-w-0 flex-1 flex-col gap-2">
-          <p className="px-3 text-xs text-(--ok-label-2)">{t('holdToMove', holdKeyLabel())}</p>
-          {split && (
-            <div className="flex flex-wrap items-center gap-2 px-3 text-xs text-(--ok-label-2)">
-              <p>{t('pageSplit', capture.parts.length)}</p>
-              <div role="group" dir="ltr" className="flex gap-1">
-                {capture.parts.map((_, index) => (
-                  <button
-                    key={index}
-                    type="button"
-                    aria-pressed={index === part}
-                    aria-label={t('partLabel', index + 1)}
-                    className="min-w-7 rounded-lg px-2 py-1 hover:bg-(--ok-fill) aria-pressed:bg-(--ok-cell) aria-pressed:text-(--ok-label)"
-                    onClick={() => setPart(index)}
-                  >
-                    {index + 1}
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
+      <div ref={areaRef} className="relative min-h-0 flex-1">
+        <WorkArea mode={work.mode} size={frame} area={area} onSize={resizeWork} onSizeEnd={() => void saveWork(workRef.current)}>
           <div
-            ref={boxRef}
             dir="ltr"
             data-ready={image ? '' : undefined}
             data-zoom={zoom}
             data-items={doc.items.length}
-            className="ok-scroll flex h-[70vh] min-h-0 overflow-auto rounded-xl bg-(--ok-fill) p-4 lg:h-auto lg:flex-1"
+            className={`ok-scroll flex size-full overflow-auto bg-(--ok-fill) p-4 ${work.mode === 'resize' ? 'rounded-xl' : ''}`}
           >
             {image && (
               <div className="m-auto shadow-sm">
@@ -291,64 +319,11 @@ export function App() {
               </div>
             )}
           </div>
-        </section>
-        <aside className="ok-scroll shrink-0 overflow-y-auto lg:w-64">
-          <h2 className="mb-1.5 px-3 text-xs text-(--ok-label-2)">{t('exportTitle')}</h2>
-          <div className="overflow-hidden rounded-xl bg-(--ok-cell)">
-            <Row label={t('format')}>
-              <select className={selectClass} value={type} onChange={(event) => setType(event.target.value as ImageType)}>
-                {TYPES.map(({ type, label }) => (
-                  <option key={type} value={type}>
-                    {label}
-                  </option>
-                ))}
-              </select>
-            </Row>
-            <div className="ms-3 h-px bg-(--ok-fill)" />
-            <Row label={t('resolution')}>
-              <select className={selectClass} value={resolution} onChange={(event) => setResolution(Number(event.target.value))}>
-                {RESOLUTIONS.map((value) => (
-                  <option key={value} value={value}>
-                    {value === 1 ? t('original') : `${value * 100}%`}
-                  </option>
-                ))}
-              </select>
-            </Row>
-          </div>
-          <div className="mt-4 overflow-hidden rounded-xl bg-(--ok-cell)">
-            <Row label={t('itemLimit', MAX_ITEMS)}>
-              <input
-                type="checkbox"
-                className="size-4 cursor-pointer accent-(--ok-accent)"
-                checked={limited}
-                onChange={(event) => (event.target.checked ? changeLimit(true) : setConfirmingOff(true))}
-              />
-            </Row>
-            {confirmingOff && (
-              <div className="px-3 pb-3">
-                <p className="text-xs text-(--ok-label-2)">{t('itemLimitWarning')}</p>
-                <div className="mt-2 flex justify-end gap-2">
-                  <button type="button" className={secondaryButton} onClick={() => setConfirmingOff(false)}>
-                    {t('cancel')}
-                  </button>
-                  <button type="button" className="rounded-lg px-3 py-1.5 text-(--ok-destructive) hover:bg-(--ok-fill)" onClick={() => changeLimit(false)}>
-                    {t('itemLimitTurnOff')}
-                  </button>
-                </div>
-              </div>
-            )}
-          </div>
-          <Properties
-            kind={tool !== 'select' ? tool : selected.length && selected.every((item) => item.kind === selected[0]!.kind) ? selected[0]!.kind : 'select'}
-            style={tool === 'select' && selected.length ? styleOf(selected[0]!, style) : style}
-            onStyle={changeStyle}
-            customColors={customColors}
-            onCustomColor={pickCustomColor}
-            onOrder={tool === 'select' && selected.length ? changeOrder : undefined}
-            onDelete={selected.length ? removeSelected : undefined}
-            onResetCrop={doc.crop ? () => commitDoc({ ...doc, crop: null }) : undefined}
-          />
-        </aside>
+        </WorkArea>
+        {split && <Parts count={capture.parts.length} part={part} onPart={setPart} />}
+        <Toolbar tool={tool} onTool={changeTool} zoom={zoom} onZoom={zoomBy} area={area}>
+          <Properties {...properties} open={propertiesOpen} onToggle={() => setPropertiesOpen((open) => !open)} />
+        </Toolbar>
       </div>
       <dialog ref={limitDialog} className="m-auto w-fit max-w-[min(36rem,calc(100vw-2rem))] rounded-xl bg-(--ok-cell) p-4 text-(--ok-label) backdrop:bg-(--ok-backdrop)">
         <p className="whitespace-pre-line">{t('itemLimitReached', MAX_ITEMS)}</p>
@@ -359,17 +334,6 @@ export function App() {
         </form>
       </dialog>
     </main>
-  )
-}
-
-const selectClass = 'bg-transparent text-end text-(--ok-label-2) outline-none'
-
-function Row({ label, children }: { label: string; children: ReactNode }) {
-  return (
-    <label className="flex items-center gap-3 px-3 py-2.5">
-      <span className="flex-1">{label}</span>
-      {children}
-    </label>
   )
 }
 

@@ -180,9 +180,6 @@
   "openInNewTab": {
     "message": "Buka di tab baru"
   },
-  "exportTitle": {
-    "message": "Ekspor"
-  },
   "format": {
     "message": "Format"
   },
@@ -193,10 +190,10 @@
     "message": "Asli"
   },
   "captureMissing": {
-    "message": "Tangkapan tidak ditemukan"
+    "message": "Tangkapan layar tidak ditemukan"
   },
   "captureMissingHint": {
-    "message": "Tab editor ditutup atau tangkapan dihapus setelah sehari. Tangkap lagi dari ikon OmniKit di bilah alat."
+    "message": "Tab editor ditutup atau tangkapan layar dihapus setelah sehari.\nGunakan alat tangkapan untuk mencoba lagi."
   },
   "closeTab": {
     "message": "Tutup tab"
@@ -294,8 +291,41 @@
   "zoomFit": {
     "message": "Sesuaikan dengan jendela"
   },
-  "actualSize": {
-    "message": "Ukuran asli"
+  "settings": {
+    "message": "Pengaturan"
+  },
+  "workArea": {
+    "message": "Area kerja"
+  },
+  "workAreaFill": {
+    "message": "Penuhi"
+  },
+  "workAreaResize": {
+    "message": "Kustom"
+  },
+  "resizeWidth": {
+    "message": "Atur lebar"
+  },
+  "resizeHeight": {
+    "message": "Atur tinggi"
+  },
+  "resizeBoth": {
+    "message": "Atur ukuran"
+  },
+  "toolbarMove": {
+    "message": "Pindahkan bilah alat"
+  },
+  "toolbarHorizontal": {
+    "message": "Letakkan horizontal"
+  },
+  "toolbarVertical": {
+    "message": "Letakkan vertikal"
+  },
+  "toolbarCollapse": {
+    "message": "Ciutkan bilah alat"
+  },
+  "toolbarExpand": {
+    "message": "Perluas bilah alat"
   },
   "textPlaceholder": {
     "message": "Masukkan teks"

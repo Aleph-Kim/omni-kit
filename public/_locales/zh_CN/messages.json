@@ -180,9 +180,6 @@
   "openInNewTab": {
     "message": "在新标签页中打开"
   },
-  "exportTitle": {
-    "message": "导出"
-  },
   "format": {
     "message": "格式"
   },
@@ -196,7 +193,7 @@
     "message": "找不到截图"
   },
   "captureMissingHint": {
-    "message": "编辑标签页已关闭，或截图已超过一天被删除。请通过工具栏中的 OmniKit 图标重新截图。"
+    "message": "编辑标签页已关闭，或截图已超过一天被删除。\n请使用截图工具重试。"
   },
   "closeTab": {
     "message": "关闭标签页"
@@ -294,8 +291,41 @@
   "zoomFit": {
     "message": "适合窗口"
   },
-  "actualSize": {
-    "message": "实际大小"
+  "settings": {
+    "message": "设置"
+  },
+  "workArea": {
+    "message": "工作区"
+  },
+  "workAreaFill": {
+    "message": "填满"
+  },
+  "workAreaResize": {
+    "message": "自定义"
+  },
+  "resizeWidth": {
+    "message": "调整宽度"
+  },
+  "resizeHeight": {
+    "message": "调整高度"
+  },
+  "resizeBoth": {
+    "message": "调整大小"
+  },
+  "toolbarMove": {
+    "message": "移动工具栏"
+  },
+  "toolbarHorizontal": {
+    "message": "横向放置"
+  },
+  "toolbarVertical": {
+    "message": "纵向放置"
+  },
+  "toolbarCollapse": {
+    "message": "折叠工具栏"
+  },
+  "toolbarExpand": {
+    "message": "展开工具栏"
   },
   "textPlaceholder": {
     "message": "输入文字"

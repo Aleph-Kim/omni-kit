@@ -46,17 +46,17 @@ const penProps = (item: Extract<Item, { kind: 'pen' }>) => ({ points: item.point
 
 // 글자 폭과 곡선이 부푼 자리는 konva가 그리는 것과 같게 재려고 같은 값의 도형으로 잼 (stroke가 있어야 선 굵기가 상자에 들어감)
 function measure(item: Item): Box {
-  const local = { skipTransform: true }
-  switch (item.kind) {
-    case 'text':
-      return new Konva.Text(textProps(item)).getClientRect(local)
-    case 'arrow':
-      return new Konva.Arrow({ ...arrowProps(item), stroke: 'black' }).getClientRect(local)
-    case 'pen':
-      return new Konva.Line({ ...penProps(item), stroke: 'black' }).getClientRect(local)
-    default:
-      return localBox(item)
-  }
+  if (item.kind !== 'text' && item.kind !== 'arrow' && item.kind !== 'pen') return localBox(item)
+  const shape =
+    item.kind === 'text'
+      ? new Konva.Text(textProps(item))
+      : item.kind === 'arrow'
+        ? new Konva.Arrow({ ...arrowProps(item), stroke: 'black' })
+        : new Konva.Line({ ...penProps(item), stroke: 'black' })
+  // konva는 만든 도형을 전역 목록에 올려 두고 destroy에서만 빼서, 잴 때마다 쌓이지 않게 바로 지움
+  const box = shape.getClientRect({ skipTransform: true })
+  shape.destroy()
+  return box
 }
 
 /** 요소들을 묶음 전체가 영역(그림 좌표) 안에 들어오게 같이 옮김, 회전한 요소는 돌린 모양을 감싼 상자 기준 */
@@ -98,6 +98,19 @@ export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelec
       return canvas
     },
   }))
+
+  // konva가 캔버스 크기를 바꿀 때마다 스무딩 품질이 low로 돌아가서 그릴 때마다 high로 지정 (줄여 그린 그림 화질)
+  useEffect(() => {
+    const layer = layerRef.current!
+    const smooth = () => {
+      layer.getContext()._context.imageSmoothingQuality = 'high'
+    }
+    layer.on('beforeDraw', smooth)
+    layer.batchDraw()
+    return () => {
+      layer.off('beforeDraw', smooth)
+    }
+  }, [])
 
   useEffect(() => {
     const nodes = selected.map((item) => layerRef.current!.findOne(`#${item.id}`)).filter((node): node is Konva.Node => !!node)
