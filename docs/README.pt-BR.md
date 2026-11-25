@@ -4,6 +4,8 @@
 
 Extensão do Chrome que reúne ferramentas úteis para o dia a dia. Disponível em 13 idiomas.
 
+[Instalar pela Chrome Web Store](https://chromewebstore.google.com/detail/lfjjclkojbgjgjbjjpfippbjbemjmoci)
+
 ![Pop-up](../store-assets/screenshot-light.png)
 
 ## Recursos

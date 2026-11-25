@@ -19,8 +19,9 @@
 - 업로드할 파일: `npm run package`로 만든 `omni-kit-1.1.0.zip` (`dist-release`에서 묶음, 이름이 `OmniKit DEV`가 아닌지 확인)
 - 스토어 아이콘: `public/icons/icon-128.png`
 - 스크린샷: `store-assets/screenshot-capture.png`, `store-assets/screenshot-editor.png`, `store-assets/screenshot-light.png`, `store-assets/screenshot-dark.png` (1280x800, 이 순서로 올림)
-- 개인정보처리방침 주소: 구글 문서 "OmniKit Privacy Policy"의 링크 공유 주소 (링크가 있는 모든 사용자 보기 권한, 로그인 없이 열림 확인)
-  `https://docs.google.com/document/d/1sGd32lTq3sTiYn3jhmwASDvhPUfhIt49H4Nvorv1hno/edit?usp=sharing` (1.1.0부터, 1.0.x는 `1XemSNDAWv9wfWYxrJtoz5U8VORFr2NuJjwyqCF605Uk`)
+- 개인정보처리방침 주소: 저장소의 `PRIVACY.md` (공개 저장소라 로그인 없이 열림)
+  `https://github.com/Aleph-Kim/omni-kit/blob/main/PRIVACY.md` (예전 구글 문서는 1.1.0용 `1sGd32lTq3sTiYn3jhmwASDvhPUfhIt49H4Nvorv1hno`, 1.0.x용 `1XemSNDAWv9wfWYxrJtoz5U8VORFr2NuJjwyqCF605Uk`)
+- 홈페이지 주소: `https://github.com/Aleph-Kim/omni-kit`
 
 ## 1단계. zip 올리기
 
@@ -69,6 +70,9 @@ How to use
 
 Privacy
 Everything stays on your device. Screenshots are kept only until you close their tab. OmniKit does not send your screenshots, bookmarks, tabs or any other data anywhere, and has no analytics or ads.
+
+Open source
+OmniKit is open source under the MIT License. Source code: https://github.com/Aleph-Kim/omni-kit
 ```
 
 ko
@@ -92,10 +96,13 @@ PNG, JPEG, WebP 형식과 원본, 50%, 25% 크기로 내려받거나, 클립보�
 1. 스크린샷은 OmniKit 아이콘을 눌러 스크린샷을 펼친 뒤 선택 영역, 보이는 화면, 전체 페이지 중 고릅니다. 페이지에서 우클릭해 OmniKit 캡처를 골라도 됩니다.
 2. Mac은 Option+1, 윈도우는 Alt+Shift+1을 누르면 북마크바의 첫 번째 북마크가 열립니다.
 3. 다른 북마크를 연결하려면 OmniKit 아이콘을 눌러 칸을 고르고 북마크를 검색합니다.
-4. 5~9번 칸 단축키는 팝업에서 여는 크롬 단축키 화면에서 지정합니다.
+4. 5번에서 9번 칸 단축키는 팝업에서 여는 크롬 단축키 화면에서 지정합니다.
 
 개인정보
 모든 데이터는 내 컴퓨터에만 있습니다. 찍은 스크린샷은 그 탭을 닫을 때까지만 보관합니다. 스크린샷, 북마크, 탭 등 어떤 데이터도 외부로 보내지 않으며 분석 도구나 광고가 없습니다.
+
+오픈소스
+OmniKit은 MIT 라이선스로 공개된 오픈소스입니다. 소스 코드: https://github.com/Aleph-Kim/omni-kit
 ```
 
 ja
@@ -123,6 +130,9 @@ PNG、JPEG、WebP 形式と、元のサイズ、50%、25% でダウンロード�
 
 プライバシー
 すべてのデータはお使いのデバイス内にとどまります。撮影したスクリーンショットは、そのタブを閉じるまでだけ保存されます。OmniKit はスクリーンショット、ブックマーク、タブなどのデータを外部に送信せず、分析ツールや広告もありません。
+
+オープンソース
+OmniKitはMITライセンスのオープンソースです。ソースコード: https://github.com/Aleph-Kim/omni-kit
 ```
 
 zh_CN
@@ -150,6 +160,9 @@ zh_CN
 
 隐私
 所有数据都保留在你的设备上。截图只保留到你关闭它所在的标签页为止。OmniKit 不会将截图、书签、标签页或任何其他数据发送到任何地方，也没有分析工具或广告。
+
+开源
+OmniKit 是基于 MIT 许可证的开源软件。源代码: https://github.com/Aleph-Kim/omni-kit
 ```
 
 zh_TW
@@ -177,6 +190,9 @@ zh_TW
 
 隱私權
 所有資料都只留在你的裝置上。螢幕截圖只保留到你關閉它所在的分頁為止。OmniKit 不會將螢幕截圖、書籤、分頁或任何其他資料傳送到任何地方，也沒有分析工具或廣告。
+
+開放原始碼
+OmniKit 是以 MIT 授權發布的開放原始碼軟體。原始碼: https://github.com/Aleph-Kim/omni-kit
 ```
 
 es
@@ -204,6 +220,9 @@ Cómo usarlo
 
 Privacidad
 Todo se queda en tu dispositivo. Las capturas se guardan solo hasta que cierras su pestaña. OmniKit no envía tus capturas, marcadores, pestañas ni ningún otro dato a ninguna parte, y no tiene analíticas ni anuncios.
+
+Código abierto
+OmniKit es de código abierto con licencia MIT. Código fuente: https://github.com/Aleph-Kim/omni-kit
 ```
 
 pt_BR
@@ -231,6 +250,9 @@ Como usar
 
 Privacidade
 Tudo fica no seu dispositivo. As capturas ficam guardadas só até você fechar a guia delas. O OmniKit não envia suas capturas, favoritos, guias nem nenhum outro dado para lugar nenhum e não tem análises nem anúncios.
+
+Código aberto
+O OmniKit é de código aberto sob a licença MIT. Código-fonte: https://github.com/Aleph-Kim/omni-kit
 ```
 
 de
@@ -258,6 +280,9 @@ So funktioniert es
 
 Datenschutz
 Alles bleibt auf deinem Gerät. Screenshots werden nur aufbewahrt, bis du ihren Tab schließt. OmniKit sendet deine Screenshots, Lesezeichen, Tabs und andere Daten nirgendwohin und enthält weder Analysetools noch Werbung.
+
+Open Source
+OmniKit ist Open Source unter der MIT-Lizenz. Quellcode: https://github.com/Aleph-Kim/omni-kit
 ```
 
 fr
@@ -285,6 +310,9 @@ Utilisation
 
 Confidentialité
 Tout reste sur votre appareil. Les captures ne sont conservées que jusqu'à la fermeture de leur onglet. OmniKit n'envoie vos captures, vos favoris, vos onglets ni aucune autre donnée nulle part, et ne contient ni outil d'analyse ni publicité.
+
+Open source
+OmniKit est open source sous licence MIT. Code source : https://github.com/Aleph-Kim/omni-kit
 ```
 
 id
@@ -312,6 +340,9 @@ Cara menggunakan
 
 Privasi
 Semua data tetap di perangkat Anda. Tangkapan layar hanya disimpan sampai tabnya ditutup. OmniKit tidak mengirim tangkapan layar, bookmark, tab, atau data lain ke mana pun, dan tidak memiliki analitik atau iklan.
+
+Sumber terbuka
+OmniKit adalah perangkat lunak sumber terbuka dengan Lisensi MIT. Kode sumber: https://github.com/Aleph-Kim/omni-kit
 ```
 
 vi
@@ -339,6 +370,9 @@ Cách dùng
 
 Quyền riêng tư
 Mọi dữ liệu đều ở lại trên thiết bị của bạn. Ảnh chụp chỉ được giữ đến khi bạn đóng thẻ của nó. OmniKit không gửi ảnh chụp, dấu trang, thẻ hay bất kỳ dữ liệu nào khác đi đâu cả, và không có công cụ phân tích hay quảng cáo.
+
+Mã nguồn mở
+OmniKit là phần mềm mã nguồn mở theo Giấy phép MIT. Mã nguồn: https://github.com/Aleph-Kim/omni-kit
 ```
 
 hi
@@ -366,6 +400,9 @@ PNG, JPEG या WebP में मूल आकार, 50% या 25% पर �
 
 निजता
 सारा डेटा आपके डिवाइस पर ही रहता है। स्क्रीनशॉट सिर्फ़ तब तक रखे जाते हैं जब तक आप उनका टैब बंद नहीं करते। OmniKit आपके स्क्रीनशॉट, बुकमार्क, टैब या कोई भी दूसरा डेटा कहीं नहीं भेजता, और इसमें कोई एनालिटिक्स या विज्ञापन नहीं है।
+
+ओपन सोर्स
+OmniKit, MIT लाइसेंस के तहत ओपन सोर्स है। सोर्स कोड: https://github.com/Aleph-Kim/omni-kit
 ```
 
 ar
@@ -393,6 +430,9 @@ ar
 
 الخصوصية
 تبقى كل البيانات على جهازك. تُحفظ لقطات الشاشة فقط حتى تغلق علامة التبويب الخاصة بها. لا يرسل OmniKit لقطات الشاشة أو إشاراتك المرجعية أو علامات التبويب أو أي بيانات أخرى إلى أي مكان، ولا يحتوي على أدوات تحليل أو إعلانات.
+
+مفتوح المصدر
+OmniKit مفتوح المصدر بموجب ترخيص MIT. الشيفرة المصدرية: https://github.com/Aleph-Kim/omni-kit
 ```
 
 ### 2-2. 나머지 칸
@@ -403,7 +443,8 @@ ar
 | 언어 (Language) | 영어 (English) |
 | 스토어 아이콘 (Store icon) | `public/icons/icon-128.png` 업로드 |
 | 전 언어 공통 스크린샷 (Global screenshots) | 준비물의 4장을 순서대로 업로드 (언어별 현지화 스크린샷 칸은 비워 둠) |
-| 작은 프로모션 타일, 마키 타일, YouTube, 홈페이지 URL, 지원 URL | 비워 둠 (선택 항목) |
+| 홈페이지 URL (Homepage URL) | 준비물의 홈페이지 주소 (깃허브 저장소) |
+| 작은 프로모션 타일, 마키 타일, YouTube, 지원 URL | 비워 둠 (선택 항목) |
 | 성인용 콘텐츠 (Mature content) | 끔 |
 
 스크린샷 구성 (실제 빌드한 팝업 화면에 예시 북마크와 예시 페이지를 넣어 촬영, 개인 북마크 노출 방지. 영어 화면, 5~9번 단축키는 지정한 모습으로 표시)
@@ -499,59 +540,7 @@ Optional, never granted at install. Some pages show their content inside a frame
 
 **개인정보처리방침 URL** 칸에 준비물의 링크 공유 주소 붙여 넣기. 데이터 체크 항목을 바꾸면 처리방침도 함께 고침
 
-개인정보처리방침 본문 (구글 문서에 영어 다음 한국어 순서로 넣음)
-
-```
-Privacy Policy for OmniKit
-
-Last updated: November 25, 2026
-
-What data OmniKit uses
-OmniKit reads your bookmarks to open them with keyboard shortcuts and to let you search them in the popup. When you press a shortcut, it checks the addresses of your open tabs to switch to a tab that already shows the same page. It shows site icons that Chrome has already saved on your device.
-When you take a screenshot, OmniKit captures only the tab you chose, and only after you choose a capture option. For a full-page screenshot it scrolls that page. If the page shows its content in a frame from another site, Chrome first asks you to allow access to that site; this access is used only to scroll and capture that frame.
-All of this happens on your device.
-
-How data is stored
-OmniKit saves which bookmark you linked to each shortcut slot. Screenshots are saved on your device only while their editor tab is open and are deleted when you close it; any screenshot left over, for example when Chrome was closed with the tab open, is deleted after a day. Nothing is synced or uploaded.
-
-Data sharing
-OmniKit does not send any data off your device. It does not use analytics, ads or any third-party services, and it does not share or sell data.
-
-Data deletion
-Unlink a slot in the popup to remove its saved bookmark, close a screenshot's tab to delete it, or remove the extension to delete all saved data.
-
-Changes to this policy
-If this policy changes, the updated version will be posted at this address with a new date.
-
-Contact
-dev.aleph.kim@gmail.com
-```
-
-```
-OmniKit 개인정보처리방침
-
-최종 수정일: 2026년 11월 25일
-
-OmniKit이 사용하는 데이터
-OmniKit은 북마크를 단축키로 열고 팝업에서 검색할 수 있도록 북마크를 읽습니다. 단축키를 누르면 같은 페이지가 이미 열린 탭으로 이동하려고 열려 있는 탭의 주소를 확인합니다. 사이트 아이콘은 크롬이 기기에 이미 저장해 둔 것을 보여 줍니다.
-스크린샷은 사용자가 캡처 메뉴를 고른 뒤에만, 고른 탭만 찍습니다. 전체 페이지를 찍을 때는 그 페이지를 스크롤합니다. 페이지 내용이 다른 사이트의 프레임 안에 있으면 크롬이 먼저 그 사이트 접근 허용을 묻고, 이 접근은 그 프레임을 스크롤해 찍는 데만 씁니다.
-이 모든 처리는 기기 안에서 이루어집니다.
-
-데이터 저장
-OmniKit은 단축키 칸마다 연결한 북마크를 저장합니다. 스크린샷은 편집 탭이 열려 있는 동안만 기기에 저장되고 탭을 닫으면 지워집니다. 탭을 연 채 크롬을 끈 경우처럼 남은 스크린샷은 하루가 지나면 지워집니다. 어떤 정보도 동기화하거나 업로드하지 않습니다.
-
-데이터 공유
-OmniKit은 어떤 데이터도 기기 밖으로 보내지 않습니다. 분석 도구, 광고, 외부 서비스를 사용하지 않으며 데이터를 공유하거나 판매하지 않습니다.
-
-데이터 삭제
-팝업에서 칸을 비우면 그 칸에 저장된 북마크가 지워지고, 스크린샷 탭을 닫으면 그 스크린샷이 지워지며, 확장 프로그램을 삭제하면 저장된 모든 데이터가 지워집니다.
-
-방침 변경
-이 방침이 바뀌면 새 날짜와 함께 바뀐 내용을 이 주소에 올립니다.
-
-문의
-dev.aleph.kim@gmail.com
-```
+개인정보처리방침 본문은 저장소의 `PRIVACY.md` (영어 다음 한국어), 고치면 깃허브에 푸시해야 스토어 링크에 반영
 
 오른쪽 위 **임시저장** 클릭
 

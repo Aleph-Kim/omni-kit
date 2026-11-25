@@ -4,6 +4,8 @@
 
 Extension Chrome qui rassemble des outils utiles au quotidien. Disponible en 13 langues.
 
+[Installer depuis le Chrome Web Store](https://chromewebstore.google.com/detail/lfjjclkojbgjgjbjjpfippbjbemjmoci)
+
 ![Pop-up](../store-assets/screenshot-light.png)
 
 ## Fonctions

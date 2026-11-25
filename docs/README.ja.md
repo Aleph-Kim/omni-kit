@@ -4,6 +4,8 @@
 
 Chromeでよく使う機能をひとつにまとめたChrome拡張機能。13言語に対応
 
+[Chrome ウェブストアからインストール](https://chromewebstore.google.com/detail/lfjjclkojbgjgjbjjpfippbjbemjmoci)
+
 ![ポップアップ](../store-assets/screenshot-light.png)
 
 ## 機能

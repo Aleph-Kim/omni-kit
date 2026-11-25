@@ -4,6 +4,8 @@
 
 Chrome-Erweiterung, die nützliche Werkzeuge für den Alltag an einem Ort bündelt. Verfügbar in 13 Sprachen.
 
+[Im Chrome Web Store installieren](https://chromewebstore.google.com/detail/lfjjclkojbgjgjbjjpfippbjbemjmoci)
+
 ![Pop-up](../store-assets/screenshot-light.png)
 
 ## Funktionen

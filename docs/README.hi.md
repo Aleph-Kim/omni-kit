@@ -4,6 +4,8 @@
 
 रोज़ काम आने वाले ब्राउज़र टूल एक जगह लाने वाला Chrome एक्सटेंशन। 13 भाषाओं में उपलब्ध।
 
+[Chrome वेब स्टोर से इंस्टॉल करें](https://chromewebstore.google.com/detail/lfjjclkojbgjgjbjjpfippbjbemjmoci)
+
 ![पॉप-अप](../store-assets/screenshot-light.png)
 
 ## सुविधाएँ

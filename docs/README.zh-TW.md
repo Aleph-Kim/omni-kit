@@ -4,6 +4,8 @@
 
 集合日常常用功能的 Chrome 擴充功能，支援 13 種語言
 
+[從 Chrome 線上應用程式商店安裝](https://chromewebstore.google.com/detail/lfjjclkojbgjgjbjjpfippbjbemjmoci)
+
 ![彈出式視窗](../store-assets/screenshot-light.png)
 
 ## 功能

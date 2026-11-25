@@ -4,6 +4,8 @@
 
 Chrome extension that brings everyday browser tools together in one place. Available in 13 languages.
 
+[Install from the Chrome Web Store](https://chromewebstore.google.com/detail/lfjjclkojbgjgjbjjpfippbjbemjmoci)
+
 ![Popup](store-assets/screenshot-light.png)
 
 ## Features

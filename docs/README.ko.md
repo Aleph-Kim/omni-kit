@@ -4,6 +4,8 @@
 
 크롬을 쓸 때 필요한 기능을 모아 둔 크롬 확장, 13개 언어 지원
 
+[크롬 웹 스토어에서 설치](https://chromewebstore.google.com/detail/lfjjclkojbgjgjbjjpfippbjbemjmoci)
+
 ![팝업](../store-assets/screenshot-light.png)
 
 ## 기능

@@ -4,6 +4,8 @@
 
 Ekstensi Chrome yang mengumpulkan alat yang berguna sehari-hari di satu tempat. Tersedia dalam 13 bahasa.
 
+[Pasang dari Chrome Web Store](https://chromewebstore.google.com/detail/lfjjclkojbgjgjbjjpfippbjbemjmoci)
+
 ![Pop-up](../store-assets/screenshot-light.png)
 
 ## Fitur

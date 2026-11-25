@@ -4,6 +4,8 @@
 
 汇集日常常用功能的 Chrome 扩展程序，支持 13 种语言
 
+[从 Chrome 应用商店安装](https://chromewebstore.google.com/detail/lfjjclkojbgjgjbjjpfippbjbemjmoci)
+
 ![弹出窗口](../store-assets/screenshot-light.png)
 
 ## 功能

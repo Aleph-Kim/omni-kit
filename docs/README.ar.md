@@ -4,6 +4,8 @@
 
 إضافة Chrome تجمع أدوات مفيدة للاستخدام اليومي في مكان واحد. متوفرة بـ 13 لغة.
 
+[التثبيت من سوق Chrome الإلكتروني](https://chromewebstore.google.com/detail/lfjjclkojbgjgjbjjpfippbjbemjmoci)
+
 ![النافذة المنبثقة](../store-assets/screenshot-light.png)
 
 ## الميزات

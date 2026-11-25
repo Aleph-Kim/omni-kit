@@ -23,6 +23,7 @@ export default defineManifest(({ mode }) => ({
   manifest_version: 3,
   name: mode === 'release' ? '__MSG_appName__' : 'OmniKit DEV',
   description: '__MSG_appDesc__',
+  homepage_url: 'https://github.com/Aleph-Kim/omni-kit',
   default_locale: 'en',
   minimum_chrome_version: '128',
   icons: { 16: 'icons/icon-16.png', 32: 'icons/icon-32.png', 48: 'icons/icon-48.png', 128: 'icons/icon-128.png' },

@@ -4,6 +4,8 @@
 
 Tiện ích Chrome tập hợp các công cụ hữu ích hằng ngày ở một nơi. Hỗ trợ 13 ngôn ngữ.
 
+[Cài đặt từ Chrome Web Store](https://chromewebstore.google.com/detail/lfjjclkojbgjgjbjjpfippbjbemjmoci)
+
 ![Cửa sổ bật lên](../store-assets/screenshot-light.png)
 
 ## Tính năng
