@@ -1,18 +1,21 @@
 import { flashBadge } from '../../badge'
 import { t } from '../../i18n'
 import areaSelectScript from './content/area-select.ts?iife'
+import elementSelectScript from './content/element-select.ts?iife'
+import type { Point, Slice } from './content/page-scroll'
 import pageScrollScript from './content/page-scroll.ts?iife'
-import { MAX_SHOTS, frameOriginPattern, isPdf, scrollPositions, splitParts, toImageRect, type CaptureMode, type Rect } from './shot'
+import { MAX_PART_HEIGHT, MAX_PART_PIXELS, MAX_SHOTS, frameOriginPattern, isPdf, scrollPositions, splitParts, toImageRect, type CaptureMode, type Rect } from './shot'
 import { deleteCapture, deleteCapturesBefore, saveCapture, type Capture } from './store'
 
 export type CaptureMessage =
   // frameOrigin: 팝업이 그 iframe 주소의 권한을 요청 중이라 결과를 기다려야 함
   | { type: 'capture'; mode: CaptureMode; tabId: number; frameOrigin?: string }
   | { type: 'area-selected'; rect: Rect; viewportWidth: number }
+  | { type: 'element-selected' }
   | { type: 'frame-permission-denied' }
 
-const MODES: CaptureMode[] = ['area', 'visible', 'full']
-const MODE_TITLES: Record<CaptureMode, string> = { area: 'shotArea', visible: 'shotVisible', full: 'shotFullPage' }
+const MODES: CaptureMode[] = ['area', 'element', 'visible', 'full']
+const MODE_TITLES: Record<CaptureMode, string> = { area: 'shotArea', element: 'shotElement', visible: 'shotVisible', full: 'shotFullPage' }
 const MENU_CONTEXTS: chrome.contextMenus.CreateProperties['contexts'] = ['page', 'frame', 'selection', 'link', 'editable', 'image', 'video', 'audio']
 
 // captureVisibleTab은 1초에 2번까지라 조금 여유를 둠
@@ -43,6 +46,10 @@ export async function handleCaptureMessage(message: CaptureMessage, sender: chro
     const tab = sender.tab
     return run(tab, () => captureArea(tab, message.rect, message.viewportWidth))
   }
+  if (message.type === 'element-selected' && sender.tab) {
+    const tab = sender.tab
+    return run(tab, () => captureElement(tab))
+  }
 }
 
 /**
@@ -59,8 +66,9 @@ export async function onEditorTabRemoved(tabId: number) {
 export const deleteOldCaptures = () => deleteCapturesBefore(Date.now() - DAY)
 
 async function startCapture(mode: CaptureMode, tab: chrome.tabs.Tab, requestedOrigin?: string) {
-  // 선택 영역은 사용자가 고른 뒤 area-selected 메시지로 이어짐
+  // 선택 영역과 요소는 사용자가 고른 뒤 area-selected, element-selected 메시지로 이어짐
   if (mode === 'area') return run(tab, () => inject(tab, areaSelectScript))
+  if (mode === 'element') return run(tab, () => inject(tab, elementSelectScript))
   // 팝업은 PDF에서 전체 페이지를 흐리게 하지만 우클릭 메뉴는 막을 수 없어 안내만 띄움
   if (mode === 'full' && (await isPdf(tab.id!))) return run(tab, () => showNotice(tab.id!, t('captureNoFullPdf')))
   return run(tab, () => (mode === 'visible' ? captureVisible(tab) : captureFullPage(tab, requestedOrigin)))
@@ -112,43 +120,92 @@ async function captureFullPage(tab: chrome.tabs.Tab, requestedOrigin?: string): 
     }
     const positions = scrollPositions(page.total, page.viewport)
     const contentHeight = positions.at(-1)! + page.viewport
-    const parts: Blob[] = []
-    const canvases = new Map<number, OffscreenCanvas>()
-    let layout: ReturnType<typeof splitParts> = []
-    let finished = 0
-
-    const finishPartsBefore = async (y: number) => {
-      while (finished < layout.length && layout[finished].top + layout[finished].height <= y) {
-        parts.push(await canvases.get(finished)!.convertToBlob({ type: 'image/png' }))
-        canvases.delete(finished)
-        finished++
-      }
-    }
-
-    for (const [index, y] of positions.entries()) {
-      await showProgress(index, positions.length)
-      const top = await callPage(target, (y) => window.omniKitPageScroll!.scrollTo(y), [y])
-      if (!(await chrome.tabs.get(tabId)).active) throw new Error('tab changed during capture')
-      const bitmap = await createImageBitmap(await shot(tab.windowId))
-      const scale = bitmap.width / page.viewportWidth
-      const crop = toImageRect(page.rect, scale)
-      if (index === 0) layout = splitParts(Math.round(contentHeight * scale))
-      const destY = Math.round(top * scale)
-      await finishPartsBefore(destY)
-      for (let part = finished; part < layout.length && layout[part].top < destY + crop.height; part++) {
-        if (!canvases.has(part)) canvases.set(part, new OffscreenCanvas(crop.width, layout[part].height))
-        const context = canvases.get(part)!.getContext('2d')!
-        context.drawImage(bitmap, crop.x, crop.y, crop.width, crop.height, 0, destY - layout[part].top, crop.width, crop.height)
-      }
-      bitmap.close()
-      if (index === 0) await callPage(target, () => window.omniKitPageScroll!.hideFixed())
-    }
-    await finishPartsBefore(Infinity)
-    return newCapture(parts)
+    const place = async (y: number): Promise<Slice[]> => [{ rect: page.rect, left: 0, top: await callPage(target, (y) => window.omniKitPageScroll!.scrollTo(y), [y]) }]
+    return newCapture(await stitch(tab, target, positions, { width: page.rect.width, height: contentHeight }, page.viewportWidth, place))
   } finally {
     await callPage(target, () => window.omniKitPageScroll!.restore()).catch(() => {})
     await clearProgress()
   }
+}
+
+/**
+ * 고른 요소를 찍음, 화면보다 길거나 넓으면 스크롤하며 이어 붙임
+ */
+async function captureElement(tab: chrome.tabs.Tab): Promise<Capture> {
+  const target = { tabId: tab.id! }
+  await inject(tab, pageScrollScript)
+  try {
+    const element = await callPage(target, () => window.omniKitPageScroll!.prepareElement())
+    const place = (point: Point) => callPage(target, (point) => window.omniKitPageScroll!.scrollElement(point), [point])
+    return newCapture(await stitch(tab, target, element.positions, element, element.viewportWidth, place))
+  } finally {
+    await callPage(target, () => window.omniKitPageScroll!.restore()).catch(() => {})
+    await clearProgress()
+  }
+}
+
+/**
+ * 스크롤 위치마다 찍은 화면 조각을 이어 붙임, 캔버스 한도를 넘는 길이는 여러 장으로 나눔
+ * 위치는 위에서 아래 순서여야 함 (위쪽 장부터 마무리)
+ */
+async function stitch<Position>(
+  tab: chrome.tabs.Tab,
+  target: chrome.scripting.InjectionTarget,
+  positions: Position[],
+  size: { width: number; height: number },
+  viewportWidth: number,
+  place: (position: Position) => Promise<Slice[]>,
+): Promise<Blob[]> {
+  const parts: Blob[] = []
+  const canvases = new Map<number, OffscreenCanvas>()
+  let layout: ReturnType<typeof splitParts> = []
+  let width = 0
+  let finished = 0
+  let drawnBottom = 0
+
+  const finishPartsBefore = async (y: number) => {
+    while (finished < layout.length && layout[finished].top + layout[finished].height <= y) {
+      let canvas = canvases.get(finished)!
+      if (canvas.height > layout[finished].height) {
+        const cut = new OffscreenCanvas(canvas.width, layout[finished].height)
+        cut.getContext('2d')!.drawImage(canvas, 0, 0)
+        canvas = cut
+      }
+      parts.push(await canvas.convertToBlob({ type: 'image/png' }))
+      canvases.delete(finished)
+      finished++
+    }
+  }
+
+  for (const [index, position] of positions.entries()) {
+    await showProgress(index, positions.length)
+    const slices = await place(position)
+    if (!(await chrome.tabs.get(target.tabId)).active) throw new Error('tab changed during capture')
+    const bitmap = await createImageBitmap(await shot(tab.windowId))
+    const scale = bitmap.width / viewportWidth
+    if (index === 0) {
+      width = Math.min(Math.round(size.width * scale), MAX_PART_HEIGHT)
+      layout = splitParts(Math.round(size.height * scale), Math.min(MAX_PART_HEIGHT, Math.floor(MAX_PART_PIXELS / width)))
+    }
+    await finishPartsBefore(Math.min(...slices.map(({ top }) => Math.round(top * scale))))
+    for (const { rect, left, top } of slices) {
+      const crop = toImageRect(rect, scale)
+      const destX = Math.round(left * scale)
+      const destY = Math.round(top * scale)
+      for (let part = finished; part < layout.length && layout[part].top < destY + crop.height; part++) {
+        if (!canvases.has(part)) canvases.set(part, new OffscreenCanvas(width, layout[part].height))
+        const context = canvases.get(part)!.getContext('2d')!
+        context.drawImage(bitmap, crop.x, crop.y, crop.width, crop.height, destX, destY - layout[part].top, crop.width, crop.height)
+      }
+      drawnBottom = Math.max(drawnBottom, destY + crop.height)
+    }
+    bitmap.close()
+    if (index === 0) await callPage(target, () => window.omniKitPageScroll!.hideFixed())
+  }
+  // 가상 목록(GitHub 보드 등)은 내리면서 그린 카드의 실제 높이가 처음 어림한 높이보다 작아 그린 곳까지만 남김
+  layout = layout.filter(({ top }) => top < drawnBottom).map((part) => ({ ...part, height: Math.min(part.height, drawnBottom - part.top) }))
+  await finishPartsBefore(Infinity)
+  return parts
 }
 
 /**

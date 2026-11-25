@@ -86,6 +86,42 @@
   "shotArea": {
     "message": "선택 영역"
   },
+  "shotElement": {
+    "message": "요소 선택"
+  },
+  "pickTitle": {
+    "message": "캡처할 요소를 고르세요"
+  },
+  "pickWider": {
+    "message": "바깥 요소로 넓히기"
+  },
+  "pickNarrower": {
+    "message": "안쪽 요소로 좁히기"
+  },
+  "pickWiderShort": {
+    "message": "넓히기"
+  },
+  "pickNarrowerShort": {
+    "message": "좁히기"
+  },
+  "pickCapture": {
+    "message": "캡처"
+  },
+  "pickCancel": {
+    "message": "취소"
+  },
+  "pickClick": {
+    "message": "클릭"
+  },
+  "pickWheelUp": {
+    "message": "휠 위"
+  },
+  "pickWheelDown": {
+    "message": "휠 아래"
+  },
+  "elementPickCanvas": {
+    "message": "선택할 수 없는 요소가 포함되어 있어요. 선택 영역 스크린샷을 권장드려요."
+  },
   "shotVisible": {
     "message": "보이는 화면"
   },
@@ -93,13 +129,13 @@
     "message": "전체 페이지"
   },
   "captureUnavailable": {
-    "message": "이 페이지는 캡처할 수 없습니다"
+    "message": "이 페이지는 캡처할 수 없어요"
   },
   "captureLimited": {
-    "message": "이 페이지는 보이는 화면만 캡처할 수 있습니다"
+    "message": "이 페이지는 보이는 화면만 캡처할 수 있어요"
   },
   "captureNoFullPdf": {
-    "message": "PDF 파일은 전체 캡처가 불가합니다"
+    "message": "PDF 파일은 전체 페이지를 캡처할 수 없어요"
   },
   "menuCapture": {
     "message": "OmniKit 캡처"
@@ -145,10 +181,10 @@
     "message": "원본"
   },
   "captureMissing": {
-    "message": "캡처를 찾을 수 없습니다"
+    "message": "캡처를 찾을 수 없어요"
   },
   "pageSplit": {
-    "message": "페이지가 길어 $N$장으로 나눴습니다",
+    "message": "페이지가 길어 $N$장으로 나눴어요",
     "placeholders": {
       "n": {
         "content": "$1",

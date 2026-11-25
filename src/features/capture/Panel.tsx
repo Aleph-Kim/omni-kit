@@ -7,6 +7,7 @@ import { captureSupport, frameOriginPattern, isPdf, type CaptureMode, type Captu
 
 const OPTIONS: { mode: CaptureMode; titleKey: string }[] = [
   { mode: 'area', titleKey: 'shotArea' },
+  { mode: 'element', titleKey: 'shotElement' },
   { mode: 'visible', titleKey: 'shotVisible' },
   { mode: 'full', titleKey: 'shotFullPage' },
 ]
@@ -38,7 +39,7 @@ export function CapturePanel() {
   const enabled = (mode: CaptureMode) =>
     tabId !== null && (support === 'full' ? !(pdf && mode === 'full') : support === 'visible' && mode === 'visible')
 
-  // 영역 고르기 화면이 팝업에 가려지지 않게 요청 후 바로 닫음
+  // 영역, 요소 고르기 화면이 팝업에 가려지지 않게 요청 후 바로 닫음
   const capture = (mode: CaptureMode) => {
     if (mode !== 'full' || !frameOrigin) {
       void chrome.runtime.sendMessage({ type: 'capture', mode, tabId: tabId! } satisfies CaptureMessage)

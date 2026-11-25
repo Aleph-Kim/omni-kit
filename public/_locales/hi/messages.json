@@ -86,6 +86,42 @@
   "shotArea": {
     "message": "चुना हुआ हिस्सा"
   },
+  "shotElement": {
+    "message": "पेज एलिमेंट"
+  },
+  "pickTitle": {
+    "message": "कैप्चर करने के लिए एलिमेंट चुनें"
+  },
+  "pickWider": {
+    "message": "बाहरी एलिमेंट तक बढ़ाएं"
+  },
+  "pickNarrower": {
+    "message": "अंदरूनी एलिमेंट तक घटाएं"
+  },
+  "pickWiderShort": {
+    "message": "बढ़ाएं"
+  },
+  "pickNarrowerShort": {
+    "message": "घटाएं"
+  },
+  "pickCapture": {
+    "message": "कैप्चर करें"
+  },
+  "pickCancel": {
+    "message": "रद्द करें"
+  },
+  "pickClick": {
+    "message": "क्लिक"
+  },
+  "pickWheelUp": {
+    "message": "व्हील ऊपर"
+  },
+  "pickWheelDown": {
+    "message": "व्हील नीचे"
+  },
+  "elementPickCanvas": {
+    "message": "इसमें ऐसा एलिमेंट है जिसे चुना नहीं जा सकता। चुने हुए हिस्से का स्क्रीनशॉट लेने की सलाह है।"
+  },
   "shotVisible": {
     "message": "दिखने वाला हिस्सा"
   },

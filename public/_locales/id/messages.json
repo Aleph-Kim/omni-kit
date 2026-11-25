@@ -86,6 +86,42 @@
   "shotArea": {
     "message": "Area terpilih"
   },
+  "shotElement": {
+    "message": "Elemen halaman"
+  },
+  "pickTitle": {
+    "message": "Pilih elemen yang ingin ditangkap"
+  },
+  "pickWider": {
+    "message": "Perluas ke elemen luar"
+  },
+  "pickNarrower": {
+    "message": "Persempit ke elemen dalam"
+  },
+  "pickWiderShort": {
+    "message": "Perluas"
+  },
+  "pickNarrowerShort": {
+    "message": "Persempit"
+  },
+  "pickCapture": {
+    "message": "Tangkap"
+  },
+  "pickCancel": {
+    "message": "Batal"
+  },
+  "pickClick": {
+    "message": "Klik"
+  },
+  "pickWheelUp": {
+    "message": "Gulir atas"
+  },
+  "pickWheelDown": {
+    "message": "Gulir bawah"
+  },
+  "elementPickCanvas": {
+    "message": "Berisi elemen yang tidak bisa dipilih. Kami sarankan tangkapan layar Area terpilih."
+  },
   "shotVisible": {
     "message": "Bagian yang terlihat"
   },
@@ -313,10 +349,10 @@
     "message": "Seret untuk menggambar bentuk; pilih bentuk di Properti"
   },
   "shapeRect": {
-    "message": "Persegi"
+    "message": "Persegi panjang"
   },
   "shapeRoundRect": {
-    "message": "Persegi membulat"
+    "message": "Persegi panjang sudut bulat"
   },
   "shapeEllipse": {
     "message": "Elips"

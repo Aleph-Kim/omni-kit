@@ -1,4 +1,4 @@
-export type CaptureMode = 'area' | 'visible' | 'full'
+export type CaptureMode = 'area' | 'element' | 'visible' | 'full'
 export type CaptureSupport = 'full' | 'visible' | 'none'
 export type ImageType = 'image/png' | 'image/jpeg' | 'image/webp'
 export type Rect = { x: number; y: number; width: number; height: number }
@@ -9,11 +9,14 @@ export const MAX_SHOTS = 1000
 // 크롬 캔버스 한도(한 변 32767)보다 작게 잡아 메모리 사용 제한
 export const MAX_PART_HEIGHT = 16384
 
+// 넓은 요소는 한 장 높이를 줄여 한 장의 픽셀 수를 이만큼으로 제한
+export const MAX_PART_PIXELS = MAX_PART_HEIGHT * 4096
+
 // 크롬이 확장의 코드 넣기를 막는 웹스토어
 const WEBSTORE = [/^https:\/\/chromewebstore\.google\.com\//, /^https:\/\/chrome\.google\.com\/webstore/]
 
 /**
- * 팝업에서 고를 수 있는 캡처 판별, 선택 영역과 전체 페이지는 페이지에 코드를 넣어야 해서 일반 웹페이지만 가능
+ * 팝업에서 고를 수 있는 캡처 판별, 선택 영역, 요소, 전체 페이지는 페이지에 코드를 넣어야 해서 일반 웹페이지만 가능
  */
 export function captureSupport(url: string | undefined, fileAccess: boolean): CaptureSupport {
   if (!url) return 'none'

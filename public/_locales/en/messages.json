@@ -86,6 +86,42 @@
   "shotArea": {
     "message": "Selected area"
   },
+  "shotElement": {
+    "message": "Page element"
+  },
+  "pickTitle": {
+    "message": "Pick an element to capture"
+  },
+  "pickWider": {
+    "message": "Expand to outer element"
+  },
+  "pickNarrower": {
+    "message": "Shrink to inner element"
+  },
+  "pickWiderShort": {
+    "message": "Expand"
+  },
+  "pickNarrowerShort": {
+    "message": "Shrink"
+  },
+  "pickCapture": {
+    "message": "Capture"
+  },
+  "pickCancel": {
+    "message": "Cancel"
+  },
+  "pickClick": {
+    "message": "Click"
+  },
+  "pickWheelUp": {
+    "message": "Wheel up"
+  },
+  "pickWheelDown": {
+    "message": "Wheel down"
+  },
+  "elementPickCanvas": {
+    "message": "This contains an element that can't be picked. We recommend a Selected area screenshot."
+  },
   "shotVisible": {
     "message": "Visible part"
   },

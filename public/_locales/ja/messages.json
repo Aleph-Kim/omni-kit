@@ -86,6 +86,42 @@
   "shotArea": {
     "message": "選択範囲"
   },
+  "shotElement": {
+    "message": "ページ内の要素"
+  },
+  "pickTitle": {
+    "message": "キャプチャする要素を選んでください"
+  },
+  "pickWider": {
+    "message": "外側の要素に広げる"
+  },
+  "pickNarrower": {
+    "message": "内側の要素に狭める"
+  },
+  "pickWiderShort": {
+    "message": "広げる"
+  },
+  "pickNarrowerShort": {
+    "message": "狭める"
+  },
+  "pickCapture": {
+    "message": "キャプチャ"
+  },
+  "pickCancel": {
+    "message": "キャンセル"
+  },
+  "pickClick": {
+    "message": "クリック"
+  },
+  "pickWheelUp": {
+    "message": "ホイール上"
+  },
+  "pickWheelDown": {
+    "message": "ホイール下"
+  },
+  "elementPickCanvas": {
+    "message": "選択できない要素が含まれています。選択範囲のスクリーンショットをおすすめします。"
+  },
   "shotVisible": {
     "message": "表示部分"
   },
