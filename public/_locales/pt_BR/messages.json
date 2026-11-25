@@ -118,7 +118,7 @@
     }
   },
   "editorTitle": {
-    "message": "Captura do OmniKit"
+    "message": "Editar captura de tela"
   },
   "download": {
     "message": "Baixar"
@@ -162,6 +162,222 @@
       "n": {
         "content": "$1",
         "example": "3"
+      }
+    }
+  },
+  "toolSelect": {
+    "message": "Selecionar"
+  },
+  "toolText": {
+    "message": "Texto"
+  },
+  "toolArrow": {
+    "message": "Seta"
+  },
+  "toolPen": {
+    "message": "Caneta"
+  },
+  "toolMosaic": {
+    "message": "Mosaico"
+  },
+  "toolBlur": {
+    "message": "Desfoque"
+  },
+  "toolIcon": {
+    "message": "Ícone"
+  },
+  "toolCrop": {
+    "message": "Cortar"
+  },
+  "resetCrop": {
+    "message": "Remover corte"
+  },
+  "undo": {
+    "message": "Desfazer"
+  },
+  "redo": {
+    "message": "Refazer"
+  },
+  "deleteItem": {
+    "message": "Excluir"
+  },
+  "propertiesTitle": {
+    "message": "Propriedades"
+  },
+  "color": {
+    "message": "Cor"
+  },
+  "fill": {
+    "message": "Preenchimento"
+  },
+  "noFill": {
+    "message": "Sem preenchimento"
+  },
+  "thickness": {
+    "message": "Espessura"
+  },
+  "font": {
+    "message": "Fonte"
+  },
+  "fontSystem": {
+    "message": "Sistema"
+  },
+  "fontSerif": {
+    "message": "Serifa"
+  },
+  "fontMono": {
+    "message": "Monoespaçada"
+  },
+  "fontSize": {
+    "message": "Tamanho da fonte"
+  },
+  "zoomIn": {
+    "message": "Ampliar"
+  },
+  "zoomOut": {
+    "message": "Reduzir"
+  },
+  "zoomFit": {
+    "message": "Ajustar à janela"
+  },
+  "textPlaceholder": {
+    "message": "Digite o texto"
+  },
+  "iconNumber": {
+    "message": "Número"
+  },
+  "colorRed": {
+    "message": "Vermelho"
+  },
+  "colorOrange": {
+    "message": "Laranja"
+  },
+  "colorYellow": {
+    "message": "Amarelo"
+  },
+  "colorGreen": {
+    "message": "Verde"
+  },
+  "colorBlue": {
+    "message": "Azul"
+  },
+  "colorPurple": {
+    "message": "Roxo"
+  },
+  "colorBlack": {
+    "message": "Preto"
+  },
+  "colorWhite": {
+    "message": "Branco"
+  },
+  "toolSelectHint": {
+    "message": "Clique em um item para selecionar, mover, redimensionar ou girar"
+  },
+  "toolTextHint": {
+    "message": "Clique onde quer digitar o texto"
+  },
+  "toolArrowHint": {
+    "message": "Arraste para desenhar uma seta; escolha reta ou curva em Propriedades"
+  },
+  "toolPenHint": {
+    "message": "Arraste para desenhar livremente"
+  },
+  "toolMosaicHint": {
+    "message": "Arraste sobre uma área para escondê-la com mosaico"
+  },
+  "toolBlurHint": {
+    "message": "Arraste sobre uma área para escondê-la com desfoque"
+  },
+  "toolIconHint": {
+    "message": "Clique para colocar um ícone ou um número"
+  },
+  "toolCropHint": {
+    "message": "Arraste para escolher a área que será mantida"
+  },
+  "shapeLabel": {
+    "message": "Forma"
+  },
+  "arrowStraight": {
+    "message": "Reta"
+  },
+  "arrowCurve": {
+    "message": "Curva"
+  },
+  "iconSize": {
+    "message": "Tamanho"
+  },
+  "toolShape": {
+    "message": "Forma"
+  },
+  "toolShapeHint": {
+    "message": "Arraste para desenhar uma forma; escolha a forma em Propriedades"
+  },
+  "shapeRect": {
+    "message": "Retângulo"
+  },
+  "shapeRoundRect": {
+    "message": "Retângulo arredondado"
+  },
+  "shapeEllipse": {
+    "message": "Elipse"
+  },
+  "shapeTriangle": {
+    "message": "Triângulo"
+  },
+  "shapeDiamond": {
+    "message": "Losango"
+  },
+  "shapeHexagon": {
+    "message": "Hexágono"
+  },
+  "shapeStar": {
+    "message": "Estrela"
+  },
+  "shapeBubble": {
+    "message": "Balão de fala"
+  },
+  "shapeHeart": {
+    "message": "Coração"
+  },
+  "customColor": {
+    "message": "Cor personalizada"
+  },
+  "orderLabel": {
+    "message": "Ordem"
+  },
+  "orderFront": {
+    "message": "Trazer para a frente"
+  },
+  "orderForward": {
+    "message": "Avançar"
+  },
+  "orderBackward": {
+    "message": "Recuar"
+  },
+  "orderBack": {
+    "message": "Enviar para trás"
+  },
+  "maskStrength": {
+    "message": "Intensidade"
+  },
+  "orderFrontHint": {
+    "message": "Coloca os itens selecionados acima de todos os outros"
+  },
+  "orderForwardHint": {
+    "message": "Sobe um nível os itens selecionados"
+  },
+  "orderBackwardHint": {
+    "message": "Desce um nível os itens selecionados"
+  },
+  "orderBackHint": {
+    "message": "Coloca os itens selecionados abaixo de todos os outros"
+  },
+  "holdToMove": {
+    "message": "Segure $KEY$ para selecionar e mover itens com qualquer ferramenta",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "⌘"
       }
     }
   }

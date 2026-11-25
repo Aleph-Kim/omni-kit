@@ -118,7 +118,7 @@
     }
   },
   "editorTitle": {
-    "message": "التقاط OmniKit"
+    "message": "تعديل لقطة الشاشة"
   },
   "download": {
     "message": "تنزيل"
@@ -162,6 +162,222 @@
       "n": {
         "content": "$1",
         "example": "3"
+      }
+    }
+  },
+  "toolSelect": {
+    "message": "تحديد"
+  },
+  "toolText": {
+    "message": "نص"
+  },
+  "toolArrow": {
+    "message": "سهم"
+  },
+  "toolPen": {
+    "message": "قلم"
+  },
+  "toolMosaic": {
+    "message": "فسيفساء"
+  },
+  "toolBlur": {
+    "message": "تمويه"
+  },
+  "toolIcon": {
+    "message": "رمز"
+  },
+  "toolCrop": {
+    "message": "اقتصاص"
+  },
+  "resetCrop": {
+    "message": "إزالة الاقتصاص"
+  },
+  "undo": {
+    "message": "تراجع"
+  },
+  "redo": {
+    "message": "إعادة"
+  },
+  "deleteItem": {
+    "message": "حذف"
+  },
+  "propertiesTitle": {
+    "message": "الخصائص"
+  },
+  "color": {
+    "message": "اللون"
+  },
+  "fill": {
+    "message": "التعبئة"
+  },
+  "noFill": {
+    "message": "بلا تعبئة"
+  },
+  "thickness": {
+    "message": "السُمك"
+  },
+  "font": {
+    "message": "الخط"
+  },
+  "fontSystem": {
+    "message": "النظام"
+  },
+  "fontSerif": {
+    "message": "مذيّل"
+  },
+  "fontMono": {
+    "message": "أحادي المسافة"
+  },
+  "fontSize": {
+    "message": "حجم الخط"
+  },
+  "zoomIn": {
+    "message": "تكبير"
+  },
+  "zoomOut": {
+    "message": "تصغير"
+  },
+  "zoomFit": {
+    "message": "ملاءمة النافذة"
+  },
+  "textPlaceholder": {
+    "message": "أدخل النص"
+  },
+  "iconNumber": {
+    "message": "رقم"
+  },
+  "colorRed": {
+    "message": "أحمر"
+  },
+  "colorOrange": {
+    "message": "برتقالي"
+  },
+  "colorYellow": {
+    "message": "أصفر"
+  },
+  "colorGreen": {
+    "message": "أخضر"
+  },
+  "colorBlue": {
+    "message": "أزرق"
+  },
+  "colorPurple": {
+    "message": "بنفسجي"
+  },
+  "colorBlack": {
+    "message": "أسود"
+  },
+  "colorWhite": {
+    "message": "أبيض"
+  },
+  "toolSelectHint": {
+    "message": "انقر على عنصر لتحديده أو نقله أو تغيير حجمه أو تدويره"
+  },
+  "toolTextHint": {
+    "message": "انقر حيث تريد كتابة النص"
+  },
+  "toolArrowHint": {
+    "message": "اسحب لرسم سهم، واختر مستقيمًا أو منحنيًا من الخصائص"
+  },
+  "toolPenHint": {
+    "message": "اسحب للرسم بحرية"
+  },
+  "toolMosaicHint": {
+    "message": "اسحب فوق منطقة لإخفائها بالفسيفساء"
+  },
+  "toolBlurHint": {
+    "message": "اسحب فوق منطقة لإخفائها بالتمويه"
+  },
+  "toolIconHint": {
+    "message": "انقر لوضع رمز أو رقم"
+  },
+  "toolCropHint": {
+    "message": "اسحب لاختيار المنطقة التي تريد الاحتفاظ بها"
+  },
+  "shapeLabel": {
+    "message": "الشكل"
+  },
+  "arrowStraight": {
+    "message": "مستقيم"
+  },
+  "arrowCurve": {
+    "message": "منحنٍ"
+  },
+  "iconSize": {
+    "message": "الحجم"
+  },
+  "toolShape": {
+    "message": "شكل"
+  },
+  "toolShapeHint": {
+    "message": "اسحب لرسم شكل، واختر الشكل من الخصائص"
+  },
+  "shapeRect": {
+    "message": "مستطيل"
+  },
+  "shapeRoundRect": {
+    "message": "مستطيل بزوايا مستديرة"
+  },
+  "shapeEllipse": {
+    "message": "شكل بيضاوي"
+  },
+  "shapeTriangle": {
+    "message": "مثلث"
+  },
+  "shapeDiamond": {
+    "message": "معين"
+  },
+  "shapeHexagon": {
+    "message": "سداسي"
+  },
+  "shapeStar": {
+    "message": "نجمة"
+  },
+  "shapeBubble": {
+    "message": "فقاعة كلام"
+  },
+  "shapeHeart": {
+    "message": "قلب"
+  },
+  "customColor": {
+    "message": "لون مخصص"
+  },
+  "orderLabel": {
+    "message": "الترتيب"
+  },
+  "orderFront": {
+    "message": "إحضار إلى الأمام"
+  },
+  "orderForward": {
+    "message": "تقديم للأمام"
+  },
+  "orderBackward": {
+    "message": "إرجاع للخلف"
+  },
+  "orderBack": {
+    "message": "إرسال إلى الخلف"
+  },
+  "maskStrength": {
+    "message": "الشدة"
+  },
+  "orderFrontHint": {
+    "message": "نقل العناصر المحددة فوق كل العناصر"
+  },
+  "orderForwardHint": {
+    "message": "رفع العناصر المحددة مستوى واحدًا"
+  },
+  "orderBackwardHint": {
+    "message": "خفض العناصر المحددة مستوى واحدًا"
+  },
+  "orderBackHint": {
+    "message": "نقل العناصر المحددة أسفل كل العناصر"
+  },
+  "holdToMove": {
+    "message": "اضغط مع الاستمرار على $KEY$ لتحديد العناصر ونقلها بأي أداة",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "⌘"
       }
     }
   }

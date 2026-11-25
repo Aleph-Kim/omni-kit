@@ -118,7 +118,7 @@
     }
   },
   "editorTitle": {
-    "message": "OmniKit capture"
+    "message": "Edit screenshot"
   },
   "download": {
     "message": "Download"
@@ -162,6 +162,222 @@
       "n": {
         "content": "$1",
         "example": "3"
+      }
+    }
+  },
+  "toolSelect": {
+    "message": "Select"
+  },
+  "toolText": {
+    "message": "Text"
+  },
+  "toolArrow": {
+    "message": "Arrow"
+  },
+  "toolPen": {
+    "message": "Pen"
+  },
+  "toolMosaic": {
+    "message": "Mosaic"
+  },
+  "toolBlur": {
+    "message": "Blur"
+  },
+  "toolIcon": {
+    "message": "Icon"
+  },
+  "toolCrop": {
+    "message": "Crop"
+  },
+  "resetCrop": {
+    "message": "Remove crop"
+  },
+  "undo": {
+    "message": "Undo"
+  },
+  "redo": {
+    "message": "Redo"
+  },
+  "deleteItem": {
+    "message": "Delete"
+  },
+  "propertiesTitle": {
+    "message": "Properties"
+  },
+  "color": {
+    "message": "Color"
+  },
+  "fill": {
+    "message": "Fill"
+  },
+  "noFill": {
+    "message": "No fill"
+  },
+  "thickness": {
+    "message": "Thickness"
+  },
+  "font": {
+    "message": "Font"
+  },
+  "fontSystem": {
+    "message": "System"
+  },
+  "fontSerif": {
+    "message": "Serif"
+  },
+  "fontMono": {
+    "message": "Monospace"
+  },
+  "fontSize": {
+    "message": "Font size"
+  },
+  "zoomIn": {
+    "message": "Zoom in"
+  },
+  "zoomOut": {
+    "message": "Zoom out"
+  },
+  "zoomFit": {
+    "message": "Fit to window"
+  },
+  "textPlaceholder": {
+    "message": "Enter text"
+  },
+  "iconNumber": {
+    "message": "Number"
+  },
+  "colorRed": {
+    "message": "Red"
+  },
+  "colorOrange": {
+    "message": "Orange"
+  },
+  "colorYellow": {
+    "message": "Yellow"
+  },
+  "colorGreen": {
+    "message": "Green"
+  },
+  "colorBlue": {
+    "message": "Blue"
+  },
+  "colorPurple": {
+    "message": "Purple"
+  },
+  "colorBlack": {
+    "message": "Black"
+  },
+  "colorWhite": {
+    "message": "White"
+  },
+  "toolSelectHint": {
+    "message": "Click an item to select, move, resize or rotate it"
+  },
+  "toolTextHint": {
+    "message": "Click where you want to type text"
+  },
+  "toolArrowHint": {
+    "message": "Drag to draw an arrow; choose straight or curved in Properties"
+  },
+  "toolPenHint": {
+    "message": "Drag to draw freely"
+  },
+  "toolMosaicHint": {
+    "message": "Drag over an area to hide it with a mosaic"
+  },
+  "toolBlurHint": {
+    "message": "Drag over an area to hide it with a blur"
+  },
+  "toolIconHint": {
+    "message": "Click to place an icon or a number"
+  },
+  "toolCropHint": {
+    "message": "Drag to choose the area to keep"
+  },
+  "shapeLabel": {
+    "message": "Shape"
+  },
+  "arrowStraight": {
+    "message": "Straight"
+  },
+  "arrowCurve": {
+    "message": "Curved"
+  },
+  "iconSize": {
+    "message": "Size"
+  },
+  "toolShape": {
+    "message": "Shape"
+  },
+  "toolShapeHint": {
+    "message": "Drag to draw a shape; choose the shape in Properties"
+  },
+  "shapeRect": {
+    "message": "Rectangle"
+  },
+  "shapeRoundRect": {
+    "message": "Rounded rectangle"
+  },
+  "shapeEllipse": {
+    "message": "Ellipse"
+  },
+  "shapeTriangle": {
+    "message": "Triangle"
+  },
+  "shapeDiamond": {
+    "message": "Diamond"
+  },
+  "shapeHexagon": {
+    "message": "Hexagon"
+  },
+  "shapeStar": {
+    "message": "Star"
+  },
+  "shapeBubble": {
+    "message": "Speech bubble"
+  },
+  "shapeHeart": {
+    "message": "Heart"
+  },
+  "customColor": {
+    "message": "Custom color"
+  },
+  "orderLabel": {
+    "message": "Order"
+  },
+  "orderFront": {
+    "message": "Bring to front"
+  },
+  "orderForward": {
+    "message": "Bring forward"
+  },
+  "orderBackward": {
+    "message": "Send backward"
+  },
+  "orderBack": {
+    "message": "Send to back"
+  },
+  "maskStrength": {
+    "message": "Strength"
+  },
+  "orderFrontHint": {
+    "message": "Move the selected items above all others"
+  },
+  "orderForwardHint": {
+    "message": "Move the selected items up one level"
+  },
+  "orderBackwardHint": {
+    "message": "Move the selected items down one level"
+  },
+  "orderBackHint": {
+    "message": "Move the selected items below all others"
+  },
+  "holdToMove": {
+    "message": "Hold $KEY$ to select and move items with any tool",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "⌘"
       }
     }
   }

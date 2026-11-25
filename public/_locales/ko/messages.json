@@ -118,7 +118,7 @@
     }
   },
   "editorTitle": {
-    "message": "OmniKit 캡처"
+    "message": "스크린샷 편집"
   },
   "download": {
     "message": "다운로드"
@@ -162,6 +162,222 @@
       "n": {
         "content": "$1",
         "example": "3"
+      }
+    }
+  },
+  "toolSelect": {
+    "message": "선택"
+  },
+  "toolText": {
+    "message": "글자"
+  },
+  "toolArrow": {
+    "message": "화살표"
+  },
+  "toolPen": {
+    "message": "펜"
+  },
+  "toolMosaic": {
+    "message": "모자이크"
+  },
+  "toolBlur": {
+    "message": "흐림"
+  },
+  "toolIcon": {
+    "message": "아이콘"
+  },
+  "toolCrop": {
+    "message": "자르기"
+  },
+  "resetCrop": {
+    "message": "자르기 해제"
+  },
+  "undo": {
+    "message": "되돌리기"
+  },
+  "redo": {
+    "message": "다시 하기"
+  },
+  "deleteItem": {
+    "message": "지우기"
+  },
+  "propertiesTitle": {
+    "message": "속성"
+  },
+  "color": {
+    "message": "색"
+  },
+  "fill": {
+    "message": "채우기"
+  },
+  "noFill": {
+    "message": "채우기 없음"
+  },
+  "thickness": {
+    "message": "굵기"
+  },
+  "font": {
+    "message": "글꼴"
+  },
+  "fontSystem": {
+    "message": "시스템"
+  },
+  "fontSerif": {
+    "message": "명조"
+  },
+  "fontMono": {
+    "message": "고정폭"
+  },
+  "fontSize": {
+    "message": "글자 크기"
+  },
+  "zoomIn": {
+    "message": "확대"
+  },
+  "zoomOut": {
+    "message": "축소"
+  },
+  "zoomFit": {
+    "message": "화면에 맞춤"
+  },
+  "textPlaceholder": {
+    "message": "글자 입력"
+  },
+  "iconNumber": {
+    "message": "번호"
+  },
+  "colorRed": {
+    "message": "빨강"
+  },
+  "colorOrange": {
+    "message": "주황"
+  },
+  "colorYellow": {
+    "message": "노랑"
+  },
+  "colorGreen": {
+    "message": "초록"
+  },
+  "colorBlue": {
+    "message": "파랑"
+  },
+  "colorPurple": {
+    "message": "보라"
+  },
+  "colorBlack": {
+    "message": "검정"
+  },
+  "colorWhite": {
+    "message": "흰색"
+  },
+  "toolSelectHint": {
+    "message": "요소를 눌러 고르고 옮기기, 크기 조절, 회전"
+  },
+  "toolTextHint": {
+    "message": "누른 자리에 글자 입력"
+  },
+  "toolArrowHint": {
+    "message": "끌어서 화살표 그리기, 속성에서 직선과 곡선 선택"
+  },
+  "toolPenHint": {
+    "message": "끌어서 자유롭게 그리기"
+  },
+  "toolMosaicHint": {
+    "message": "끌어서 고른 부분을 모자이크로 가리기"
+  },
+  "toolBlurHint": {
+    "message": "끌어서 고른 부분을 흐리게 가리기"
+  },
+  "toolIconHint": {
+    "message": "누른 자리에 아이콘이나 번호 놓기"
+  },
+  "toolCropHint": {
+    "message": "끌어서 남길 부분 고르기"
+  },
+  "shapeLabel": {
+    "message": "모양"
+  },
+  "arrowStraight": {
+    "message": "직선"
+  },
+  "arrowCurve": {
+    "message": "곡선"
+  },
+  "iconSize": {
+    "message": "크기"
+  },
+  "toolShape": {
+    "message": "도형"
+  },
+  "toolShapeHint": {
+    "message": "끌어서 도형 그리기, 속성에서 모양 선택"
+  },
+  "shapeRect": {
+    "message": "네모"
+  },
+  "shapeRoundRect": {
+    "message": "둥근 네모"
+  },
+  "shapeEllipse": {
+    "message": "동그라미"
+  },
+  "shapeTriangle": {
+    "message": "세모"
+  },
+  "shapeDiamond": {
+    "message": "마름모"
+  },
+  "shapeHexagon": {
+    "message": "육각형"
+  },
+  "shapeStar": {
+    "message": "별"
+  },
+  "shapeBubble": {
+    "message": "말풍선"
+  },
+  "shapeHeart": {
+    "message": "하트"
+  },
+  "customColor": {
+    "message": "다른 색"
+  },
+  "orderLabel": {
+    "message": "순서"
+  },
+  "orderFront": {
+    "message": "맨 앞으로"
+  },
+  "orderForward": {
+    "message": "앞으로"
+  },
+  "orderBackward": {
+    "message": "뒤로"
+  },
+  "orderBack": {
+    "message": "맨 뒤로"
+  },
+  "maskStrength": {
+    "message": "정도"
+  },
+  "orderFrontHint": {
+    "message": "고른 요소를 모든 요소 위로"
+  },
+  "orderForwardHint": {
+    "message": "고른 요소를 한 단계 위로"
+  },
+  "orderBackwardHint": {
+    "message": "고른 요소를 한 단계 아래로"
+  },
+  "orderBackHint": {
+    "message": "고른 요소를 모든 요소 아래로"
+  },
+  "holdToMove": {
+    "message": "$KEY$ 키를 누르고 있는 동안은 어떤 도구에서든 요소를 고르고 옮길 수 있어요",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "⌘"
       }
     }
   }

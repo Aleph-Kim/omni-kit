@@ -13,8 +13,10 @@
     "e2e": "npm run build && node e2e/capture.ts --scale=1 && node e2e/capture.ts --scale=2"
   },
   "dependencies": {
+    "konva": "^10.11.0",
     "react": "^19.3.1",
-    "react-dom": "^19.3.1"
+    "react-dom": "^19.3.1",
+    "react-konva": "^19.3.2"
   },
   "devDependencies": {
     "@crxjs/vite-plugin": "^3.0.0",

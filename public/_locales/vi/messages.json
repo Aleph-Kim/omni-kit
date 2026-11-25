@@ -118,7 +118,7 @@
     }
   },
   "editorTitle": {
-    "message": "Chụp bằng OmniKit"
+    "message": "Chỉnh sửa ảnh chụp màn hình"
   },
   "download": {
     "message": "Tải xuống"
@@ -162,6 +162,222 @@
       "n": {
         "content": "$1",
         "example": "3"
+      }
+    }
+  },
+  "toolSelect": {
+    "message": "Chọn"
+  },
+  "toolText": {
+    "message": "Chữ"
+  },
+  "toolArrow": {
+    "message": "Mũi tên"
+  },
+  "toolPen": {
+    "message": "Bút"
+  },
+  "toolMosaic": {
+    "message": "Khảm"
+  },
+  "toolBlur": {
+    "message": "Làm mờ"
+  },
+  "toolIcon": {
+    "message": "Biểu tượng"
+  },
+  "toolCrop": {
+    "message": "Cắt"
+  },
+  "resetCrop": {
+    "message": "Bỏ cắt"
+  },
+  "undo": {
+    "message": "Hoàn tác"
+  },
+  "redo": {
+    "message": "Làm lại"
+  },
+  "deleteItem": {
+    "message": "Xóa"
+  },
+  "propertiesTitle": {
+    "message": "Thuộc tính"
+  },
+  "color": {
+    "message": "Màu"
+  },
+  "fill": {
+    "message": "Tô màu"
+  },
+  "noFill": {
+    "message": "Không tô"
+  },
+  "thickness": {
+    "message": "Độ dày"
+  },
+  "font": {
+    "message": "Phông chữ"
+  },
+  "fontSystem": {
+    "message": "Hệ thống"
+  },
+  "fontSerif": {
+    "message": "Có chân"
+  },
+  "fontMono": {
+    "message": "Đơn cách"
+  },
+  "fontSize": {
+    "message": "Cỡ chữ"
+  },
+  "zoomIn": {
+    "message": "Phóng to"
+  },
+  "zoomOut": {
+    "message": "Thu nhỏ"
+  },
+  "zoomFit": {
+    "message": "Vừa cửa sổ"
+  },
+  "textPlaceholder": {
+    "message": "Nhập chữ"
+  },
+  "iconNumber": {
+    "message": "Số thứ tự"
+  },
+  "colorRed": {
+    "message": "Đỏ"
+  },
+  "colorOrange": {
+    "message": "Cam"
+  },
+  "colorYellow": {
+    "message": "Vàng"
+  },
+  "colorGreen": {
+    "message": "Xanh lá"
+  },
+  "colorBlue": {
+    "message": "Xanh dương"
+  },
+  "colorPurple": {
+    "message": "Tím"
+  },
+  "colorBlack": {
+    "message": "Đen"
+  },
+  "colorWhite": {
+    "message": "Trắng"
+  },
+  "toolSelectHint": {
+    "message": "Nhấp vào một mục để chọn, di chuyển, đổi kích thước hoặc xoay"
+  },
+  "toolTextHint": {
+    "message": "Nhấp vào chỗ muốn nhập chữ"
+  },
+  "toolArrowHint": {
+    "message": "Kéo để vẽ mũi tên; chọn thẳng hoặc cong trong Thuộc tính"
+  },
+  "toolPenHint": {
+    "message": "Kéo để vẽ tự do"
+  },
+  "toolMosaicHint": {
+    "message": "Kéo qua một vùng để che bằng khảm"
+  },
+  "toolBlurHint": {
+    "message": "Kéo qua một vùng để che bằng làm mờ"
+  },
+  "toolIconHint": {
+    "message": "Nhấp để đặt biểu tượng hoặc số thứ tự"
+  },
+  "toolCropHint": {
+    "message": "Kéo để chọn vùng muốn giữ lại"
+  },
+  "shapeLabel": {
+    "message": "Hình dạng"
+  },
+  "arrowStraight": {
+    "message": "Thẳng"
+  },
+  "arrowCurve": {
+    "message": "Cong"
+  },
+  "iconSize": {
+    "message": "Kích thước"
+  },
+  "toolShape": {
+    "message": "Hình"
+  },
+  "toolShapeHint": {
+    "message": "Kéo để vẽ hình; chọn kiểu hình trong Thuộc tính"
+  },
+  "shapeRect": {
+    "message": "Hình chữ nhật"
+  },
+  "shapeRoundRect": {
+    "message": "Hình chữ nhật bo góc"
+  },
+  "shapeEllipse": {
+    "message": "Hình elip"
+  },
+  "shapeTriangle": {
+    "message": "Tam giác"
+  },
+  "shapeDiamond": {
+    "message": "Hình thoi"
+  },
+  "shapeHexagon": {
+    "message": "Lục giác"
+  },
+  "shapeStar": {
+    "message": "Ngôi sao"
+  },
+  "shapeBubble": {
+    "message": "Bong bóng thoại"
+  },
+  "shapeHeart": {
+    "message": "Trái tim"
+  },
+  "customColor": {
+    "message": "Màu tùy chọn"
+  },
+  "orderLabel": {
+    "message": "Thứ tự"
+  },
+  "orderFront": {
+    "message": "Đưa lên trên cùng"
+  },
+  "orderForward": {
+    "message": "Đưa lên một lớp"
+  },
+  "orderBackward": {
+    "message": "Đưa xuống một lớp"
+  },
+  "orderBack": {
+    "message": "Đưa xuống dưới cùng"
+  },
+  "maskStrength": {
+    "message": "Mức độ"
+  },
+  "orderFrontHint": {
+    "message": "Đưa các mục đã chọn lên trên tất cả"
+  },
+  "orderForwardHint": {
+    "message": "Đưa các mục đã chọn lên một lớp"
+  },
+  "orderBackwardHint": {
+    "message": "Đưa các mục đã chọn xuống một lớp"
+  },
+  "orderBackHint": {
+    "message": "Đưa các mục đã chọn xuống dưới tất cả"
+  },
+  "holdToMove": {
+    "message": "Giữ $KEY$ để chọn và di chuyển mục với bất kỳ công cụ nào",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "⌘"
       }
     }
   }

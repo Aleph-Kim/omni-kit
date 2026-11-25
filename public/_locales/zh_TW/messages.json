@@ -118,7 +118,7 @@
     }
   },
   "editorTitle": {
-    "message": "OmniKit 擷取"
+    "message": "編輯螢幕截圖"
   },
   "download": {
     "message": "下載"
@@ -162,6 +162,222 @@
       "n": {
         "content": "$1",
         "example": "3"
+      }
+    }
+  },
+  "toolSelect": {
+    "message": "選取"
+  },
+  "toolText": {
+    "message": "文字"
+  },
+  "toolArrow": {
+    "message": "箭頭"
+  },
+  "toolPen": {
+    "message": "畫筆"
+  },
+  "toolMosaic": {
+    "message": "馬賽克"
+  },
+  "toolBlur": {
+    "message": "模糊"
+  },
+  "toolIcon": {
+    "message": "圖示"
+  },
+  "toolCrop": {
+    "message": "裁切"
+  },
+  "resetCrop": {
+    "message": "取消裁切"
+  },
+  "undo": {
+    "message": "復原"
+  },
+  "redo": {
+    "message": "重做"
+  },
+  "deleteItem": {
+    "message": "刪除"
+  },
+  "propertiesTitle": {
+    "message": "屬性"
+  },
+  "color": {
+    "message": "顏色"
+  },
+  "fill": {
+    "message": "填色"
+  },
+  "noFill": {
+    "message": "無填色"
+  },
+  "thickness": {
+    "message": "粗細"
+  },
+  "font": {
+    "message": "字型"
+  },
+  "fontSystem": {
+    "message": "系統"
+  },
+  "fontSerif": {
+    "message": "襯線"
+  },
+  "fontMono": {
+    "message": "等寬"
+  },
+  "fontSize": {
+    "message": "字級"
+  },
+  "zoomIn": {
+    "message": "放大"
+  },
+  "zoomOut": {
+    "message": "縮小"
+  },
+  "zoomFit": {
+    "message": "符合視窗"
+  },
+  "textPlaceholder": {
+    "message": "輸入文字"
+  },
+  "iconNumber": {
+    "message": "編號"
+  },
+  "colorRed": {
+    "message": "紅色"
+  },
+  "colorOrange": {
+    "message": "橘色"
+  },
+  "colorYellow": {
+    "message": "黃色"
+  },
+  "colorGreen": {
+    "message": "綠色"
+  },
+  "colorBlue": {
+    "message": "藍色"
+  },
+  "colorPurple": {
+    "message": "紫色"
+  },
+  "colorBlack": {
+    "message": "黑色"
+  },
+  "colorWhite": {
+    "message": "白色"
+  },
+  "toolSelectHint": {
+    "message": "點選項目以選取、移動、調整大小或旋轉"
+  },
+  "toolTextHint": {
+    "message": "在點選的位置輸入文字"
+  },
+  "toolArrowHint": {
+    "message": "拖曳繪製箭頭，可在屬性中選擇直線或曲線"
+  },
+  "toolPenHint": {
+    "message": "拖曳自由繪製"
+  },
+  "toolMosaicHint": {
+    "message": "拖曳選取區域並以馬賽克遮蓋"
+  },
+  "toolBlurHint": {
+    "message": "拖曳選取區域並模糊遮蓋"
+  },
+  "toolIconHint": {
+    "message": "在點選的位置放置圖示或編號"
+  },
+  "toolCropHint": {
+    "message": "拖曳選擇要保留的區域"
+  },
+  "shapeLabel": {
+    "message": "形狀"
+  },
+  "arrowStraight": {
+    "message": "直線"
+  },
+  "arrowCurve": {
+    "message": "曲線"
+  },
+  "iconSize": {
+    "message": "大小"
+  },
+  "toolShape": {
+    "message": "形狀"
+  },
+  "toolShapeHint": {
+    "message": "拖曳繪製形狀，可在屬性中選擇形狀"
+  },
+  "shapeRect": {
+    "message": "矩形"
+  },
+  "shapeRoundRect": {
+    "message": "圓角矩形"
+  },
+  "shapeEllipse": {
+    "message": "橢圓"
+  },
+  "shapeTriangle": {
+    "message": "三角形"
+  },
+  "shapeDiamond": {
+    "message": "菱形"
+  },
+  "shapeHexagon": {
+    "message": "六邊形"
+  },
+  "shapeStar": {
+    "message": "星形"
+  },
+  "shapeBubble": {
+    "message": "對話框"
+  },
+  "shapeHeart": {
+    "message": "愛心"
+  },
+  "customColor": {
+    "message": "自訂顏色"
+  },
+  "orderLabel": {
+    "message": "順序"
+  },
+  "orderFront": {
+    "message": "移到最上層"
+  },
+  "orderForward": {
+    "message": "上移一層"
+  },
+  "orderBackward": {
+    "message": "下移一層"
+  },
+  "orderBack": {
+    "message": "移到最下層"
+  },
+  "maskStrength": {
+    "message": "強度"
+  },
+  "orderFrontHint": {
+    "message": "將選取的項目移到所有項目之上"
+  },
+  "orderForwardHint": {
+    "message": "將選取的項目上移一層"
+  },
+  "orderBackwardHint": {
+    "message": "將選取的項目下移一層"
+  },
+  "orderBackHint": {
+    "message": "將選取的項目移到所有項目之下"
+  },
+  "holdToMove": {
+    "message": "按住 $KEY$ 時，使用任何工具都能選取和移動項目",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "⌘"
       }
     }
   }

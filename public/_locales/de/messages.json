@@ -118,7 +118,7 @@
     }
   },
   "editorTitle": {
-    "message": "OmniKit-Aufnahme"
+    "message": "Screenshot bearbeiten"
   },
   "download": {
     "message": "Herunterladen"
@@ -162,6 +162,222 @@
       "n": {
         "content": "$1",
         "example": "3"
+      }
+    }
+  },
+  "toolSelect": {
+    "message": "Auswählen"
+  },
+  "toolText": {
+    "message": "Text"
+  },
+  "toolArrow": {
+    "message": "Pfeil"
+  },
+  "toolPen": {
+    "message": "Stift"
+  },
+  "toolMosaic": {
+    "message": "Mosaik"
+  },
+  "toolBlur": {
+    "message": "Unschärfe"
+  },
+  "toolIcon": {
+    "message": "Symbol"
+  },
+  "toolCrop": {
+    "message": "Zuschneiden"
+  },
+  "resetCrop": {
+    "message": "Zuschnitt entfernen"
+  },
+  "undo": {
+    "message": "Rückgängig"
+  },
+  "redo": {
+    "message": "Wiederholen"
+  },
+  "deleteItem": {
+    "message": "Löschen"
+  },
+  "propertiesTitle": {
+    "message": "Eigenschaften"
+  },
+  "color": {
+    "message": "Farbe"
+  },
+  "fill": {
+    "message": "Füllung"
+  },
+  "noFill": {
+    "message": "Keine Füllung"
+  },
+  "thickness": {
+    "message": "Stärke"
+  },
+  "font": {
+    "message": "Schrift"
+  },
+  "fontSystem": {
+    "message": "System"
+  },
+  "fontSerif": {
+    "message": "Serif"
+  },
+  "fontMono": {
+    "message": "Monospace"
+  },
+  "fontSize": {
+    "message": "Schriftgröße"
+  },
+  "zoomIn": {
+    "message": "Vergrößern"
+  },
+  "zoomOut": {
+    "message": "Verkleinern"
+  },
+  "zoomFit": {
+    "message": "An Fenster anpassen"
+  },
+  "textPlaceholder": {
+    "message": "Text eingeben"
+  },
+  "iconNumber": {
+    "message": "Nummer"
+  },
+  "colorRed": {
+    "message": "Rot"
+  },
+  "colorOrange": {
+    "message": "Orange"
+  },
+  "colorYellow": {
+    "message": "Gelb"
+  },
+  "colorGreen": {
+    "message": "Grün"
+  },
+  "colorBlue": {
+    "message": "Blau"
+  },
+  "colorPurple": {
+    "message": "Lila"
+  },
+  "colorBlack": {
+    "message": "Schwarz"
+  },
+  "colorWhite": {
+    "message": "Weiß"
+  },
+  "toolSelectHint": {
+    "message": "Element anklicken, um es auszuwählen, zu verschieben, zu skalieren oder zu drehen"
+  },
+  "toolTextHint": {
+    "message": "Klicken, wo der Text stehen soll"
+  },
+  "toolArrowHint": {
+    "message": "Ziehen, um einen Pfeil zu zeichnen; gerade oder gebogen in den Eigenschaften wählen"
+  },
+  "toolPenHint": {
+    "message": "Ziehen, um frei zu zeichnen"
+  },
+  "toolMosaicHint": {
+    "message": "Über einen Bereich ziehen, um ihn mit einem Mosaik zu verbergen"
+  },
+  "toolBlurHint": {
+    "message": "Über einen Bereich ziehen, um ihn unscharf zu verbergen"
+  },
+  "toolIconHint": {
+    "message": "Klicken, um ein Symbol oder eine Nummer zu setzen"
+  },
+  "toolCropHint": {
+    "message": "Ziehen, um den Bereich zu wählen, der bleiben soll"
+  },
+  "shapeLabel": {
+    "message": "Form"
+  },
+  "arrowStraight": {
+    "message": "Gerade"
+  },
+  "arrowCurve": {
+    "message": "Gebogen"
+  },
+  "iconSize": {
+    "message": "Größe"
+  },
+  "toolShape": {
+    "message": "Form"
+  },
+  "toolShapeHint": {
+    "message": "Ziehen, um eine Form zu zeichnen; die Form in den Eigenschaften wählen"
+  },
+  "shapeRect": {
+    "message": "Rechteck"
+  },
+  "shapeRoundRect": {
+    "message": "Abgerundetes Rechteck"
+  },
+  "shapeEllipse": {
+    "message": "Ellipse"
+  },
+  "shapeTriangle": {
+    "message": "Dreieck"
+  },
+  "shapeDiamond": {
+    "message": "Raute"
+  },
+  "shapeHexagon": {
+    "message": "Sechseck"
+  },
+  "shapeStar": {
+    "message": "Stern"
+  },
+  "shapeBubble": {
+    "message": "Sprechblase"
+  },
+  "shapeHeart": {
+    "message": "Herz"
+  },
+  "customColor": {
+    "message": "Eigene Farbe"
+  },
+  "orderLabel": {
+    "message": "Reihenfolge"
+  },
+  "orderFront": {
+    "message": "In den Vordergrund"
+  },
+  "orderForward": {
+    "message": "Eine Ebene nach vorne"
+  },
+  "orderBackward": {
+    "message": "Eine Ebene nach hinten"
+  },
+  "orderBack": {
+    "message": "In den Hintergrund"
+  },
+  "maskStrength": {
+    "message": "Stärke"
+  },
+  "orderFrontHint": {
+    "message": "Ausgewählte Elemente über alle anderen legen"
+  },
+  "orderForwardHint": {
+    "message": "Ausgewählte Elemente eine Ebene nach oben"
+  },
+  "orderBackwardHint": {
+    "message": "Ausgewählte Elemente eine Ebene nach unten"
+  },
+  "orderBackHint": {
+    "message": "Ausgewählte Elemente unter alle anderen legen"
+  },
+  "holdToMove": {
+    "message": "$KEY$ gedrückt halten, um mit jedem Werkzeug Elemente auszuwählen und zu verschieben",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "⌘"
       }
     }
   }

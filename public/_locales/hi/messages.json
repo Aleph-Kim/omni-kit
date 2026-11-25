@@ -118,7 +118,7 @@
     }
   },
   "editorTitle": {
-    "message": "OmniKit कैप्चर"
+    "message": "स्क्रीनशॉट संपादित करें"
   },
   "download": {
     "message": "डाउनलोड करें"
@@ -162,6 +162,222 @@
       "n": {
         "content": "$1",
         "example": "3"
+      }
+    }
+  },
+  "toolSelect": {
+    "message": "चुनें"
+  },
+  "toolText": {
+    "message": "टेक्स्ट"
+  },
+  "toolArrow": {
+    "message": "तीर"
+  },
+  "toolPen": {
+    "message": "पेन"
+  },
+  "toolMosaic": {
+    "message": "मोज़ेक"
+  },
+  "toolBlur": {
+    "message": "धुंधला"
+  },
+  "toolIcon": {
+    "message": "आइकन"
+  },
+  "toolCrop": {
+    "message": "क्रॉप"
+  },
+  "resetCrop": {
+    "message": "क्रॉप हटाएं"
+  },
+  "undo": {
+    "message": "पूर्ववत करें"
+  },
+  "redo": {
+    "message": "फिर से करें"
+  },
+  "deleteItem": {
+    "message": "हटाएं"
+  },
+  "propertiesTitle": {
+    "message": "गुण"
+  },
+  "color": {
+    "message": "रंग"
+  },
+  "fill": {
+    "message": "भराव"
+  },
+  "noFill": {
+    "message": "कोई भराव नहीं"
+  },
+  "thickness": {
+    "message": "मोटाई"
+  },
+  "font": {
+    "message": "फ़ॉन्ट"
+  },
+  "fontSystem": {
+    "message": "सिस्टम"
+  },
+  "fontSerif": {
+    "message": "सेरिफ़"
+  },
+  "fontMono": {
+    "message": "मोनोस्पेस"
+  },
+  "fontSize": {
+    "message": "फ़ॉन्ट आकार"
+  },
+  "zoomIn": {
+    "message": "ज़ूम इन"
+  },
+  "zoomOut": {
+    "message": "ज़ूम आउट"
+  },
+  "zoomFit": {
+    "message": "विंडो में फ़िट करें"
+  },
+  "textPlaceholder": {
+    "message": "टेक्स्ट लिखें"
+  },
+  "iconNumber": {
+    "message": "संख्या"
+  },
+  "colorRed": {
+    "message": "लाल"
+  },
+  "colorOrange": {
+    "message": "नारंगी"
+  },
+  "colorYellow": {
+    "message": "पीला"
+  },
+  "colorGreen": {
+    "message": "हरा"
+  },
+  "colorBlue": {
+    "message": "नीला"
+  },
+  "colorPurple": {
+    "message": "बैंगनी"
+  },
+  "colorBlack": {
+    "message": "काला"
+  },
+  "colorWhite": {
+    "message": "सफ़ेद"
+  },
+  "toolSelectHint": {
+    "message": "चुनने, खिसकाने, आकार बदलने या घुमाने के लिए किसी आइटम पर क्लिक करें"
+  },
+  "toolTextHint": {
+    "message": "जहाँ टेक्स्ट लिखना है वहाँ क्लिक करें"
+  },
+  "toolArrowHint": {
+    "message": "तीर बनाने के लिए खींचें; गुण में सीधा या घुमावदार चुनें"
+  },
+  "toolPenHint": {
+    "message": "मुक्त रूप से बनाने के लिए खींचें"
+  },
+  "toolMosaicHint": {
+    "message": "किसी हिस्से को मोज़ेक से छिपाने के लिए उस पर खींचें"
+  },
+  "toolBlurHint": {
+    "message": "किसी हिस्से को धुंधला करके छिपाने के लिए उस पर खींचें"
+  },
+  "toolIconHint": {
+    "message": "आइकन या संख्या रखने के लिए क्लिक करें"
+  },
+  "toolCropHint": {
+    "message": "रखने वाला हिस्सा चुनने के लिए खींचें"
+  },
+  "shapeLabel": {
+    "message": "आकृति"
+  },
+  "arrowStraight": {
+    "message": "सीधा"
+  },
+  "arrowCurve": {
+    "message": "घुमावदार"
+  },
+  "iconSize": {
+    "message": "आकार"
+  },
+  "toolShape": {
+    "message": "आकृति"
+  },
+  "toolShapeHint": {
+    "message": "आकृति बनाने के लिए खींचें; गुण में आकृति चुनें"
+  },
+  "shapeRect": {
+    "message": "आयत"
+  },
+  "shapeRoundRect": {
+    "message": "गोल कोनों वाला आयत"
+  },
+  "shapeEllipse": {
+    "message": "दीर्घवृत्त"
+  },
+  "shapeTriangle": {
+    "message": "त्रिभुज"
+  },
+  "shapeDiamond": {
+    "message": "समचतुर्भुज"
+  },
+  "shapeHexagon": {
+    "message": "षट्भुज"
+  },
+  "shapeStar": {
+    "message": "तारा"
+  },
+  "shapeBubble": {
+    "message": "संवाद बुलबुला"
+  },
+  "shapeHeart": {
+    "message": "दिल"
+  },
+  "customColor": {
+    "message": "कस्टम रंग"
+  },
+  "orderLabel": {
+    "message": "क्रम"
+  },
+  "orderFront": {
+    "message": "सबसे आगे लाएं"
+  },
+  "orderForward": {
+    "message": "आगे लाएं"
+  },
+  "orderBackward": {
+    "message": "पीछे भेजें"
+  },
+  "orderBack": {
+    "message": "सबसे पीछे भेजें"
+  },
+  "maskStrength": {
+    "message": "तीव्रता"
+  },
+  "orderFrontHint": {
+    "message": "चुने गए आइटम को सभी आइटम के ऊपर ले जाएं"
+  },
+  "orderForwardHint": {
+    "message": "चुने गए आइटम को एक स्तर ऊपर ले जाएं"
+  },
+  "orderBackwardHint": {
+    "message": "चुने गए आइटम को एक स्तर नीचे ले जाएं"
+  },
+  "orderBackHint": {
+    "message": "चुने गए आइटम को सभी आइटम के नीचे ले जाएं"
+  },
+  "holdToMove": {
+    "message": "किसी भी टूल में आइटम चुनने और खिसकाने के लिए $KEY$ दबाए रखें",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "⌘"
       }
     }
   }

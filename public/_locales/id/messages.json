@@ -118,7 +118,7 @@
     }
   },
   "editorTitle": {
-    "message": "Tangkapan OmniKit"
+    "message": "Edit tangkapan layar"
   },
   "download": {
     "message": "Unduh"
@@ -162,6 +162,222 @@
       "n": {
         "content": "$1",
         "example": "3"
+      }
+    }
+  },
+  "toolSelect": {
+    "message": "Pilih"
+  },
+  "toolText": {
+    "message": "Teks"
+  },
+  "toolArrow": {
+    "message": "Panah"
+  },
+  "toolPen": {
+    "message": "Pena"
+  },
+  "toolMosaic": {
+    "message": "Mosaik"
+  },
+  "toolBlur": {
+    "message": "Buram"
+  },
+  "toolIcon": {
+    "message": "Ikon"
+  },
+  "toolCrop": {
+    "message": "Potong"
+  },
+  "resetCrop": {
+    "message": "Hapus potongan"
+  },
+  "undo": {
+    "message": "Urungkan"
+  },
+  "redo": {
+    "message": "Ulangi"
+  },
+  "deleteItem": {
+    "message": "Hapus"
+  },
+  "propertiesTitle": {
+    "message": "Properti"
+  },
+  "color": {
+    "message": "Warna"
+  },
+  "fill": {
+    "message": "Isian"
+  },
+  "noFill": {
+    "message": "Tanpa isian"
+  },
+  "thickness": {
+    "message": "Ketebalan"
+  },
+  "font": {
+    "message": "Font"
+  },
+  "fontSystem": {
+    "message": "Sistem"
+  },
+  "fontSerif": {
+    "message": "Serif"
+  },
+  "fontMono": {
+    "message": "Monospace"
+  },
+  "fontSize": {
+    "message": "Ukuran font"
+  },
+  "zoomIn": {
+    "message": "Perbesar"
+  },
+  "zoomOut": {
+    "message": "Perkecil"
+  },
+  "zoomFit": {
+    "message": "Sesuaikan dengan jendela"
+  },
+  "textPlaceholder": {
+    "message": "Masukkan teks"
+  },
+  "iconNumber": {
+    "message": "Nomor"
+  },
+  "colorRed": {
+    "message": "Merah"
+  },
+  "colorOrange": {
+    "message": "Oranye"
+  },
+  "colorYellow": {
+    "message": "Kuning"
+  },
+  "colorGreen": {
+    "message": "Hijau"
+  },
+  "colorBlue": {
+    "message": "Biru"
+  },
+  "colorPurple": {
+    "message": "Ungu"
+  },
+  "colorBlack": {
+    "message": "Hitam"
+  },
+  "colorWhite": {
+    "message": "Putih"
+  },
+  "toolSelectHint": {
+    "message": "Klik item untuk memilih, memindahkan, mengubah ukuran, atau memutar"
+  },
+  "toolTextHint": {
+    "message": "Klik tempat untuk mengetik teks"
+  },
+  "toolArrowHint": {
+    "message": "Seret untuk menggambar panah; pilih lurus atau lengkung di Properti"
+  },
+  "toolPenHint": {
+    "message": "Seret untuk menggambar bebas"
+  },
+  "toolMosaicHint": {
+    "message": "Seret di atas area untuk menyembunyikannya dengan mosaik"
+  },
+  "toolBlurHint": {
+    "message": "Seret di atas area untuk menyembunyikannya dengan buram"
+  },
+  "toolIconHint": {
+    "message": "Klik untuk menaruh ikon atau nomor"
+  },
+  "toolCropHint": {
+    "message": "Seret untuk memilih area yang disimpan"
+  },
+  "shapeLabel": {
+    "message": "Bentuk"
+  },
+  "arrowStraight": {
+    "message": "Lurus"
+  },
+  "arrowCurve": {
+    "message": "Lengkung"
+  },
+  "iconSize": {
+    "message": "Ukuran"
+  },
+  "toolShape": {
+    "message": "Bentuk"
+  },
+  "toolShapeHint": {
+    "message": "Seret untuk menggambar bentuk; pilih bentuk di Properti"
+  },
+  "shapeRect": {
+    "message": "Persegi"
+  },
+  "shapeRoundRect": {
+    "message": "Persegi membulat"
+  },
+  "shapeEllipse": {
+    "message": "Elips"
+  },
+  "shapeTriangle": {
+    "message": "Segitiga"
+  },
+  "shapeDiamond": {
+    "message": "Belah ketupat"
+  },
+  "shapeHexagon": {
+    "message": "Segi enam"
+  },
+  "shapeStar": {
+    "message": "Bintang"
+  },
+  "shapeBubble": {
+    "message": "Balon kata"
+  },
+  "shapeHeart": {
+    "message": "Hati"
+  },
+  "customColor": {
+    "message": "Warna khusus"
+  },
+  "orderLabel": {
+    "message": "Urutan"
+  },
+  "orderFront": {
+    "message": "Bawa ke depan"
+  },
+  "orderForward": {
+    "message": "Maju satu"
+  },
+  "orderBackward": {
+    "message": "Mundur satu"
+  },
+  "orderBack": {
+    "message": "Kirim ke belakang"
+  },
+  "maskStrength": {
+    "message": "Kekuatan"
+  },
+  "orderFrontHint": {
+    "message": "Pindahkan item terpilih ke atas semua item"
+  },
+  "orderForwardHint": {
+    "message": "Naikkan item terpilih satu tingkat"
+  },
+  "orderBackwardHint": {
+    "message": "Turunkan item terpilih satu tingkat"
+  },
+  "orderBackHint": {
+    "message": "Pindahkan item terpilih ke bawah semua item"
+  },
+  "holdToMove": {
+    "message": "Tahan $KEY$ untuk memilih dan memindahkan item dengan alat apa pun",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "⌘"
       }
     }
   }

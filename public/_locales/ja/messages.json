@@ -118,7 +118,7 @@
     }
   },
   "editorTitle": {
-    "message": "OmniKit キャプチャ"
+    "message": "スクリーンショットを編集"
   },
   "download": {
     "message": "ダウンロード"
@@ -162,6 +162,222 @@
       "n": {
         "content": "$1",
         "example": "3"
+      }
+    }
+  },
+  "toolSelect": {
+    "message": "選択"
+  },
+  "toolText": {
+    "message": "テキスト"
+  },
+  "toolArrow": {
+    "message": "矢印"
+  },
+  "toolPen": {
+    "message": "ペン"
+  },
+  "toolMosaic": {
+    "message": "モザイク"
+  },
+  "toolBlur": {
+    "message": "ぼかし"
+  },
+  "toolIcon": {
+    "message": "アイコン"
+  },
+  "toolCrop": {
+    "message": "切り抜き"
+  },
+  "resetCrop": {
+    "message": "切り抜きを解除"
+  },
+  "undo": {
+    "message": "元に戻す"
+  },
+  "redo": {
+    "message": "やり直す"
+  },
+  "deleteItem": {
+    "message": "削除"
+  },
+  "propertiesTitle": {
+    "message": "プロパティ"
+  },
+  "color": {
+    "message": "色"
+  },
+  "fill": {
+    "message": "塗りつぶし"
+  },
+  "noFill": {
+    "message": "塗りつぶしなし"
+  },
+  "thickness": {
+    "message": "太さ"
+  },
+  "font": {
+    "message": "フォント"
+  },
+  "fontSystem": {
+    "message": "システム"
+  },
+  "fontSerif": {
+    "message": "明朝"
+  },
+  "fontMono": {
+    "message": "等幅"
+  },
+  "fontSize": {
+    "message": "文字サイズ"
+  },
+  "zoomIn": {
+    "message": "拡大"
+  },
+  "zoomOut": {
+    "message": "縮小"
+  },
+  "zoomFit": {
+    "message": "画面に合わせる"
+  },
+  "textPlaceholder": {
+    "message": "テキストを入力"
+  },
+  "iconNumber": {
+    "message": "番号"
+  },
+  "colorRed": {
+    "message": "赤"
+  },
+  "colorOrange": {
+    "message": "オレンジ"
+  },
+  "colorYellow": {
+    "message": "黄"
+  },
+  "colorGreen": {
+    "message": "緑"
+  },
+  "colorBlue": {
+    "message": "青"
+  },
+  "colorPurple": {
+    "message": "紫"
+  },
+  "colorBlack": {
+    "message": "黒"
+  },
+  "colorWhite": {
+    "message": "白"
+  },
+  "toolSelectHint": {
+    "message": "項目をクリックして選択、移動、サイズ変更、回転"
+  },
+  "toolTextHint": {
+    "message": "クリックした位置に文字を入力"
+  },
+  "toolArrowHint": {
+    "message": "ドラッグして矢印を描画。プロパティで直線と曲線を選択"
+  },
+  "toolPenHint": {
+    "message": "ドラッグして自由に描画"
+  },
+  "toolMosaicHint": {
+    "message": "ドラッグした範囲をモザイクで隠す"
+  },
+  "toolBlurHint": {
+    "message": "ドラッグした範囲をぼかして隠す"
+  },
+  "toolIconHint": {
+    "message": "クリックした位置にアイコンや番号を配置"
+  },
+  "toolCropHint": {
+    "message": "ドラッグして残す範囲を選択"
+  },
+  "shapeLabel": {
+    "message": "形"
+  },
+  "arrowStraight": {
+    "message": "直線"
+  },
+  "arrowCurve": {
+    "message": "曲線"
+  },
+  "iconSize": {
+    "message": "サイズ"
+  },
+  "toolShape": {
+    "message": "図形"
+  },
+  "toolShapeHint": {
+    "message": "ドラッグして図形を描画。プロパティで形を選択"
+  },
+  "shapeRect": {
+    "message": "四角形"
+  },
+  "shapeRoundRect": {
+    "message": "角丸四角形"
+  },
+  "shapeEllipse": {
+    "message": "楕円"
+  },
+  "shapeTriangle": {
+    "message": "三角形"
+  },
+  "shapeDiamond": {
+    "message": "ひし形"
+  },
+  "shapeHexagon": {
+    "message": "六角形"
+  },
+  "shapeStar": {
+    "message": "星"
+  },
+  "shapeBubble": {
+    "message": "吹き出し"
+  },
+  "shapeHeart": {
+    "message": "ハート"
+  },
+  "customColor": {
+    "message": "その他の色"
+  },
+  "orderLabel": {
+    "message": "順序"
+  },
+  "orderFront": {
+    "message": "最前面へ"
+  },
+  "orderForward": {
+    "message": "前面へ"
+  },
+  "orderBackward": {
+    "message": "背面へ"
+  },
+  "orderBack": {
+    "message": "最背面へ"
+  },
+  "maskStrength": {
+    "message": "強さ"
+  },
+  "orderFrontHint": {
+    "message": "選択した項目をすべての項目の上へ"
+  },
+  "orderForwardHint": {
+    "message": "選択した項目を1つ上へ"
+  },
+  "orderBackwardHint": {
+    "message": "選択した項目を1つ下へ"
+  },
+  "orderBackHint": {
+    "message": "選択した項目をすべての項目の下へ"
+  },
+  "holdToMove": {
+    "message": "$KEY$ を押している間は、どのツールでも項目を選択して移動できます",
+    "placeholders": {
+      "key": {
+        "content": "$1",
+        "example": "⌘"
       }
     }
   }
