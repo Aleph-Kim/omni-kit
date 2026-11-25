@@ -98,6 +98,9 @@
   "captureLimited": {
     "message": "Seule la partie visible peut être capturée sur cette page"
   },
+  "captureNoFullPdf": {
+    "message": "La capture de la page entière n'est pas disponible pour les fichiers PDF"
+  },
   "menuCapture": {
     "message": "Capture OmniKit"
   },
@@ -152,9 +155,6 @@
         "example": "3"
       }
     }
-  },
-  "pageTruncated": {
-    "message": "La page est trop longue, seul le haut a été capturé"
   },
   "partLabel": {
     "message": "Image $N$",

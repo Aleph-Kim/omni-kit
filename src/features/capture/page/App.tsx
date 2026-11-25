@@ -74,9 +74,8 @@ export function App() {
       </header>
       <div className="flex flex-col gap-4 lg:flex-row lg:items-start">
         <section className="flex min-w-0 flex-1 flex-col gap-2">
-          {(split || capture.truncated) && (
+          {split && (
             <div className="flex flex-wrap items-center gap-2 px-3 text-xs text-(--ok-label-2)">
-              {capture.truncated && <p>{t('pageTruncated')}</p>}
               {split && <p>{t('pageSplit', capture.parts.length)}</p>}
               {split && (
                 <div role="group" dir="ltr" className="flex gap-1">

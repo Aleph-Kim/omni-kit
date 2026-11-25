@@ -3,7 +3,7 @@ import { t } from '../../i18n'
 import { Chevron } from '../../ui/Chevron'
 import type { CaptureMessage } from './background'
 import pageScrollScript from './content/page-scroll.ts?iife'
-import { captureSupport, frameOriginPattern, type CaptureMode, type CaptureSupport } from './shot'
+import { captureSupport, frameOriginPattern, isPdf, type CaptureMode, type CaptureSupport } from './shot'
 
 const OPTIONS: { mode: CaptureMode; titleKey: string }[] = [
   { mode: 'area', titleKey: 'shotArea' },
@@ -16,12 +16,15 @@ export function CapturePanel() {
   const [support, setSupport] = useState<CaptureSupport | null>(null)
   const [open, setOpen] = useState(false)
   const [frameOrigin, setFrameOrigin] = useState<string | null>(null)
+  const [pdf, setPdf] = useState(false)
 
   useEffect(() => {
     void (async () => {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
+      const support = captureSupport(tab?.url, await chrome.extension.isAllowedFileSchemeAccess())
       setTabId(tab?.id ?? null)
-      setSupport(captureSupport(tab?.url, await chrome.extension.isAllowedFileSchemeAccess()))
+      setPdf(support === 'full' && tab?.id !== undefined && (await isPdf(tab.id)))
+      setSupport(support)
     })()
   }, [])
 
@@ -32,7 +35,8 @@ export function CapturePanel() {
 
   if (!support) return null
 
-  const enabled = (mode: CaptureMode) => tabId !== null && (support === 'full' || (support === 'visible' && mode === 'visible'))
+  const enabled = (mode: CaptureMode) =>
+    tabId !== null && (support === 'full' ? !(pdf && mode === 'full') : support === 'visible' && mode === 'visible')
 
   // 영역 고르기 화면이 팝업에 가려지지 않게 요청 후 바로 닫음
   const capture = (mode: CaptureMode) => {
@@ -80,6 +84,7 @@ export function CapturePanel() {
           {support !== 'full' && (
             <p className="px-2 text-xs text-(--ok-label-2)">{t(support === 'visible' ? 'captureLimited' : 'captureUnavailable')}</p>
           )}
+          {pdf && <p className="px-2 text-xs text-(--ok-label-2)">{t('captureNoFullPdf')}</p>}
         </div>
       )}
     </div>

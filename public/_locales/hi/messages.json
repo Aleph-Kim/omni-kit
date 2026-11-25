@@ -98,6 +98,9 @@
   "captureLimited": {
     "message": "इस पेज पर सिर्फ़ दिखने वाला हिस्सा कैप्चर किया जा सकता है"
   },
+  "captureNoFullPdf": {
+    "message": "PDF फ़ाइलों का पूरा पेज कैप्चर नहीं किया जा सकता"
+  },
   "menuCapture": {
     "message": "OmniKit कैप्चर"
   },
@@ -152,9 +155,6 @@
         "example": "3"
       }
     }
-  },
-  "pageTruncated": {
-    "message": "पेज बहुत लंबा है, इसलिए सिर्फ़ ऊपर का हिस्सा कैप्चर हुआ"
   },
   "partLabel": {
     "message": "इमेज $N$",

@@ -98,6 +98,9 @@
   "captureLimited": {
     "message": "此页面只能截取可见部分"
   },
+  "captureNoFullPdf": {
+    "message": "PDF 文件无法截取整页"
+  },
   "menuCapture": {
     "message": "OmniKit 截取"
   },
@@ -152,9 +155,6 @@
         "example": "3"
       }
     }
-  },
-  "pageTruncated": {
-    "message": "页面过长，只截取了前面部分"
   },
   "partLabel": {
     "message": "第 $N$ 张",

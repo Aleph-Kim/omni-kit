@@ -44,7 +44,7 @@ function createPageScroll(): PageScroll {
   const isPinned = (position: string) => position === 'fixed' || position === 'sticky'
 
   const unpinNow = () => {
-    for (const el of document.querySelectorAll<HTMLElement>('body *')) {
+    for (const el of pageElements()) {
       if (handled.has(el) || !isPinned(getComputedStyle(el).position)) continue
       handled.add(el)
       // 스크롤하면 고정되는 머리글과 옆 칸(네이버 검색창, 오른쪽 칸 등)은 숨기면 빈칸이 생겨 맨 위에 있을 때의 자리로 되돌림
@@ -115,7 +115,7 @@ function createPageScroll(): PageScroll {
               .map(({ prev }) => contentBottom(target, prev!))
           : []
       const total = Math.min(target.scrollHeight, ...(ends.length ? ends : [startHeight]))
-      for (const el of document.querySelectorAll('body *')) {
+      for (const el of pageElements()) {
         const { position, top, bottom } = getComputedStyle(el)
         initial.set(el, { position, top, bottom })
       }
@@ -151,6 +151,21 @@ function createPageScroll(): PageScroll {
       document.getElementById(BLOCKER_ID)?.remove()
     },
   }
+}
+
+/**
+ * body 안 모든 요소, 웹 컴포넌트의 shadow DOM 안에 고정된 버튼(Scramble 문서의 warnings 버튼 등)까지 포함
+ */
+function pageElements(): HTMLElement[] {
+  const elements: HTMLElement[] = []
+  const walk = (parent: ParentNode) => {
+    for (const el of parent.querySelectorAll<HTMLElement>('*')) {
+      elements.push(el)
+      if (el.shadowRoot) walk(el.shadowRoot)
+    }
+  }
+  walk(document.body)
+  return elements
 }
 
 /**

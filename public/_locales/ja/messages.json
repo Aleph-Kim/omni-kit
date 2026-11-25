@@ -98,6 +98,9 @@
   "captureLimited": {
     "message": "このページでは表示部分のみキャプチャできます"
   },
+  "captureNoFullPdf": {
+    "message": "PDFファイルはページ全体をキャプチャできません"
+  },
   "menuCapture": {
     "message": "OmniKit キャプチャ"
   },
@@ -152,9 +155,6 @@
         "example": "3"
       }
     }
-  },
-  "pageTruncated": {
-    "message": "ページが長すぎるため上部のみキャプチャしました"
   },
   "partLabel": {
     "message": "$N$ 枚目",

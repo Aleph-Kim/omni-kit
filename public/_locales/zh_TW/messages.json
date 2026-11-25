@@ -98,6 +98,9 @@
   "captureLimited": {
     "message": "此頁面只能擷取可見部分"
   },
+  "captureNoFullPdf": {
+    "message": "PDF 檔案無法擷取整頁"
+  },
   "menuCapture": {
     "message": "OmniKit 擷取"
   },
@@ -152,9 +155,6 @@
         "example": "3"
       }
     }
-  },
-  "pageTruncated": {
-    "message": "頁面過長，只擷取了前面部分"
   },
   "partLabel": {
     "message": "第 $N$ 張",

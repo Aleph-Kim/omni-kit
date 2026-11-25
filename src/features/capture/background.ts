@@ -2,7 +2,7 @@ import { flashBadge } from '../../badge'
 import { t } from '../../i18n'
 import areaSelectScript from './content/area-select.ts?iife'
 import pageScrollScript from './content/page-scroll.ts?iife'
-import { MAX_SHOTS, frameOriginPattern, scrollPositions, splitParts, toImageRect, type CaptureMode, type Rect } from './shot'
+import { MAX_SHOTS, frameOriginPattern, isPdf, scrollPositions, splitParts, toImageRect, type CaptureMode, type Rect } from './shot'
 import { deleteCapture, deleteCapturesBefore, saveCapture, type Capture } from './store'
 
 export type CaptureMessage =
@@ -61,6 +61,8 @@ export const deleteOldCaptures = () => deleteCapturesBefore(Date.now() - DAY)
 async function startCapture(mode: CaptureMode, tab: chrome.tabs.Tab, requestedOrigin?: string) {
   // 선택 영역은 사용자가 고른 뒤 area-selected 메시지로 이어짐
   if (mode === 'area') return run(tab, () => inject(tab, areaSelectScript))
+  // 팝업은 PDF에서 전체 페이지를 흐리게 하지만 우클릭 메뉴는 막을 수 없어 안내만 띄움
+  if (mode === 'full' && (await isPdf(tab.id!))) return run(tab, () => showNotice(tab.id!, t('captureNoFullPdf')))
   return run(tab, () => (mode === 'visible' ? captureVisible(tab) : captureFullPage(tab, requestedOrigin)))
 }
 
@@ -75,7 +77,7 @@ async function run(tab: chrome.tabs.Tab, task: () => Promise<Capture | void>) {
 }
 
 async function captureVisible(tab: chrome.tabs.Tab): Promise<Capture> {
-  return newCapture([await shot(tab.windowId)], false)
+  return newCapture([await shot(tab.windowId)])
 }
 
 async function captureArea(tab: chrome.tabs.Tab, rect: Rect, viewportWidth: number): Promise<Capture> {
@@ -84,7 +86,7 @@ async function captureArea(tab: chrome.tabs.Tab, rect: Rect, viewportWidth: numb
   const canvas = new OffscreenCanvas(crop.width, crop.height)
   canvas.getContext('2d')!.drawImage(bitmap, crop.x, crop.y, crop.width, crop.height, 0, 0, crop.width, crop.height)
   bitmap.close()
-  return newCapture([await canvas.convertToBlob({ type: 'image/png' })], false)
+  return newCapture([await canvas.convertToBlob({ type: 'image/png' })])
 }
 
 /**
@@ -108,7 +110,7 @@ async function captureFullPage(tab: chrome.tabs.Tab, requestedOrigin?: string): 
       page.viewport = page.rect.height
       page.viewportWidth = frame.viewportWidth
     }
-    const { positions, truncated } = scrollPositions(page.total, page.viewport)
+    const positions = scrollPositions(page.total, page.viewport)
     const contentHeight = positions.at(-1)! + page.viewport
     const parts: Blob[] = []
     const canvases = new Map<number, OffscreenCanvas>()
@@ -142,11 +144,44 @@ async function captureFullPage(tab: chrome.tabs.Tab, requestedOrigin?: string): 
       if (index === 0) await callPage(target, () => window.omniKitPageScroll!.hideFixed())
     }
     await finishPartsBefore(Infinity)
-    return newCapture(parts, truncated)
+    return newCapture(parts)
   } finally {
     await callPage(target, () => window.omniKitPageScroll!.restore()).catch(() => {})
     await clearProgress()
   }
+}
+
+/**
+ * 화면 가운데에 3초 동안 띄우는 안내 상자, PDF 보기의 짙은 회색 화면에서도 보이게 테마와 상관없이 검정 바탕
+ */
+async function showNotice(tabId: number, message: string) {
+  await chrome.scripting.executeScript({
+    target: { tabId },
+    args: [message],
+    func: (message) => {
+      document.getElementById('omni-kit-notice')?.remove()
+      const notice = document.createElement('div')
+      notice.id = 'omni-kit-notice'
+      notice.textContent = message
+      notice.style.cssText = [
+        'all: initial',
+        'position: fixed',
+        'top: 50%',
+        'left: 50%',
+        'transform: translate(-50%, -50%)',
+        'z-index: 2147483647',
+        'pointer-events: none',
+        'padding: 14px 20px',
+        'border-radius: 12px',
+        'background: rgb(0 0 0 / 0.85)',
+        'color: #fff',
+        'box-shadow: 0 4px 16px rgb(0 0 0 / 0.3)',
+        'font: 600 15px -apple-system, BlinkMacSystemFont, system-ui, sans-serif',
+      ].join(';')
+      document.documentElement.append(notice)
+      setTimeout(() => notice.remove(), 3000)
+    },
+  })
 }
 
 // 전체 페이지 바로 뒤에 다른 찍기를 해도 한도에 걸리지 않게 모든 찍기의 간격을 맞춤
@@ -203,7 +238,7 @@ async function findFrameId(tabId: number, origin: string): Promise<number | unde
     .sort((a, b) => b.result!.area - a.result!.area)[0]?.frameId
 }
 
-const newCapture = (parts: Blob[], truncated: boolean): Capture => ({ id: crypto.randomUUID(), createdAt: Date.now(), parts, truncated })
+const newCapture = (parts: Blob[]): Capture => ({ id: crypto.randomUUID(), createdAt: Date.now(), parts })
 
 async function openEditor(capture: Capture, tab: chrome.tabs.Tab) {
   await saveCapture(capture)

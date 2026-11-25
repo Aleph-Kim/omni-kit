@@ -98,6 +98,9 @@
   "captureLimited": {
     "message": "Di halaman ini hanya bagian yang terlihat yang dapat ditangkap"
   },
+  "captureNoFullPdf": {
+    "message": "File PDF tidak dapat ditangkap satu halaman penuh"
+  },
   "menuCapture": {
     "message": "Tangkapan OmniKit"
   },
@@ -152,9 +155,6 @@
         "example": "3"
       }
     }
-  },
-  "pageTruncated": {
-    "message": "Halaman terlalu panjang sehingga hanya bagian atas yang ditangkap"
   },
   "partLabel": {
     "message": "Gambar $N$",

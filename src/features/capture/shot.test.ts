@@ -25,21 +25,20 @@ describe('captureSupport', () => {
 
 describe('scrollPositions', () => {
   it('한 화면 이하면 한 번만 찍음', () => {
-    expect(scrollPositions(800, 900)).toEqual({ positions: [0], truncated: false })
-    expect(scrollPositions(900, 900)).toEqual({ positions: [0], truncated: false })
+    expect(scrollPositions(800, 900)).toEqual([0])
+    expect(scrollPositions(900, 900)).toEqual([0])
   })
 
   it('마지막 장은 페이지 끝에 맞춰 앞 장과 겹침', () => {
-    expect(scrollPositions(3000, 900)).toEqual({ positions: [0, 900, 1800, 2100], truncated: false })
+    expect(scrollPositions(3000, 900)).toEqual([0, 900, 1800, 2100])
   })
 
   it('화면 높이로 나누어떨어지면 겹치지 않음', () => {
-    expect(scrollPositions(1800, 900)).toEqual({ positions: [0, 900], truncated: false })
+    expect(scrollPositions(1800, 900)).toEqual([0, 900])
   })
 
   it('최대 장수를 넘는 페이지는 앞부분만 찍음', () => {
-    const { positions, truncated } = scrollPositions(900 * MAX_SHOTS + 1, 900)
-    expect(truncated).toBe(true)
+    const positions = scrollPositions(900 * MAX_SHOTS + 1, 900)
     expect(positions).toHaveLength(MAX_SHOTS)
     expect(positions.at(-1)).toBe(900 * (MAX_SHOTS - 1))
   })

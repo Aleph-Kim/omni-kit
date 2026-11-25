@@ -98,6 +98,9 @@
   "captureLimited": {
     "message": "Trang này chỉ có thể chụp phần đang hiển thị"
   },
+  "captureNoFullPdf": {
+    "message": "Không thể chụp toàn trang đối với tệp PDF"
+  },
   "menuCapture": {
     "message": "Chụp bằng OmniKit"
   },
@@ -152,9 +155,6 @@
         "example": "3"
       }
     }
-  },
-  "pageTruncated": {
-    "message": "Trang quá dài nên chỉ chụp phần đầu"
   },
   "partLabel": {
     "message": "Ảnh $N$",

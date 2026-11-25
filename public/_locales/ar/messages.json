@@ -98,6 +98,9 @@
   "captureLimited": {
     "message": "يمكن التقاط الجزء المرئي فقط في هذه الصفحة"
   },
+  "captureNoFullPdf": {
+    "message": "لا يمكن التقاط الصفحة كاملة لملفات PDF"
+  },
   "menuCapture": {
     "message": "التقاط OmniKit"
   },
@@ -152,9 +155,6 @@
         "example": "3"
       }
     }
-  },
-  "pageTruncated": {
-    "message": "الصفحة طويلة جدًا لذا التُقط الجزء العلوي فقط"
   },
   "partLabel": {
     "message": "الصورة $N$",

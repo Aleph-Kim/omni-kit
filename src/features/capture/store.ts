@@ -1,4 +1,4 @@
-export type Capture = { id: string; createdAt: number; parts: Blob[]; truncated: boolean }
+export type Capture = { id: string; createdAt: number; parts: Blob[] }
 
 const DB_NAME = 'omni-kit-capture'
 const STORE = 'captures'

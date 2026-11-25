@@ -4,7 +4,7 @@ export type ImageType = 'image/png' | 'image/jpeg' | 'image/webp'
 export type Rect = { x: number; y: number; width: number; height: number }
 
 // 무한 스크롤 페이지에서 끝없이 찍지 않도록 제한
-export const MAX_SHOTS = 50
+export const MAX_SHOTS = 1000
 
 // 크롬 캔버스 한도(한 변 32767)보다 작게 잡아 메모리 사용 제한
 export const MAX_PART_HEIGHT = 16384
@@ -23,18 +23,30 @@ export function captureSupport(url: string | undefined, fileAccess: boolean): Ca
   return 'visible'
 }
 
+/**
+ * 크롬 PDF 보기 여부, 스크롤은 크롬 내장 PDF 확장 안에서만 일어나 다른 확장이 내릴 수 없음
+ */
+export async function isPdf(tabId: number): Promise<boolean> {
+  try {
+    const [{ result }] = await chrome.scripting.executeScript({ target: { tabId }, func: () => document.contentType })
+    return result === 'application/pdf'
+  } catch {
+    return false
+  }
+}
+
 /** iframe 안까지 찍을 때 요청하는 권한 주소 */
 export const frameOriginPattern = (origin: string) => `${origin}/*`
 
 /**
  * 전체 페이지를 한 화면씩 찍을 스크롤 위치, 마지막 장은 페이지 끝에 맞춰 앞 장과 겹침
  */
-export function scrollPositions(total: number, viewport: number): { positions: number[]; truncated: boolean } {
+export function scrollPositions(total: number, viewport: number): number[] {
   const end = Math.min(total, viewport * MAX_SHOTS)
   const positions: number[] = []
   for (let y = 0; y < end - viewport; y += viewport) positions.push(y)
   positions.push(Math.max(0, end - viewport))
-  return { positions, truncated: total > end }
+  return positions
 }
 
 /**
