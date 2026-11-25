@@ -428,5 +428,35 @@
         "example": "⌘"
       }
     }
+  },
+  "itemLimit": {
+    "message": "$COUNT$ तत्वों तक सीमित करें",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitReached": {
+    "message": "संपादन सुचारू रखने के लिए वस्तुओं की संख्या $COUNT$ तक सीमित है।\nऔर जोड़ने हों तो सीमा बंद करें।",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitWarning": {
+    "message": "सीमा बंद करने पर ज़्यादा तत्व होने से ब्राउज़र धीमा हो सकता है या रुक सकता है"
+  },
+  "itemLimitTurnOff": {
+    "message": "बंद करें"
+  },
+  "cancel": {
+    "message": "रद्द करें"
+  },
+  "ok": {
+    "message": "ठीक है"
   }
 }

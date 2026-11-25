@@ -428,5 +428,35 @@
         "example": "⌘"
       }
     }
+  },
+  "itemLimit": {
+    "message": "Giới hạn $COUNT$ phần tử",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitReached": {
+    "message": "Để chỉnh sửa mượt mà, số đối tượng được giới hạn ở $COUNT$.\nHãy tắt giới hạn nếu cần thêm nữa.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitWarning": {
+    "message": "Tắt giới hạn có thể khiến trình duyệt chậm hoặc bị treo khi có nhiều phần tử"
+  },
+  "itemLimitTurnOff": {
+    "message": "Tắt"
+  },
+  "cancel": {
+    "message": "Hủy"
+  },
+  "ok": {
+    "message": "OK"
   }
 }

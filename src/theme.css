@@ -12,6 +12,7 @@
   --ok-accent: light-dark(#007aff, #0a84ff);
   --ok-destructive: light-dark(#ff3b30, #ff453a);
   --ok-on-accent: light-dark(#fff, #fff);
+  --ok-backdrop: light-dark(rgb(0 0 0 / 0.2), rgb(0 0 0 / 0.5));
 }
 
 body {

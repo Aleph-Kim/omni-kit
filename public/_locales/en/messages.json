@@ -428,5 +428,35 @@
         "example": "⌘"
       }
     }
+  },
+  "itemLimit": {
+    "message": "Limit to $COUNT$ items",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitReached": {
+    "message": "To keep editing smooth, each image is limited to $COUNT$ items.\nTurn off the limit if you need to add more.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitWarning": {
+    "message": "Turning off the limit can make the browser slow or unresponsive with many items"
+  },
+  "itemLimitTurnOff": {
+    "message": "Turn Off"
+  },
+  "cancel": {
+    "message": "Cancel"
+  },
+  "ok": {
+    "message": "OK"
   }
 }

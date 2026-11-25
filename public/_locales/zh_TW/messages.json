@@ -428,5 +428,35 @@
         "example": "⌘"
       }
     }
+  },
+  "itemLimit": {
+    "message": "最多 $COUNT$ 個元素",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitReached": {
+    "message": "為了讓編輯順暢，物件數量限制為 $COUNT$ 個。\n如需加入更多，請解除限制。",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitWarning": {
+    "message": "關閉限制後，元素較多時瀏覽器可能變慢或沒有回應"
+  },
+  "itemLimitTurnOff": {
+    "message": "關閉"
+  },
+  "cancel": {
+    "message": "取消"
+  },
+  "ok": {
+    "message": "好"
   }
 }

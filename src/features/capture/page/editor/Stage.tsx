@@ -22,6 +22,9 @@ type Props = {
   onSelect: (ids: string[]) => void
   onCommit: (doc: Doc) => void
   onCropDone: () => void
+  /** 요소 개수 한도에 닿아 새 요소를 만들지 않음 */
+  full: boolean
+  onFull: () => void
 }
 
 /** 화면에 보이는 그림 영역, 자르기 도구를 쓰는 중에는 자른 바깥도 보여 줌 */
@@ -30,7 +33,7 @@ export const visibleRect = (image: HTMLImageElement, doc: Doc, tool: Tool): Box 
 
 const LINE_HEIGHT = 1.2
 
-export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelect, onCommit, onCropDone }: Props) {
+export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelect, onCommit, onCropDone, full, onFull }: Props) {
   const stageRef = useRef<Konva.Stage>(null)
   const wrapperRef = useRef<HTMLDivElement>(null)
   const layerRef = useRef<Konva.Layer>(null)
@@ -114,10 +117,12 @@ export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelec
       const hit = event.target.findAncestor('.item', true)
       const existing = doc.items.find((item) => item.id === hit?.id())
       if (existing?.kind === 'text') return setEditing(existing)
+      if (full) return onFull()
       setEditing({ id: newId(), kind: 'text', x: start.x, y: start.y - (style.fontSize * LINE_HEIGHT) / 2, rotation: 0, scaleX: 1, scaleY: 1, text: '', color: style.color, font: style.font, fontSize: style.fontSize })
       return
     }
     if (tool === 'icon') {
+      if (full) return onFull()
       const item = placeItem(start, style, doc)
       onCommit({ ...doc, items: [...doc.items, item] })
       onSelect([item.id])
@@ -139,6 +144,7 @@ export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelec
     }
     let item = startItem(tool, start, style)
     if (!item) return
+    if (full) return onFull()
     setDraft(item)
     track(
       (at) => setDraft((item = resize(item!, start, at))),

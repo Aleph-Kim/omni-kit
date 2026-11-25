@@ -428,5 +428,35 @@
         "example": "⌘"
       }
     }
+  },
+  "itemLimit": {
+    "message": "Auf $COUNT$ Elemente begrenzen",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitReached": {
+    "message": "Damit die Bearbeitung flüssig bleibt, ist die Anzahl der Elemente auf $COUNT$ begrenzt.\nSchalte die Begrenzung aus, wenn du mehr hinzufügen möchtest.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitWarning": {
+    "message": "Ohne Begrenzung kann der Browser bei vielen Elementen langsam werden oder nicht mehr reagieren"
+  },
+  "itemLimitTurnOff": {
+    "message": "Ausschalten"
+  },
+  "cancel": {
+    "message": "Abbrechen"
+  },
+  "ok": {
+    "message": "OK"
   }
 }

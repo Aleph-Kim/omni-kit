@@ -319,7 +319,7 @@
     "message": "흰색"
   },
   "toolSelectHint": {
-    "message": "요소를 눌러 고르고 옮기기, 크기 조절, 회전"
+    "message": "개체를 눌러 고르고 옮기기, 크기 조절, 회전"
   },
   "toolTextHint": {
     "message": "누른 자리에 글자 입력"
@@ -409,24 +409,54 @@
     "message": "정도"
   },
   "orderFrontHint": {
-    "message": "고른 요소를 모든 요소 위로"
+    "message": "고른 개체를 모든 개체 위로"
   },
   "orderForwardHint": {
-    "message": "고른 요소를 한 단계 위로"
+    "message": "고른 개체를 한 단계 위로"
   },
   "orderBackwardHint": {
-    "message": "고른 요소를 한 단계 아래로"
+    "message": "고른 개체를 한 단계 아래로"
   },
   "orderBackHint": {
-    "message": "고른 요소를 모든 요소 아래로"
+    "message": "고른 개체를 모든 개체 아래로"
   },
   "holdToMove": {
-    "message": "$KEY$ 키를 누르고 있는 동안은 어떤 도구에서든 요소를 고르고 옮길 수 있어요",
+    "message": "$KEY$ 키를 누르고 있는 동안은 어떤 도구에서든 개체를 고르고 옮길 수 있어요",
     "placeholders": {
       "key": {
         "content": "$1",
         "example": "⌘"
       }
     }
+  },
+  "itemLimit": {
+    "message": "개체 $COUNT$개까지 제한",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitReached": {
+    "message": "최적화를 위해 개체의 개수를 $COUNT$개로 제한하고 있어요.\n더 많은 추가가 필요할 경우 제한을 해제해 주세요.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitWarning": {
+    "message": "제한을 해제하면 개체가 많을 때 브라우저가 느려지거나 멈출 수 있어요"
+  },
+  "itemLimitTurnOff": {
+    "message": "해제"
+  },
+  "cancel": {
+    "message": "취소"
+  },
+  "ok": {
+    "message": "확인"
   }
 }

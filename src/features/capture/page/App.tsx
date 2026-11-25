@@ -6,6 +6,7 @@ import { commit, initHistory, redo, undo, type History } from './editor/history'
 import { UI_ICONS } from './editor/icons'
 import { addCustomColor, loadCustomColors, saveCustomColors } from './editor/colors'
 import { applyStyle, DEFAULT_STYLE, pasted, reorder, styleOf, type Order } from './editor/items'
+import { loadItemLimit, MAX_ITEMS, saveItemLimit } from './editor/limit'
 import { editorAction, holdKeyLabel, IS_MAC, isHoldKey, keyLabel, toolKeyAction } from './editor/keys'
 import { Properties } from './editor/Properties'
 import { Stage, visibleRect, type StageApi } from './editor/Stage'
@@ -46,9 +47,14 @@ export function App() {
   const clipboard = useRef<Item[]>([])
   // 직접 고른 색은 다음에 편집 화면을 열어도 쓰도록 확장 저장소에 보관
   const [customColors, setCustomColors] = useState<string[]>([])
+  // 요소 개수 제한도 다음에 편집 화면을 열 때 그대로 쓰도록 확장 저장소에 보관
+  const [limited, setLimited] = useState(true)
+  const [confirmingOff, setConfirmingOff] = useState(false)
+  const limitDialog = useRef<HTMLDialogElement>(null)
 
   useEffect(() => {
     void loadCustomColors().then(setCustomColors)
+    void loadItemLimit().then(setLimited)
   }, [])
 
   useEffect(() => {
@@ -85,6 +91,9 @@ export function App() {
   const view = image && visibleRect(image, doc, tool)
   const limit = view ? maxZoom(view, devicePixelRatio) : 1
   const zoom = Math.min(limit, zoomSetting ?? (view && box.width > 0 ? fitZoom(view, box) : 1))
+
+  const full = limited && doc.items.length >= MAX_ITEMS
+  const showLimit = () => limitDialog.current!.showModal()
 
   const setHistory = (change: (history: History<Doc>) => History<Doc>) => setHistories((all) => all.map((each, index) => (index === part ? change(each) : each)))
   const commitDoc = (next: Doc) => setHistory((each) => commit(each, next))
@@ -124,11 +133,18 @@ export function App() {
   // 붙일 때마다 앞서 붙인 자리에서 비껴 놓으려고 붙인 요소를 다음 복사 원본으로 둠
   const paste = () => {
     if (!clipboard.current.length) return
+    if (limited && doc.items.length + clipboard.current.length > MAX_ITEMS) return showLimit()
     const items = clipboard.current.map(pasted)
     clipboard.current = items
     commitDoc({ ...doc, items: [...doc.items, ...items] })
     setTool('select')
     setSelectedIds(items.map((item) => item.id))
+  }
+
+  const changeLimit = (next: boolean) => {
+    setLimited(next)
+    setConfirmingOff(false)
+    void saveItemLimit(next)
   }
 
   const zoomBy = (direction: 1 | -1 | 0) => setZoomSetting(direction === 0 ? null : stepZoom(zoom, direction, limit))
@@ -148,6 +164,8 @@ export function App() {
 
   useEffect(() => {
     const onKey = (event: KeyboardEvent) => {
+      // 한도 알림이 떠 있는 동안은 Esc로 닫는 것 말고 편집 키를 받지 않음
+      if (limitDialog.current!.open) return
       const typing = event.target instanceof Element && event.target.matches('input:not([type=range]), textarea, select, [contenteditable]')
       const action = editorAction(event, IS_MAC, typing)
       const run = action && actionsRef.current[action]
@@ -267,6 +285,8 @@ export function App() {
                   onSelect={select}
                   onCommit={commitDoc}
                   onCropDone={() => changeTool('select')}
+                  full={full}
+                  onFull={showLimit}
                 />
               </div>
             )}
@@ -295,6 +315,29 @@ export function App() {
               </select>
             </Row>
           </div>
+          <div className="mt-4 overflow-hidden rounded-xl bg-(--ok-cell)">
+            <Row label={t('itemLimit', MAX_ITEMS)}>
+              <input
+                type="checkbox"
+                className="size-4 cursor-pointer accent-(--ok-accent)"
+                checked={limited}
+                onChange={(event) => (event.target.checked ? changeLimit(true) : setConfirmingOff(true))}
+              />
+            </Row>
+            {confirmingOff && (
+              <div className="px-3 pb-3">
+                <p className="text-xs text-(--ok-label-2)">{t('itemLimitWarning')}</p>
+                <div className="mt-2 flex justify-end gap-2">
+                  <button type="button" className={secondaryButton} onClick={() => setConfirmingOff(false)}>
+                    {t('cancel')}
+                  </button>
+                  <button type="button" className="rounded-lg px-3 py-1.5 text-(--ok-destructive) hover:bg-(--ok-fill)" onClick={() => changeLimit(false)}>
+                    {t('itemLimitTurnOff')}
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
           <Properties
             kind={tool !== 'select' ? tool : selected.length && selected.every((item) => item.kind === selected[0]!.kind) ? selected[0]!.kind : 'select'}
             style={tool === 'select' && selected.length ? styleOf(selected[0]!, style) : style}
@@ -307,6 +350,14 @@ export function App() {
           />
         </aside>
       </div>
+      <dialog ref={limitDialog} className="m-auto w-fit max-w-[min(36rem,calc(100vw-2rem))] rounded-xl bg-(--ok-cell) p-4 text-(--ok-label) backdrop:bg-(--ok-backdrop)">
+        <p className="whitespace-pre-line">{t('itemLimitReached', MAX_ITEMS)}</p>
+        <form method="dialog" className="mt-4 flex justify-end">
+          <button type="submit" autoFocus className="rounded-lg bg-(--ok-accent) px-3 py-1.5 font-semibold text-(--ok-on-accent) hover:opacity-90">
+            {t('ok')}
+          </button>
+        </form>
+      </dialog>
     </main>
   )
 }

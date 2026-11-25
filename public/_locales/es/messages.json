@@ -428,5 +428,35 @@
         "example": "⌘"
       }
     }
+  },
+  "itemLimit": {
+    "message": "Limitar a $COUNT$ elementos",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitReached": {
+    "message": "Para que la edición sea fluida, el número de elementos está limitado a $COUNT$.\nDesactiva el límite si necesitas añadir más.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitWarning": {
+    "message": "Si desactivas el límite, el navegador puede volverse lento o dejar de responder con muchos elementos"
+  },
+  "itemLimitTurnOff": {
+    "message": "Desactivar"
+  },
+  "cancel": {
+    "message": "Cancelar"
+  },
+  "ok": {
+    "message": "Aceptar"
   }
 }

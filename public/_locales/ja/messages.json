@@ -428,5 +428,35 @@
         "example": "⌘"
       }
     }
+  },
+  "itemLimit": {
+    "message": "要素を$COUNT$個までに制限",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitReached": {
+    "message": "快適に編集できるよう、オブジェクトの数を$COUNT$個までに制限しています。\nさらに追加するには制限を解除してください。",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitWarning": {
+    "message": "制限をオフにすると、要素が多いときにブラウザが遅くなったり止まったりすることがあります"
+  },
+  "itemLimitTurnOff": {
+    "message": "オフにする"
+  },
+  "cancel": {
+    "message": "キャンセル"
+  },
+  "ok": {
+    "message": "OK"
   }
 }

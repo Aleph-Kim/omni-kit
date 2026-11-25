@@ -428,5 +428,35 @@
         "example": "⌘"
       }
     }
+  },
+  "itemLimit": {
+    "message": "Batasi hingga $COUNT$ elemen",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitReached": {
+    "message": "Agar pengeditan tetap lancar, jumlah objek dibatasi hingga $COUNT$.\nMatikan batas jika perlu menambah lebih banyak.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitWarning": {
+    "message": "Mematikan batas dapat membuat browser lambat atau tidak merespons jika elemennya banyak"
+  },
+  "itemLimitTurnOff": {
+    "message": "Matikan"
+  },
+  "cancel": {
+    "message": "Batal"
+  },
+  "ok": {
+    "message": "OK"
   }
 }

@@ -428,5 +428,35 @@
         "example": "⌘"
       }
     }
+  },
+  "itemLimit": {
+    "message": "الحد الأقصى $COUNT$ عنصر",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitReached": {
+    "message": "لضمان سلاسة التحرير، يقتصر عدد العناصر على $COUNT$.\nأوقف الحد إذا كنت بحاجة إلى إضافة المزيد.",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitWarning": {
+    "message": "قد يؤدي إيقاف الحد إلى بطء المتصفح أو توقفه عن الاستجابة عند كثرة العناصر"
+  },
+  "itemLimitTurnOff": {
+    "message": "إيقاف"
+  },
+  "cancel": {
+    "message": "إلغاء"
+  },
+  "ok": {
+    "message": "حسنًا"
   }
 }

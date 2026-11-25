@@ -428,5 +428,35 @@
         "example": "⌘"
       }
     }
+  },
+  "itemLimit": {
+    "message": "最多 $COUNT$ 个元素",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitReached": {
+    "message": "为保证编辑流畅，对象数量限制为 $COUNT$ 个。\n如需添加更多，请解除限制。",
+    "placeholders": {
+      "count": {
+        "content": "$1",
+        "example": "100"
+      }
+    }
+  },
+  "itemLimitWarning": {
+    "message": "关闭限制后，元素较多时浏览器可能变慢或无响应"
+  },
+  "itemLimitTurnOff": {
+    "message": "关闭"
+  },
+  "cancel": {
+    "message": "取消"
+  },
+  "ok": {
+    "message": "好"
   }
 }
