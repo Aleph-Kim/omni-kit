@@ -122,6 +122,9 @@
   "elementPickCanvas": {
     "message": "Có phần tử không thể chọn. Bạn nên chụp màn hình Vùng đã chọn."
   },
+  "elementPickFrame": {
+    "message": "Khung này đến từ trang khác nên không chọn được phần bên trong"
+  },
   "shotVisible": {
     "message": "Phần đang hiển thị"
   },
@@ -148,6 +151,15 @@
   },
   "captureNoFullPdf": {
     "message": "Không thể chụp toàn trang đối với tệp PDF"
+  },
+  "captureWhyBrowser": {
+    "message": "Trang riêng của Chrome (tab mới, cài đặt) chỉ chụp được phần hiển thị"
+  },
+  "captureWhyStore": {
+    "message": "Chrome Web Store chỉ chụp được phần hiển thị"
+  },
+  "captureWhyFile": {
+    "message": "Cho phép truy cập URL tệp để chụp"
   },
   "menuCapture": {
     "message": "Chụp bằng OmniKit"
@@ -478,7 +490,7 @@
     }
   },
   "itemLimitReached": {
-    "message": "Để chỉnh sửa mượt mà, số đối tượng được giới hạn ở $COUNT$.\nHãy tắt giới hạn nếu cần thêm nữa.",
+    "message": "Để chỉnh sửa mượt mà, số đối tượng được giới hạn ở $COUNT$.\nĐể thêm nữa, hãy tắt giới hạn trong Cài đặt.",
     "placeholders": {
       "count": {
         "content": "$1",

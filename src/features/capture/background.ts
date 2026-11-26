@@ -2,16 +2,18 @@ import { flashBadge } from '../../badge'
 import { t } from '../../i18n'
 import areaSelectScript from './content/area-select.ts?iife'
 import elementSelectScript from './content/element-select.ts?iife'
+import { PICKED_ATTR, type PickedFrame } from './content/frames'
 import type { Point, Slice } from './content/page-scroll'
 import pageScrollScript from './content/page-scroll.ts?iife'
-import { MAX_PART_HEIGHT, MAX_PART_PIXELS, MAX_SHOTS, frameOriginPattern, isPdf, scrollPositions, splitParts, toImageRect, type CaptureMode, type Rect } from './shot'
+import { MAX_PART_HEIGHT, MAX_PART_PIXELS, MAX_SHOTS, deviceScale, frameOriginPattern, isPdf, scrollPositions, sliceDraw, splitParts, toImageRect, type CaptureMode, type Rect } from './shot'
 import { deleteCapture, deleteCapturesBefore, saveCapture, type Capture } from './store'
 
 export type CaptureMessage =
   // frameOrigin: 팝업이 그 iframe 주소의 권한을 요청 중이라 결과를 기다려야 함
   | { type: 'capture'; mode: CaptureMode; tabId: number; frameOrigin?: string }
   | { type: 'area-selected'; rect: Rect; viewportWidth: number }
-  | { type: 'element-selected' }
+  // frame: 고른 요소가 같은 출처 iframe 안에 있을 때 그 iframe의 위치
+  | { type: 'element-selected'; frame?: PickedFrame }
   | { type: 'frame-permission-denied' }
 
 const MODES: CaptureMode[] = ['area', 'element', 'visible', 'full']
@@ -48,7 +50,7 @@ export async function handleCaptureMessage(message: CaptureMessage, sender: chro
   }
   if (message.type === 'element-selected' && sender.tab) {
     const tab = sender.tab
-    return run(tab, () => captureElement(tab))
+    return run(tab, () => captureElement(tab, sender.frameId ?? 0, message.frame))
   }
 }
 
@@ -68,7 +70,7 @@ export const deleteOldCaptures = () => deleteCapturesBefore(Date.now() - DAY)
 async function startCapture(mode: CaptureMode, tab: chrome.tabs.Tab, requestedOrigin?: string) {
   // 선택 영역과 요소는 사용자가 고른 뒤 area-selected, element-selected 메시지로 이어짐
   if (mode === 'area') return run(tab, () => inject(tab, areaSelectScript))
-  if (mode === 'element') return run(tab, () => inject(tab, elementSelectScript))
+  if (mode === 'element') return run(tab, () => startElementSelect(tab, requestedOrigin))
   // 팝업은 PDF에서 전체 페이지를 흐리게 하지만 우클릭 메뉴는 막을 수 없어 안내만 띄움
   if (mode === 'full' && (await isPdf(tab.id!))) return run(tab, () => showNotice(tab.id!, t('captureNoFullPdf')))
   return run(tab, () => (mode === 'visible' ? captureVisible(tab) : captureFullPage(tab, requestedOrigin)))
@@ -85,7 +87,11 @@ async function run(tab: chrome.tabs.Tab, task: () => Promise<Capture | void>) {
 }
 
 async function captureVisible(tab: chrome.tabs.Tab): Promise<Capture> {
-  return newCapture([await shot(tab.windowId)])
+  const image = await shot(tab.windowId)
+  const bitmap = await createImageBitmap(image)
+  const scale = deviceScale(bitmap.width, tab.width)
+  bitmap.close()
+  return newCapture([image], scale)
 }
 
 async function captureArea(tab: chrome.tabs.Tab, rect: Rect, viewportWidth: number): Promise<Capture> {
@@ -93,8 +99,9 @@ async function captureArea(tab: chrome.tabs.Tab, rect: Rect, viewportWidth: numb
   const crop = toImageRect(rect, bitmap.width / viewportWidth)
   const canvas = new OffscreenCanvas(crop.width, crop.height)
   canvas.getContext('2d')!.drawImage(bitmap, crop.x, crop.y, crop.width, crop.height, 0, 0, crop.width, crop.height)
+  const scale = deviceScale(bitmap.width, tab.width)
   bitmap.close()
-  return newCapture([await canvas.convertToBlob({ type: 'image/png' })])
+  return newCapture([await canvas.convertToBlob({ type: 'image/png' })], scale)
 }
 
 /**
@@ -102,15 +109,14 @@ async function captureArea(tab: chrome.tabs.Tab, rect: Rect, viewportWidth: numb
  */
 async function captureFullPage(tab: chrome.tabs.Tab, requestedOrigin?: string): Promise<Capture> {
   const tabId = tab.id!
-  await inject(tab, pageScrollScript)
-  const frame = await callPage(tabId, () => window.omniKitPageScroll!.findFrame())
   // 권한이 없거나 거절하면 바깥 문서를 찍음 (화면 한 장)
-  const frameId = frame && (await allowFrame(frame.origin, frame.origin === requestedOrigin)) ? await findFrameId(tabId, frame.origin) : undefined
+  const frame = await contentFrame(tab, requestedOrigin)
+  const frameId = frame?.frameId
   const target = { tabId, frameIds: frameId === undefined ? undefined : [frameId] }
   if (frameId !== undefined) await chrome.scripting.executeScript({ target, files: [pageScrollScript] })
   try {
     const page = await callPage(target, (steps) => window.omniKitPageScroll!.prepare(steps), [MAX_SHOTS])
-    if (frame && frameId !== undefined) {
+    if (frame) {
       // iframe 안 좌표를 바깥 화면 좌표로 옮기고 iframe 밖으로 나간 부분은 자름
       const x = frame.rect.x + page.rect.x
       const y = frame.rect.y + page.rect.y
@@ -121,7 +127,7 @@ async function captureFullPage(tab: chrome.tabs.Tab, requestedOrigin?: string): 
     const positions = scrollPositions(page.total, page.viewport)
     const contentHeight = positions.at(-1)! + page.viewport
     const place = async (y: number): Promise<Slice[]> => [{ rect: page.rect, left: 0, top: await callPage(target, (y) => window.omniKitPageScroll!.scrollTo(y), [y]) }]
-    return newCapture(await stitch(tab, target, positions, { width: page.rect.width, height: contentHeight }, page.viewportWidth, place))
+    return await stitch(tab, target, positions, { width: page.rect.width, height: contentHeight }, page.viewportWidth, place)
   } finally {
     await callPage(target, () => window.omniKitPageScroll!.restore()).catch(() => {})
     await clearProgress()
@@ -131,17 +137,52 @@ async function captureFullPage(tab: chrome.tabs.Tab, requestedOrigin?: string): 
 /**
  * 고른 요소를 찍음, 화면보다 길거나 넓으면 스크롤하며 이어 붙임
  */
-async function captureElement(tab: chrome.tabs.Tab): Promise<Capture> {
-  const target = { tabId: tab.id! }
-  await inject(tab, pageScrollScript)
+async function captureElement(tab: chrome.tabs.Tab, senderFrameId: number, picked?: PickedFrame): Promise<Capture> {
+  const tabId = tab.id!
+  const frame = senderFrameId === 0 ? picked : await inContentFrame(tab, picked)
+  const frameId = picked ? await findPickedFrameId(tabId) : senderFrameId
+  if (frameId === undefined) throw new Error('picked frame is gone')
+  const target = { tabId, frameIds: [frameId] }
+  // iframe 안 요소는 미리 잰 iframe 위치가 바뀌지 않게 맨 위 문서에도 막을 깖 (맨 위의 스크롤과 스타일은 건드리지 않음)
+  const top = { tabId, frameIds: [0] }
   try {
-    const element = await callPage(target, () => window.omniKitPageScroll!.prepareElement())
-    const place = (point: Point) => callPage(target, (point) => window.omniKitPageScroll!.scrollElement(point), [point])
-    return newCapture(await stitch(tab, target, element.positions, element, element.viewportWidth, place))
+    if (frameId !== 0) {
+      await chrome.scripting.executeScript({ target: top, files: [pageScrollScript] })
+      await callPage(top, () => window.omniKitPageScroll!.block())
+    }
+    await chrome.scripting.executeScript({ target, files: [pageScrollScript] })
+    const element = await callPage(target, (visible) => window.omniKitPageScroll!.prepareElement(visible), [frame?.visible ?? null])
+    // iframe 안 좌표를 맨 위 화면 좌표로 옮김
+    const place = async (point: Point) => {
+      const slices = await callPage(target, (point) => window.omniKitPageScroll!.scrollElement(point), [point])
+      // 조각은 iframe 안 좌표라 iframe 위치를 그 배율로 나눠 더하고, 화면 폭도 같은 배율로 나눠 찍힌 그림 배율을 맞춤
+      return frame ? slices.map((slice) => ({ ...slice, rect: { ...slice.rect, x: slice.rect.x + frame.x / frame.scale, y: slice.rect.y + frame.y / frame.scale } })) : slices
+    }
+    return await stitch(tab, target, element.positions, element, frame ? frame.viewportWidth / frame.scale : element.viewportWidth, place)
   } finally {
     await callPage(target, () => window.omniKitPageScroll!.restore()).catch(() => {})
+    if (frameId !== 0) await callPage(top, () => window.omniKitPageScroll?.unblock()).catch(() => {})
     await clearProgress()
   }
+}
+
+/**
+ * 내용이 다른 주소의 큰 iframe 하나인 페이지(claude.ai 아티팩트 등)에서 권한이 있으면 그 iframe 안에서 고름
+ */
+async function startElementSelect(tab: chrome.tabs.Tab, requestedOrigin?: string) {
+  const frame = await contentFrame(tab, requestedOrigin)
+  await chrome.scripting.executeScript({ target: { tabId: tab.id!, frameIds: frame ? [frame.frameId] : undefined }, files: [elementSelectScript] })
+}
+
+/**
+ * 큰 iframe 안에서 고른 요소의 위치를 맨 위 화면 기준으로 바꿈, picked는 그 iframe 안의 같은 출처 iframe
+ */
+async function inContentFrame(tab: chrome.tabs.Tab, picked?: PickedFrame): Promise<PickedFrame> {
+  await inject(tab, pageScrollScript)
+  const outer = await callPage(tab.id!, () => window.omniKitPageScroll!.findFrame())
+  if (!outer) throw new Error('content frame is gone')
+  const { x = 0, y = 0, scale = 1, visible = { x: 0, y: 0, width: outer.rect.width, height: outer.rect.height } } = picked ?? {}
+  return { x: outer.rect.x + x, y: outer.rect.y + y, scale, visible, viewportWidth: outer.viewportWidth }
 }
 
 /**
@@ -155,13 +196,14 @@ async function stitch<Position>(
   size: { width: number; height: number },
   viewportWidth: number,
   place: (position: Position) => Promise<Slice[]>,
-): Promise<Blob[]> {
+): Promise<Capture> {
   const parts: Blob[] = []
   const canvases = new Map<number, OffscreenCanvas>()
   let layout: ReturnType<typeof splitParts> = []
   let width = 0
   let finished = 0
   let drawnBottom = 0
+  let imageScale: number | undefined
 
   const finishPartsBefore = async (y: number) => {
     while (finished < layout.length && layout[finished].top + layout[finished].height <= y) {
@@ -184,20 +226,20 @@ async function stitch<Position>(
     const bitmap = await createImageBitmap(await shot(tab.windowId))
     const scale = bitmap.width / viewportWidth
     if (index === 0) {
+      imageScale = deviceScale(bitmap.width, tab.width)
       width = Math.min(Math.round(size.width * scale), MAX_PART_HEIGHT)
       layout = splitParts(Math.round(size.height * scale), Math.min(MAX_PART_HEIGHT, Math.floor(MAX_PART_PIXELS / width)))
     }
     await finishPartsBefore(Math.min(...slices.map(({ top }) => Math.round(top * scale))))
     for (const { rect, left, top } of slices) {
-      const crop = toImageRect(rect, scale)
-      const destX = Math.round(left * scale)
-      const destY = Math.round(top * scale)
-      for (let part = finished; part < layout.length && layout[part].top < destY + crop.height; part++) {
-        if (!canvases.has(part)) canvases.set(part, new OffscreenCanvas(width, layout[part].height))
-        const context = canvases.get(part)!.getContext('2d')!
-        context.drawImage(bitmap, crop.x, crop.y, crop.width, crop.height, destX, destY - layout[part].top, crop.width, crop.height)
+      for (const [sx, sy, sw, sh, dx, dy, dw, dh] of sliceDraw(rect, left, top, scale, bitmap)) {
+        for (let part = finished; part < layout.length && layout[part].top < dy + dh; part++) {
+          if (!canvases.has(part)) canvases.set(part, new OffscreenCanvas(width, layout[part].height))
+          const context = canvases.get(part)!.getContext('2d')!
+          context.drawImage(bitmap, sx, sy, sw, sh, dx, dy - layout[part].top, dw, dh)
+        }
+        drawnBottom = Math.max(drawnBottom, dy + dh)
       }
-      drawnBottom = Math.max(drawnBottom, destY + crop.height)
     }
     bitmap.close()
     if (index === 0) await callPage(target, () => window.omniKitPageScroll!.hideFixed())
@@ -205,7 +247,7 @@ async function stitch<Position>(
   // 가상 목록(GitHub 보드 등)은 내리면서 그린 카드의 실제 높이가 처음 어림한 높이보다 작아 그린 곳까지만 남김
   layout = layout.filter(({ top }) => top < drawnBottom).map((part) => ({ ...part, height: Math.min(part.height, drawnBottom - part.top) }))
   await finishPartsBefore(Infinity)
-  return parts
+  return newCapture(parts, imageScale)
 }
 
 /**
@@ -273,15 +315,38 @@ async function allowFrame(origin: string, requested: boolean): Promise<boolean> 
   return new Promise((resolve) => {
     const finish = (granted: boolean) => {
       clearTimeout(timer)
+      clearInterval(keepAlive)
       chrome.permissions.onAdded.removeListener(onAdded)
       permissionDenied = undefined
       resolve(granted)
     }
     const onAdded = () => void chrome.permissions.contains({ origins }).then((granted) => granted && finish(true))
     const timer = setTimeout(() => finish(false), PERMISSION_TIMEOUT)
+    // 서비스 워커는 확장 API 호출 없이 30초가 지나면 꺼져 기다림이 사라지므로 그 전에 가벼운 호출
+    const keepAlive = setInterval(() => void chrome.runtime.getPlatformInfo(), 20_000)
     chrome.permissions.onAdded.addListener(onAdded)
     permissionDenied = () => finish(false)
   })
+}
+
+/**
+ * 문서가 스크롤되지 않고 내용이 다른 주소의 큰 iframe 안에 있는 페이지의 그 iframe, 권한이 없거나 거절하면 없음
+ */
+async function contentFrame(tab: chrome.tabs.Tab, requestedOrigin?: string) {
+  await inject(tab, pageScrollScript)
+  const frame = await callPage(tab.id!, () => window.omniKitPageScroll!.findFrame())
+  const frameId = frame && (await allowFrame(frame.origin, frame.origin === requestedOrigin)) ? await findFrameId(tab.id!, frame.origin) : undefined
+  return frame && frameId !== undefined ? { ...frame, frameId } : undefined
+}
+
+/** 고른 요소를 표시해 둔 프레임 */
+async function findPickedFrameId(tabId: number): Promise<number | undefined> {
+  const frames = await chrome.scripting.executeScript({
+    target: { tabId, allFrames: true },
+    func: (attr) => document.querySelector(`[${attr}]`) !== null,
+    args: [PICKED_ATTR],
+  })
+  return frames.find(({ result }) => result)?.frameId
 }
 
 /** 그 주소의 iframe 중 가장 큰 것 */
@@ -295,7 +360,7 @@ async function findFrameId(tabId: number, origin: string): Promise<number | unde
     .sort((a, b) => b.result!.area - a.result!.area)[0]?.frameId
 }
 
-const newCapture = (parts: Blob[]): Capture => ({ id: crypto.randomUUID(), createdAt: Date.now(), parts })
+const newCapture = (parts: Blob[], scale: number | undefined): Capture => ({ id: crypto.randomUUID(), createdAt: Date.now(), parts, scale })
 
 async function openEditor(capture: Capture, tab: chrome.tabs.Tab) {
   await saveCapture(capture)

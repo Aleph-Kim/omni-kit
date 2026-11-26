@@ -53,8 +53,8 @@ export function BookmarkShortcutsPanel({ titleId, title }: { titleId: string; ti
 
   // 실패 배지가 팝업과 같이 사라지지 않게 여는 일은 백그라운드가 함
   const openSlot = (index: number) => {
-    void chrome.runtime.sendMessage({ type: 'open-bookmark', index } satisfies BookmarkMessage)
-    window.close()
+    // 꺼진 서비스 워커가 켜지는 동안 팝업이 닫히면 메시지가 사라져서 전달된 뒤 닫음
+    void chrome.runtime.sendMessage({ type: 'open-bookmark', index } satisfies BookmarkMessage).finally(() => window.close())
   }
 
   if (!slots) return null

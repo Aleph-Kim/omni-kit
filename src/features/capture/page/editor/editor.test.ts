@@ -120,11 +120,37 @@ describe('view', () => {
     }
   })
 
+  it('내보내기 캔버스 크기가 소수 오차 없이 원본 정수와 같음', () => {
+    const sizes = [{ width: 2880, height: 7777 }, { width: 1600, height: 1000 }, { width: 3001, height: 16383 }]
+    const zooms = [0.37, 0.3, 0.7, 1.3, 0.5, 1 / 1.25]
+    for (let z = 0.01; z <= 2; z += 0.0137) zooms.push(z)
+    for (const size of sizes) {
+      for (const zoom of zooms) {
+        const area = exportArea(size, null, { x: 0, y: 0 }, zoom)
+        expect(Math.floor(area.width * area.pixelRatio)).toBe(size.width)
+        expect(Math.floor(area.height * area.pixelRatio)).toBe(size.height)
+      }
+    }
+  })
+
+  it('배율은 화면 배율을 곱한 표시 값 기준으로 10% 단위', () => {
+    expect(stepZoom(0.5, 1, 4, 2)).toBe(0.55)
+    expect(stepZoom(0.5, -1, 4, 2)).toBe(0.45)
+    expect(stepZoom(0.1, -1, 4, 2)).toBe(0.05)
+    expect(stepZoom(2, 1, 4, 2)).toBe(2)
+    expect(stepZoom(0.345, 1, 4, 2)).toBeCloseTo(0.4)
+  })
+
   it('자른 영역만 내보냄, 보이는 영역 시작점 반영', () => {
     const crop = { x: 100.4, y: 50, width: 300, height: 200 }
-    expect(exportArea({ width: 1600, height: 1000 }, crop, { x: 100, y: 50 }, 0.5)).toEqual({ x: 0, y: 0, width: 150, height: 100, pixelRatio: 2 })
+    const half = exportArea({ width: 1600, height: 1000 }, crop, { x: 100, y: 50 }, 0.5)
+    expect(half).toMatchObject({ x: 0, y: 0, pixelRatio: 2 })
+    expect(half.width).toBeCloseTo(150)
+    expect(half.height).toBeCloseTo(100)
     const full = exportArea({ width: 1600, height: 1000 }, crop, { x: 0, y: 0 }, 2)
-    expect(full).toEqual({ x: 200, y: 100, width: 600, height: 400, pixelRatio: 0.5 })
+    expect(full).toMatchObject({ x: 200, y: 100, pixelRatio: 0.5 })
+    expect(full.width).toBeCloseTo(600)
+    expect(full.height).toBeCloseTo(400)
   })
 })
 

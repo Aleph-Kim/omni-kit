@@ -122,6 +122,9 @@
   "elementPickCanvas": {
     "message": "Berisi elemen yang tidak bisa dipilih. Kami sarankan tangkapan layar Area terpilih."
   },
+  "elementPickFrame": {
+    "message": "Frame ini dari situs lain, jadi isinya tidak bisa dipilih"
+  },
   "shotVisible": {
     "message": "Bagian yang terlihat"
   },
@@ -148,6 +151,15 @@
   },
   "captureNoFullPdf": {
     "message": "File PDF tidak dapat ditangkap satu halaman penuh"
+  },
+  "captureWhyBrowser": {
+    "message": "Halaman bawaan Chrome (tab baru, pengaturan) hanya bisa ditangkap bagian yang terlihat"
+  },
+  "captureWhyStore": {
+    "message": "Chrome Web Store hanya bisa ditangkap bagian yang terlihat"
+  },
+  "captureWhyFile": {
+    "message": "Izinkan akses ke URL file untuk menangkap"
   },
   "menuCapture": {
     "message": "Tangkapan OmniKit"
@@ -478,7 +490,7 @@
     }
   },
   "itemLimitReached": {
-    "message": "Agar pengeditan tetap lancar, jumlah objek dibatasi hingga $COUNT$.\nMatikan batas jika perlu menambah lebih banyak.",
+    "message": "Agar pengeditan tetap lancar, jumlah objek dibatasi hingga $COUNT$.\nUntuk menambah lebih banyak, matikan batas di Pengaturan.",
     "placeholders": {
       "count": {
         "content": "$1",

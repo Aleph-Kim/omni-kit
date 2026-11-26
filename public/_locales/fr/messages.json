@@ -122,6 +122,9 @@
   "elementPickCanvas": {
     "message": "Contient un élément impossible à sélectionner. Essayez plutôt la capture « Zone sélectionnée »."
   },
+  "elementPickFrame": {
+    "message": "Ce cadre vient d’un autre site, son contenu ne peut pas être sélectionné"
+  },
   "shotVisible": {
     "message": "Partie visible"
   },
@@ -148,6 +151,15 @@
   },
   "captureNoFullPdf": {
     "message": "La capture de la page entière n'est pas disponible pour les fichiers PDF"
+  },
+  "captureWhyBrowser": {
+    "message": "Les pages propres à Chrome (nouvel onglet, réglages) n’autorisent que la partie visible"
+  },
+  "captureWhyStore": {
+    "message": "Le Chrome Web Store n’autorise que la partie visible"
+  },
+  "captureWhyFile": {
+    "message": "Autorisez l’accès aux URL de fichier pour capturer"
   },
   "menuCapture": {
     "message": "Capture OmniKit"
@@ -478,7 +490,7 @@
     }
   },
   "itemLimitReached": {
-    "message": "Pour garder une édition fluide, le nombre d’éléments est limité à $COUNT$.\nDésactivez la limite si vous devez en ajouter plus.",
+    "message": "Pour garder une édition fluide, le nombre d’éléments est limité à $COUNT$.\nPour en ajouter plus, désactivez la limite dans Réglages.",
     "placeholders": {
       "count": {
         "content": "$1",

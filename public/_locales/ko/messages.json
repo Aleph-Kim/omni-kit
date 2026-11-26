@@ -122,6 +122,9 @@
   "elementPickCanvas": {
     "message": "선택할 수 없는 요소가 포함되어 있어요. 선택 영역 스크린샷을 권장드려요."
   },
+  "elementPickFrame": {
+    "message": "다른 주소에서 불러온 내용이라 안쪽은 고를 수 없어요"
+  },
   "shotVisible": {
     "message": "보이는 화면"
   },
@@ -148,6 +151,15 @@
   },
   "captureNoFullPdf": {
     "message": "PDF 파일은 전체 페이지를 캡처할 수 없어요"
+  },
+  "captureWhyBrowser": {
+    "message": "크롬 기본 화면(새 탭, 설정 등)은 보이는 화면만 찍을 수 있어요"
+  },
+  "captureWhyStore": {
+    "message": "크롬 웹 스토어는 보이는 화면만 찍을 수 있어요"
+  },
+  "captureWhyFile": {
+    "message": "파일 URL 접근을 허용해야 찍을 수 있어요"
   },
   "menuCapture": {
     "message": "OmniKit 캡처"
@@ -478,7 +490,7 @@
     }
   },
   "itemLimitReached": {
-    "message": "최적화를 위해 개체의 개수를 $COUNT$개로 제한하고 있어요.\n더 많은 추가가 필요할 경우 제한을 해제해 주세요.",
+    "message": "최적화를 위해 개체의 개수를 $COUNT$개로 제한하고 있어요.\n더 추가하려면 설정에서 제한을 해제해 주세요.",
     "placeholders": {
       "count": {
         "content": "$1",

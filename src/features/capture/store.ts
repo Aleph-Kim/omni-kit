@@ -1,4 +1,5 @@
-export type Capture = { id: string; createdAt: number; parts: Blob[] }
+// scale: 찍은 화면의 기기 배율, 예전 캡처는 없음
+export type Capture = { id: string; createdAt: number; parts: Blob[]; scale?: number }
 
 const DB_NAME = 'omni-kit-capture'
 const STORE = 'captures'

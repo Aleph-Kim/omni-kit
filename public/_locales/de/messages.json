@@ -122,6 +122,9 @@
   "elementPickCanvas": {
     "message": "Enthält ein Element, das sich nicht auswählen lässt. Wir empfehlen stattdessen „Ausgewählter Bereich“."
   },
+  "elementPickFrame": {
+    "message": "Dieser Frame stammt von einer anderen Website, sein Inhalt lässt sich nicht auswählen"
+  },
   "shotVisible": {
     "message": "Sichtbarer Bereich"
   },
@@ -148,6 +151,15 @@
   },
   "captureNoFullPdf": {
     "message": "Bei PDF-Dateien ist keine Aufnahme der ganzen Seite möglich"
+  },
+  "captureWhyBrowser": {
+    "message": "Chrome-eigene Seiten (neuer Tab, Einstellungen) erlauben nur den sichtbaren Teil"
+  },
+  "captureWhyStore": {
+    "message": "Der Chrome Web Store erlaubt nur den sichtbaren Teil"
+  },
+  "captureWhyFile": {
+    "message": "Zugriff auf Datei-URLs erlauben, um aufzunehmen"
   },
   "menuCapture": {
     "message": "OmniKit-Aufnahme"
@@ -478,7 +490,7 @@
     }
   },
   "itemLimitReached": {
-    "message": "Damit die Bearbeitung flüssig bleibt, ist die Anzahl der Elemente auf $COUNT$ begrenzt.\nSchalte die Begrenzung aus, wenn du mehr hinzufügen möchtest.",
+    "message": "Damit die Bearbeitung flüssig bleibt, ist die Anzahl der Elemente auf $COUNT$ begrenzt.\nUm mehr hinzuzufügen, schalte die Begrenzung in den Einstellungen aus.",
     "placeholders": {
       "count": {
         "content": "$1",

@@ -27,6 +27,16 @@ export function captureSupport(url: string | undefined, fileAccess: boolean): Ca
 }
 
 /**
+ * 선택 영역, 요소, 전체 페이지를 못 쓰는 이유의 문구 키, 판별 순서는 captureSupport와 같음
+ */
+export function captureBlockReason(url: string | undefined, fileAccess: boolean): 'captureWhyFile' | 'captureWhyStore' | 'captureWhyBrowser' | null {
+  if (!url) return null
+  if (url.startsWith('file:')) return fileAccess ? null : 'captureWhyFile'
+  if (WEBSTORE.some((pattern) => pattern.test(url))) return 'captureWhyStore'
+  return /^https?:/.test(url) ? null : 'captureWhyBrowser'
+}
+
+/**
  * 크롬 PDF 보기 여부, 스크롤은 크롬 내장 PDF 확장 안에서만 일어나 다른 확장이 내릴 수 없음
  */
 export async function isPdf(tabId: number): Promise<boolean> {
@@ -60,6 +70,38 @@ export function toImageRect(rect: Rect, scale: number): Rect {
   const y = Math.round(rect.y * scale)
   return { x, y, width: Math.round((rect.x + rect.width) * scale) - x, height: Math.round((rect.y + rect.height) * scale) - y }
 }
+
+/** drawImage에 넘길 원본 x, y, 폭, 높이와 그릴 x, y, 폭, 높이 */
+export type DrawArgs = [number, number, number, number, number, number, number, number]
+
+/**
+ * 찍은 화면 조각을 이어 붙일 drawImage 인자, 장마다 따로 반올림하면 이웃 조각 사이에 빈 줄이 생겨 그림 쪽 끝 좌표의 반올림 차로 크기를 정함
+ * 원본은 늘림 없이 같은 크기로 자르되 영역 안과 찍힌 그림 안만 읽고, 1px 모자라면 끝 줄을 한 번 더 그림 (영역 바깥 줄은 다음 조각이 덮지 않아 이음매로 남음)
+ */
+export function sliceDraw(rect: Rect, left: number, top: number, scale: number, image: { width: number; height: number }): DrawArgs[] {
+  const dx = Math.round(left * scale)
+  const dy = Math.round(top * scale)
+  const width = Math.round((left + rect.width) * scale) - dx
+  const height = Math.round((top + rect.height) * scale) - dy
+  const src = toImageRect(rect, scale)
+  const left0 = Math.max(0, src.x)
+  const top0 = Math.max(0, src.y)
+  const right = Math.min(src.x + src.width, image.width)
+  const bottom = Math.min(src.y + src.height, image.height)
+  const sx = Math.max(left0, Math.min(src.x, right - width))
+  const sy = Math.max(top0, Math.min(src.y, bottom - height))
+  const sw = Math.min(width, right - sx)
+  const sh = Math.min(height, bottom - sy)
+  const draws: DrawArgs[] = [[sx, sy, sw, sh, dx, dy, sw, sh]]
+  if (sh < height) draws.push([sx, sy + sh - 1, sw, 1, dx, dy + sh, sw, height - sh])
+  if (sw < width) draws.push([sx + sw - 1, sy, 1, sh, dx + sw, dy, width - sw, height])
+  return draws
+}
+
+/**
+ * 찍힌 그림의 화면 배율, 페이지 확대는 빼고 다른 앱에서 화면에 보이던 크기로 열리게 함
+ */
+export const deviceScale = (imageWidth: number, tabWidth: number | undefined) => (tabWidth ? Math.round((imageWidth / tabWidth) * 100) / 100 : undefined)
 
 /**
  * 긴 페이지를 한 장 최대 높이로 나눈 각 장의 시작 위치와 높이

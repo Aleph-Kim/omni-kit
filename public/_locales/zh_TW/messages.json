@@ -122,6 +122,9 @@
   "elementPickCanvas": {
     "message": "包含無法選取的元素。建議使用選取範圍截圖。"
   },
+  "elementPickFrame": {
+    "message": "此內容來自其他網站，無法選取其內部元素"
+  },
   "shotVisible": {
     "message": "可見部分"
   },
@@ -148,6 +151,15 @@
   },
   "captureNoFullPdf": {
     "message": "PDF 檔案無法擷取整頁"
+  },
+  "captureWhyBrowser": {
+    "message": "Chrome 內建頁面（新分頁、設定等）只能擷取可見部分"
+  },
+  "captureWhyStore": {
+    "message": "Chrome 線上應用程式商店只能擷取可見部分"
+  },
+  "captureWhyFile": {
+    "message": "允許存取檔案網址後才能擷取"
   },
   "menuCapture": {
     "message": "OmniKit 擷取"
@@ -478,7 +490,7 @@
     }
   },
   "itemLimitReached": {
-    "message": "為了讓編輯順暢，物件數量限制為 $COUNT$ 個。\n如需加入更多，請解除限制。",
+    "message": "為了讓編輯順暢，物件數量限制為 $COUNT$ 個。\n如需加入更多，請在設定中解除限制。",
     "placeholders": {
       "count": {
         "content": "$1",

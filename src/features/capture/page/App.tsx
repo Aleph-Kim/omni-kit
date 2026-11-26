@@ -9,6 +9,7 @@ import { applyStyle, DEFAULT_STYLE, pasted, reorder, styleOf, type Order } from 
 import { loadItemLimit, MAX_ITEMS, saveItemLimit } from './editor/limit'
 import { editorAction, IS_MAC, isHoldKey, keyLabel, toolKeyAction } from './editor/keys'
 import { Parts } from './editor/Parts'
+import { withPixelDensity } from './editor/png'
 import { Properties } from './editor/Properties'
 import { Settings } from './editor/Settings'
 import { fitInside, Stage, visibleRect, type StageApi } from './editor/Stage'
@@ -38,7 +39,8 @@ export function App() {
   // Cmd(그 외 Ctrl)를 누르고 있는 동안은 어떤 도구든 잠깐 선택 도구처럼 요소를 고르고 옮김
   const [holding, setHolding] = useState(false)
   // null은 화면에 맞춤(원래 크기보다 키우지 않음), 창이나 작업 칸 크기가 바뀌면 다시 맞춤
-  const [zoomSetting, setZoomSetting] = useState<number | null>(null)
+  // 처음은 원래 크기(화면 점 1개에 그림 점 1개), 줄여 보면 점이 섞여 흐려져서 맞춤은 사용자가 고를 때만 (null이면 맞춤)
+  const [zoomSetting, setZoomSetting] = useState<number | null>(() => 1 / devicePixelRatio)
   // 헤더 아래 영역 크기, 작업 칸과 떠 있는 도구 줄이 이 안에 있음
   const [area, setArea] = useState({ width: 0, height: 0 })
   const areaRef = useRef<HTMLDivElement>(null)
@@ -164,7 +166,6 @@ export function App() {
     const next = { ...workRef.current, mode }
     setWork(next)
     void saveWork(next)
-    setZoomSetting(null)
   }
 
   // 끄는 동안은 저장하지 않고 끝에 한 번 저장
@@ -173,7 +174,6 @@ export function App() {
     const next = { ...workRef.current, size }
     workRef.current = next
     setWork(next)
-    setZoomSetting(null)
   }
 
   const actions = {
@@ -236,7 +236,7 @@ export function App() {
     )
 
   const split = capture.parts.length > 1
-  const render = (forType: ImageType) => renderImage(stageApi.current!.exportCanvas(), forType, resolution)
+  const render = (forType: ImageType) => renderImage(stageApi.current!.exportCanvas(), forType, resolution, capture.scale)
 
   const download = async () => {
     const link = document.createElement('a')
@@ -337,10 +337,12 @@ export function App() {
   )
 }
 
-async function renderImage(source: HTMLCanvasElement, type: ImageType, resolution: number): Promise<Blob> {
+async function renderImage(source: HTMLCanvasElement, type: ImageType, resolution: number, scale: number | undefined): Promise<Blob> {
   const canvas = new OffscreenCanvas(Math.max(1, Math.round(source.width * resolution)), Math.max(1, Math.round(source.height * resolution)))
   const context = canvas.getContext('2d')!
   context.imageSmoothingQuality = 'high'
   context.drawImage(source, 0, 0, canvas.width, canvas.height)
-  return canvas.convertToBlob({ type, quality: 0.92 })
+  const blob = await canvas.convertToBlob({ type, quality: 0.92 })
+  if (type !== 'image/png' || !scale || scale === 1) return blob
+  return new Blob([withPixelDensity(new Uint8Array(await blob.arrayBuffer()), scale * resolution)], { type })
 }

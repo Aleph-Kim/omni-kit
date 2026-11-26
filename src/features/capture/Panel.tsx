@@ -3,7 +3,7 @@ import { t } from '../../i18n'
 import { SectionTitle } from '../../ui/SectionTitle'
 import type { CaptureMessage } from './background'
 import pageScrollScript from './content/page-scroll.ts?iife'
-import { captureSupport, frameOriginPattern, isPdf, type CaptureMode, type CaptureSupport } from './shot'
+import { captureBlockReason, captureSupport, frameOriginPattern, isPdf, type CaptureMode, type CaptureSupport } from './shot'
 
 const OPTIONS: { mode: CaptureMode; titleKey: string; hintKey: string; icon: ReactNode }[] = [
   {
@@ -62,11 +62,16 @@ export function CapturePanel({ titleId, title }: { titleId: string; title: strin
   const [hovered, setHovered] = useState<CaptureMode | null>(null)
   const [frameOrigin, setFrameOrigin] = useState<string | null>(null)
   const [pdf, setPdf] = useState(false)
+  const [reason, setReason] = useState<ReturnType<typeof captureBlockReason>>(null)
 
   useEffect(() => {
+    // 허용 창 경로는 바로 닫혀서 서비스 워커를 미리 깨움
+    chrome.runtime.sendMessage({ type: 'wake' }).catch(() => {})
     void (async () => {
       const [tab] = await chrome.tabs.query({ active: true, currentWindow: true })
-      const support = captureSupport(tab?.url, await chrome.extension.isAllowedFileSchemeAccess())
+      const fileAccess = await chrome.extension.isAllowedFileSchemeAccess()
+      const support = captureSupport(tab?.url, fileAccess)
+      setReason(captureBlockReason(tab?.url, fileAccess))
       setTabId(tab?.id ?? null)
       setPdf(support === 'full' && tab?.id !== undefined && (await isPdf(tab.id)))
       setSupport(support)
@@ -82,9 +87,12 @@ export function CapturePanel({ titleId, title }: { titleId: string; title: strin
 
   // 영역, 요소 고르기 화면이 팝업에 가려지지 않게 요청 후 바로 닫음
   const capture = (mode: CaptureMode) => {
-    if (mode !== 'full' || !frameOrigin) {
-      void chrome.runtime.sendMessage({ type: 'capture', mode, tabId: tabId! } satisfies CaptureMessage)
-      window.close()
+    if (!enabled(mode)) return
+    if ((mode !== 'full' && mode !== 'element') || !frameOrigin) {
+      // 꺼진 서비스 워커가 켜지는 동안 팝업이 닫히면 메시지가 사라져서 전달된 뒤 닫음
+      void chrome.runtime
+        .sendMessage({ type: 'capture', mode, tabId: tabId! } satisfies CaptureMessage)
+        .finally(() => window.close())
       return
     }
     // 권한 요청은 클릭 안에서만 가능, 허용 창이 뜨면서 팝업이 닫힐 수 있어 찍기 요청을 먼저 보내고 백그라운드가 결과를 기다림
@@ -96,7 +104,15 @@ export function CapturePanel({ titleId, title }: { titleId: string; title: strin
   }
 
   const notice = support !== 'full' ? t(support === 'visible' ? 'captureLimited' : 'captureUnavailable') : pdf ? t('captureNoFullPdf') : null
-  const hint = hovered ? t(OPTIONS.find((option) => option.mode === hovered)!.hintKey) : notice
+  const hint = !hovered
+    ? notice
+    : enabled(hovered)
+      ? t(OPTIONS.find((option) => option.mode === hovered)!.hintKey)
+      : pdf && hovered === 'full'
+        ? t('captureNoFullPdf')
+        : reason
+          ? t(reason)
+          : notice
 
   return (
     <>
@@ -106,8 +122,8 @@ export function CapturePanel({ titleId, title }: { titleId: string; title: strin
           <button
             key={mode}
             type="button"
-            disabled={!enabled(mode)}
-            className="flex min-w-0 flex-col items-center gap-1.5 rounded-lg px-0.5 pt-2.5 pb-2 enabled:hover:bg-(--ok-fill) disabled:cursor-default disabled:opacity-35"
+            aria-disabled={!enabled(mode)}
+            className="flex min-w-0 flex-col items-center gap-1.5 rounded-lg px-0.5 pt-2.5 pb-2 not-aria-disabled:hover:bg-(--ok-fill) aria-disabled:cursor-default aria-disabled:opacity-35"
             onClick={() => capture(mode)}
             onPointerEnter={() => setHovered(mode)}
             onPointerLeave={() => setHovered(null)}
@@ -121,7 +137,7 @@ export function CapturePanel({ titleId, title }: { titleId: string; title: strin
           </button>
         ))}
       </div>
-      <p className="mx-3 mt-1.5 min-h-4 text-xs text-(--ok-label-2)">{hint}</p>
+      <p className="mx-3 mt-1.5 min-h-8 text-xs text-(--ok-label-2)">{hint}</p>
     </>
   )
 }

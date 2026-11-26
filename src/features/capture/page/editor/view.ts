@@ -12,10 +12,10 @@ export const maxZoom = (image: Size, dpr: number) => Math.min(MAX_ZOOM, 16000 / 
 export const fitZoom = (image: Size, box: Size, dpr: number) =>
   Math.max(0.01, Math.min(1 / dpr, box.width / image.width, box.height / image.height))
 
-/** 확대, 축소 버튼의 다음 배율, 지금 배율을 10% 단위로 반올림한 뒤 10%씩 (69%에서 확대하면 80%) */
-export function stepZoom(current: number, direction: 1 | -1, max = MAX_ZOOM): number {
-  const next = Math.round(current * 10) + direction
-  return Math.min(max, Math.max(MIN_ZOOM, next / 10))
+/** 확대, 축소 버튼의 다음 배율, 화면에 보이는 값(배율 x 화면 배율)을 10% 단위로 반올림한 뒤 10%씩 (69%에서 확대하면 80%) */
+export function stepZoom(current: number, direction: 1 | -1, max = MAX_ZOOM, dpr = globalThis.devicePixelRatio || 1): number {
+  const next = Math.round(current * dpr * 10) + direction
+  return Math.min(max, Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, next / 10)) / dpr)
 }
 
 /** 끌기 시작점과 끝점으로 만든 영역 (거꾸로 끌어도 양수 크기), 그림 밖은 잘라냄 */
@@ -35,10 +35,11 @@ const clamp = (value: number, min: number, max: number) => Math.min(max, Math.ma
  */
 export function exportArea(image: Size, crop: Rect | null, offset: { x: number; y: number }, zoom: number) {
   const rect = crop ? roundRect(crop) : { x: 0, y: 0, ...image }
-  return { x: (rect.x - offset.x) * zoom, y: (rect.y - offset.y) * zoom, width: rect.width * zoom, height: rect.height * zoom, pixelRatio: 1 / zoom }
+  // konva가 floor(크기 * pixelRatio)로 캔버스를 만들어 소수 오차로 1px 줄지 않게 아주 작은 값을 더함
+  return { x: (rect.x - offset.x) * zoom, y: (rect.y - offset.y) * zoom, width: rect.width * zoom + 1e-6, height: rect.height * zoom + 1e-6, pixelRatio: 1 / zoom }
 }
 
-function roundRect(rect: Rect): Rect {
+export function roundRect(rect: Rect): Rect {
   const x = Math.round(rect.x)
   const y = Math.round(rect.y)
   return { x, y, width: Math.max(1, Math.round(rect.x + rect.width) - x), height: Math.max(1, Math.round(rect.y + rect.height) - y) }

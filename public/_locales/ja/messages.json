@@ -122,6 +122,9 @@
   "elementPickCanvas": {
     "message": "選択できない要素が含まれています。選択範囲のスクリーンショットをおすすめします。"
   },
+  "elementPickFrame": {
+    "message": "別のサイトから読み込まれた内容のため、内側は選択できません"
+  },
   "shotVisible": {
     "message": "表示部分"
   },
@@ -148,6 +151,15 @@
   },
   "captureNoFullPdf": {
     "message": "PDFファイルはページ全体をキャプチャできません"
+  },
+  "captureWhyBrowser": {
+    "message": "Chromeの標準ページ（新しいタブ、設定など）は表示中の範囲のみキャプチャできます"
+  },
+  "captureWhyStore": {
+    "message": "Chrome ウェブストアは表示中の範囲のみキャプチャできます"
+  },
+  "captureWhyFile": {
+    "message": "ファイルURLへのアクセスを許可するとキャプチャできます"
   },
   "menuCapture": {
     "message": "OmniKit キャプチャ"
@@ -478,7 +490,7 @@
     }
   },
   "itemLimitReached": {
-    "message": "快適に編集できるよう、オブジェクトの数を$COUNT$個までに制限しています。\nさらに追加するには制限を解除してください。",
+    "message": "快適に編集できるよう、オブジェクトの数を$COUNT$個までに制限しています。\nさらに追加するには、設定で制限を解除してください。",
     "placeholders": {
       "count": {
         "content": "$1",

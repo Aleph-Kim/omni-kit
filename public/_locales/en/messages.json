@@ -122,6 +122,9 @@
   "elementPickCanvas": {
     "message": "This contains an element that can't be picked. We recommend a Selected area screenshot."
   },
+  "elementPickFrame": {
+    "message": "This frame is from another site, so you can't pick inside it"
+  },
   "shotVisible": {
     "message": "Visible part"
   },
@@ -148,6 +151,15 @@
   },
   "captureNoFullPdf": {
     "message": "Full-page capture isn't available for PDF files"
+  },
+  "captureWhyBrowser": {
+    "message": "Chrome's own pages (new tab, settings) allow only the visible part"
+  },
+  "captureWhyStore": {
+    "message": "The Chrome Web Store allows only the visible part"
+  },
+  "captureWhyFile": {
+    "message": "Allow access to file URLs to capture this page"
   },
   "menuCapture": {
     "message": "OmniKit capture"
@@ -478,7 +490,7 @@
     }
   },
   "itemLimitReached": {
-    "message": "To keep editing smooth, each image is limited to $COUNT$ items.\nTurn off the limit if you need to add more.",
+    "message": "To keep editing smooth, each image is limited to $COUNT$ items.\nTo add more, turn off the limit in Settings.",
     "placeholders": {
       "count": {
         "content": "$1",

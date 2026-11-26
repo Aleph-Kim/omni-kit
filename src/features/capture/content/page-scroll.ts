@@ -1,4 +1,5 @@
 import { MAX_SHOTS, scrollPositions, type Rect } from '../shot'
+import { PICKED_ATTR } from './frames'
 
 export type PageInfo = { total: number; viewport: number; rect: Rect; viewportWidth: number }
 export type FrameInfo = { origin: string; rect: Rect; viewportWidth: number }
@@ -12,11 +13,13 @@ type Axis = 'x' | 'y'
 export type PageScroll = {
   findFrame(): FrameInfo | null
   prepare(maxSteps: number): Promise<PageInfo>
-  prepareElement(): Promise<ElementInfo>
+  prepareElement(visible: Rect | null): Promise<ElementInfo>
   scrollTo(y: number): Promise<number>
   scrollElement(point: Point): Promise<Slice[]>
   hideFixed(): void
   restore(): void
+  block(): void
+  unblock(): void
 }
 
 declare global {
@@ -26,6 +29,7 @@ declare global {
 }
 
 const BLOCKER_ID = 'omni-kit-page-scroll'
+const SCROLL_KEYS = new Set([' ', 'PageUp', 'PageDown', 'Home', 'End', 'ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'])
 
 const wait = (ms: number) => new Promise((done) => setTimeout(done, ms))
 const nextFrame = () => new Promise(requestAnimationFrame)
@@ -46,6 +50,8 @@ function createPageScroll(): PageScroll {
   const pickedScrollers: Record<Axis, HTMLElement | null> = { x: null, y: null }
   // 고른 요소 안에서 세로로 스크롤되는 큰 목록(컬럼 안 카드 목록 등), 있으면 펼친 모양으로 이어 붙임
   let pickedInner: HTMLElement | null = null
+  // 이 문서가 iframe이면 그 iframe 중 맨 위 화면과 바깥 iframe들 안에 보이는 부분
+  let pickedView: Rect | null = null
 
   const setStyle = (el: HTMLElement, name: string, value: string) => {
     const previous = [el.style.getPropertyValue(name), el.style.getPropertyPriority(name)] as const
@@ -77,12 +83,28 @@ function createPageScroll(): PageScroll {
     }
   }
 
-  // 찍는 동안 사용자의 클릭과 스크롤을 막는 투명한 막을 깔고 스크롤 막대를 없앰
-  const begin = async (scrollers: HTMLElement[]) => {
+  // 막이 있는 동안 스크롤 키 차단 (막이 사라진 뒤 첫 키에서 스스로 해제)
+  const blockKeys = (event: KeyboardEvent) => {
+    if (!document.getElementById(BLOCKER_ID)) return removeEventListener('keydown', blockKeys, true)
+    if (SCROLL_KEYS.has(event.key)) event.preventDefault()
+  }
+
+  // 찍는 동안 사용자의 클릭과 스크롤을 막는 투명한 막
+  const block = () => {
+    if (document.getElementById(BLOCKER_ID)) return
     const blocker = document.createElement('div')
     blocker.id = BLOCKER_ID
     blocker.style.cssText = 'all:initial;position:fixed;inset:0;z-index:2147483647'
+    // 고정된 막 위의 휠도 아래 문서를 스크롤해서 막음
+    blocker.addEventListener('wheel', (event) => event.preventDefault(), { passive: false })
     document.documentElement.append(blocker)
+    addEventListener('keydown', blockKeys, true)
+  }
+  const unblock = () => document.getElementById(BLOCKER_ID)?.remove()
+
+  // 막을 깔고 스크롤 막대를 없앰
+  const begin = async (scrollers: HTMLElement[]) => {
+    block()
 
     for (const scroller of scrollers) {
       setStyle(scroller, 'scrollbar-width', 'none')
@@ -133,7 +155,7 @@ function createPageScroll(): PageScroll {
 
   // 화면과 스크롤 상자 안쪽이 겹쳐 실제로 보이는 곳, 가로와 세로를 따로 봐서 폭이나 높이가 0 이하일 수 있음
   const pickedClip = (): Rect => {
-    let clip: Rect = { x: 0, y: 0, width: innerWidth, height: innerHeight }
+    let clip: Rect = pickedView ?? { x: 0, y: 0, width: innerWidth, height: innerHeight }
     for (const scroller of [pickedScrollers.x, pickedScrollers.y]) if (scroller) clip = overlap(clip, viewRect(scroller, root))
     return clip
   }
@@ -184,8 +206,11 @@ function createPageScroll(): PageScroll {
 
       // 스크롤해야 불러오는 그림을 미리 불러오도록 끝까지 한 번 내렸다가 올라옴
       for (let i = 0; i < maxSteps && target.scrollTop + target.clientHeight < Math.min(target.scrollHeight, startHeight); i++) {
+        const before = target.scrollTop
         target.scrollTop += target.clientHeight
         await wait(100)
+        // 소수 화면 배율에서는 맨 아래에서도 0.x px 모자라 끝을 못 알아봐서 더 내려가지 않으면 멈춤
+        if (target.scrollTop === before) break
       }
       target.scrollTop = 0
       await wait(300)
@@ -210,8 +235,11 @@ function createPageScroll(): PageScroll {
     /**
      * 요소 고르기로 고른 요소를 찍을 스크롤 위치, 화면보다 길거나 넓으면 요소 맨 앞부터 한 화면씩
      */
-    async prepareElement() {
-      picked = window.omniKitPickedElement
+    async prepareElement(visible) {
+      const marked = document.querySelector(`[${PICKED_ATTR}]`)
+      marked?.removeAttribute(PICKED_ATTR)
+      picked = window.omniKitPickedElement ?? marked ?? undefined
+      pickedView = visible
       if (!picked?.isConnected) throw new Error('picked element is gone')
       pickedScrollers.x = scrollerFor(picked, 'x', root)
       pickedScrollers.y = scrollerFor(picked, 'y', root)
@@ -274,10 +302,15 @@ function createPageScroll(): PageScroll {
       window.omniKitPickedElement = undefined
       pickedScrollers.x = pickedScrollers.y = null
       pickedInner = null
+      pickedView = null
       handled.clear()
       while (restores.length) restores.pop()!()
-      document.getElementById(BLOCKER_ID)?.remove()
+      unblock()
     },
+
+    // 고른 요소가 iframe 안일 때 맨 위 문서에 막만 깔고 지움
+    block,
+    unblock,
   }
 }
 

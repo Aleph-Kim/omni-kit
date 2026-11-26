@@ -238,7 +238,7 @@ export function Toolbar({ tool, onTool, zoom, onZoom, area, children }: Props) {
               <Glyph body={UI_ICONS.zoomOut} />
             </BarButton>
             <span dir="ltr" className="w-9 shrink-0 py-1 text-center text-[11px] text-(--ok-label-2)">
-              {Math.round(zoom * 100)}%
+              {Math.round(zoom * devicePixelRatio * 100)}%
             </span>
             <BarButton tipId="tip-zoomIn" tip={t('zoomIn')} shortcut="+" {...tipAt(TOOLS.length + 1)} aria-label={t('zoomIn')} onClick={() => onZoom(1)}>
               <Glyph body={UI_ICONS.zoomIn} />

@@ -8,7 +8,7 @@ import { STAMP_ICONS } from './icons'
 import { isTiny, placeItem, resize, smoothCurve, startItem } from './items'
 import { drawShape } from './shapes'
 import { FONT_FAMILY, newId, type Doc, type Item, type Style, type Tool } from './types'
-import { dragRect, exportArea } from './view'
+import { dragRect, exportArea, roundRect } from './view'
 
 export type StageApi = { exportCanvas: () => HTMLCanvasElement }
 
@@ -87,7 +87,7 @@ export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelec
   const view = visibleRect(image, doc, tool)
   const selected = tool === 'select' ? doc.items.filter((item) => selectedIds.includes(item.id)) : []
   // konva 끌기, 크기 조절은 절대 좌표(배율 곱한 화면 좌표)라 보이는 영역도 같은 좌표로
-  const area = { x: 0, y: 0, width: view.width * zoom, height: view.height * zoom }
+  const area = { x: 0, y: 0, width: snap(view.width * zoom), height: snap(view.height * zoom) }
 
   useImperativeHandle(ref, () => ({
     exportCanvas: () => {
@@ -187,7 +187,8 @@ export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelec
         () => {
           setCropDraft(null)
           if (rect.width >= 3 && rect.height >= 3) {
-            onCommit({ ...doc, crop: rect })
+            // 소수 자리로 자르면 그림이 화면 점 사이에 그려져 흐려짐
+            onCommit({ ...doc, crop: roundRect(rect) })
             onCropDone()
           }
         },
@@ -271,7 +272,7 @@ export function Stage({ ref, image, doc, tool, style, zoom, selectedIds, onSelec
 
   return (
     <div ref={wrapperRef} tabIndex={-1} className="relative outline-none" style={{ cursor: tool !== 'select' ? 'crosshair' : hover === 'box' ? 'move' : hover === 'item' ? 'pointer' : 'default' }}>
-      <KonvaStage ref={stageRef} width={view.width * zoom} height={view.height * zoom} scaleX={zoom} scaleY={zoom}
+      <KonvaStage ref={stageRef} width={area.width} height={area.height} scaleX={zoom} scaleY={zoom}
         onPointerDown={onPointerDown}
         // 지운 요소 위에서는 떠나는 이벤트가 오지 않아서 움직일 때마다 아래 요소로 판별
         onPointerMove={(event) => setHover(event.target.hasName('back') ? 'box' : event.target.findAncestor('.item', true) ? 'item' : null)}
@@ -523,4 +524,10 @@ function TextInput({ item, view, zoom, onDone }: { item: Extract<Item, { kind: '
       }}
     />
   )
+}
+
+/** 캔버스 크기를 화면 물리 점 단위로 맞춤 (소수면 크롬이 캔버스를 한 번 더 늘려 그려 흐려짐, konva가 floor로 내리지 않게 아주 작은 값 더함) */
+function snap(cssSize: number) {
+  const dpr = globalThis.devicePixelRatio || 1
+  return (Math.round(cssSize * dpr) + 1e-6) / dpr
 }

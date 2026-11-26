@@ -1,10 +1,14 @@
 import { t, uiDir } from '../../../i18n'
+import type { Rect } from '../shot'
+import { PICKED_ATTR, placeInFrames, type FrameBox, type PickedFrame } from './frames'
 
 const HOST_ID = 'omni-kit-element-select'
 const SHADE = 'rgb(0 0 0 / 0.3)'
 const ACCENT = '#007aff'
-// 트랙패드는 한 번 쓸어도 휠 입력이 여러 번 들어와서 이만큼 모였을 때 한 단계
+// 트랙패드는 한 번 쓸어도 휠 입력이 여러 번 들어와서 이어지는 입력은 이만큼 모였을 때 한 단계
 const WHEEL_STEP = 60
+// 이만큼 쉬었다 들어온 휠 입력은 바로 한 단계 (마우스 휠 한 칸은 몇 px뿐이라 모으면 여러 칸을 굴려야 함)
+const WHEEL_PAUSE = 150
 
 declare global {
   interface Window {
@@ -82,6 +86,7 @@ function start() {
   let chain: Element[] = []
   let level = 0
   let wheel = 0
+  let lastWheel = -Infinity
   let pressed = false
 
   const close = () => host.remove()
@@ -90,26 +95,37 @@ function start() {
   const draw = () => {
     const el = chain[level]
     if (!el) return
-    const rect = el.getBoundingClientRect()
-    Object.assign(box.style, { display: 'block', left: `${rect.left}px`, top: `${rect.top}px`, width: `${rect.width}px`, height: `${rect.height}px` })
+    const rect = screenRect(el)
+    Object.assign(box.style, { display: 'block', left: `${rect.x}px`, top: `${rect.y}px`, width: `${rect.width}px`, height: `${rect.height}px` })
     const keys = [
       ...(level + 1 < chain.length || parentOf(el) ? [`${kbd('↑', 'up')} ${escapeHtml(t('pickWiderShort'))}`] : []),
       ...(level > 0 ? [`${kbd('↓', 'down')} ${escapeHtml(t('pickNarrowerShort'))}`] : []),
       `${kbd(t('pickClick'))} ${escapeHtml(t('pickCapture'))}`,
     ]
-    // canvas(Figma 디자인 화면, 차트 등)는 그림 한 장이라 안쪽을 고를 수 없어 찍기 전에 알림
-    const warn = el instanceof HTMLCanvasElement ? `<div class="warn">${escapeHtml(t('elementPickCanvas'))}</div>` : ''
+    // canvas(Figma 디자인 화면, 차트 등)와 다른 주소의 iframe은 안쪽을 고를 수 없어 찍기 전에 알림
+    // iframe 안 요소는 instanceof가 맞지 않아 태그 이름으로 판별
+    const warnKey = el.localName === 'canvas' ? 'elementPickCanvas' : isFrame(el) && !frameDocument(el) ? 'elementPickFrame' : ''
+    const warn = warnKey ? `<div class="warn">${escapeHtml(t(warnKey))}</div>` : ''
     label.innerHTML = `${warn}<div class="row">${keys.join('&nbsp;&nbsp;')}</div>`
     label.style.display = 'flex'
     const { width, height } = label.getBoundingClientRect()
-    const above = rect.top - height - 6
-    const top = above >= 8 ? above : Math.max(8, rect.top + 6)
+    const above = rect.y - height - 6
+    const top = above >= 8 ? above : Math.max(8, rect.y + 6)
     label.style.top = `${Math.min(top, innerHeight - height - 8)}px`
-    label.style.left = `${Math.max(8, Math.min(rect.left, innerWidth - width - 8))}px`
+    label.style.left = `${Math.max(8, Math.min(rect.x, innerWidth - width - 8))}px`
   }
 
   const hover = (x: number, y: number) => {
-    const el = document.elementsFromPoint(x, y).find((el) => el !== host)
+    let el = document.elementsFromPoint(x, y).find((el) => el !== host)
+    // 같은 출처 iframe은 안쪽 문서로 내려가 그 안의 요소를 고름, 안쪽에서 못 찾으면 iframe 그대로
+    for (let inner = el && frameDocument(el); el && inner; inner = frameDocument(el)) {
+      const box = frameBox(el)
+      x = (x - box.x) / box.scale
+      y = (y - box.y) / box.scale
+      const found = inner.elementFromPoint(x, y)
+      if (!found) break
+      el = found
+    }
     if (!el || el === chain[0]) return
     doc.body.classList.remove('zoom')
     chain = [el]
@@ -140,11 +156,16 @@ function start() {
     const el = chain[level]
     if (!el) return
     close()
-    window.omniKitPickedElement = el
+    let frame: PickedFrame | undefined
+    if (el.ownerDocument === document) window.omniKitPickedElement = el
+    else {
+      el.setAttribute(PICKED_ATTR, '')
+      frame = { ...framePlace(el), viewportWidth: innerWidth }
+    }
     // 어두운 막이 화면에서 사라진 뒤에 찍도록 두 프레임 대기
     await new Promise(requestAnimationFrame)
     await new Promise(requestAnimationFrame)
-    await chrome.runtime.sendMessage({ type: 'element-selected' })
+    await chrome.runtime.sendMessage({ type: 'element-selected', frame })
   }
 
   // 입력을 받았다는 것이 보이게 같은 방향의 키 표시를 잠깐 강조, 더 넓히거나 좁힐 수 없을 때도 반응
@@ -173,14 +194,17 @@ function start() {
     'wheel',
     (event) => {
       event.preventDefault()
-      wheel += event.deltaY
+      if (!event.deltaY) return
+      const fresh = event.timeStamp - lastWheel > WHEEL_PAUSE
+      lastWheel = event.timeStamp
+      wheel = fresh ? Math.sign(event.deltaY) * WHEEL_STEP : wheel + event.deltaY
       if (Math.abs(wheel) >= WHEEL_STEP) {
         if (wheel < 0) outer()
         else inner()
         wheel = 0
       }
       // 라벨은 단계가 바뀌면 다시 그려져서 그 뒤에 강조
-      if (event.deltaY) flash(event.deltaY < 0 ? 'up' : 'down')
+      flash(event.deltaY < 0 ? 'up' : 'down')
     },
     { passive: false },
   )
@@ -202,9 +226,69 @@ function start() {
 // 크기가 거의 같은 감싸는 요소와 크기가 0인 껍데기(Figma 등)는 건너뛰어 한 단계마다 상자가 눈에 띄게 달라지게 함
 function parentOf(el: Element): Element | null {
   const size = el.getBoundingClientRect()
-  let parent = el.parentElement
-  while (parent && parent !== document.documentElement && skippable(parent.getBoundingClientRect(), size)) parent = parent.parentElement
-  return parent === document.documentElement ? null : parent
+  let parent = up(el)
+  while (parent && skippable(parent.getBoundingClientRect(), size)) parent = up(parent)
+  return parent
+}
+
+// 안쪽 문서의 맨 바깥에 닿으면 그 문서를 담은 iframe으로 이어짐, 맨 위 문서의 html은 고르지 않음
+function up(el: Element): Element | null {
+  const parent = el.parentElement
+  if (parent && parent !== parent.ownerDocument.documentElement) return parent
+  return el.ownerDocument === document ? null : (el.ownerDocument.defaultView?.frameElement ?? null)
+}
+
+const isFrame = (el: Element) => el.localName === 'iframe' || el.localName === 'frame'
+
+// 다른 주소의 iframe이면 없음
+function frameDocument(el: Element): Document | null {
+  if (!isFrame(el)) return null
+  try {
+    return (el as HTMLIFrameElement).contentDocument
+  } catch {
+    return null
+  }
+}
+
+function framePlace(el: Element) {
+  const frames: FrameBox[] = []
+  for (let doc = el.ownerDocument; doc !== document; ) {
+    const frame = doc.defaultView!.frameElement!
+    frames.push(frameBox(frame))
+    doc = frame.ownerDocument
+  }
+  return placeInFrames(frames, { width: innerWidth, height: innerHeight })
+}
+
+/**
+ * iframe 내용 영역의 화면 위치, 테두리와 안쪽 여백을 빼고 transform으로 줄거나 늘린 배율 반영
+ */
+function frameBox(frame: Element): FrameBox {
+  const box = frame.getBoundingClientRect()
+  const scale = (frame as HTMLElement).offsetWidth ? box.width / (frame as HTMLElement).offsetWidth : 1
+  const style = getComputedStyle(frame)
+  const [top, right, bottom, left] = [style.paddingTop, style.paddingRight, style.paddingBottom, style.paddingLeft].map(parseFloat)
+  return {
+    x: box.left + (frame.clientLeft + left) * scale,
+    y: box.top + (frame.clientTop + top) * scale,
+    width: frame.clientWidth - left - right,
+    height: frame.clientHeight - top - bottom,
+    scale,
+  }
+}
+
+/**
+ * 요소가 맨 위 화면에 보이는 곳, iframe 안의 요소는 iframe 밖으로 나간 부분을 자름
+ */
+function screenRect(el: Element): Rect {
+  const box = el.getBoundingClientRect()
+  if (el.ownerDocument === document) return { x: box.left, y: box.top, width: box.width, height: box.height }
+  const { x, y, scale, visible } = framePlace(el)
+  const left = Math.max(box.left, visible.x)
+  const top = Math.max(box.top, visible.y)
+  const width = Math.max(0, Math.min(box.right, visible.x + visible.width) - left)
+  const height = Math.max(0, Math.min(box.bottom, visible.y + visible.height) - top)
+  return { x: x + left * scale, y: y + top * scale, width: width * scale, height: height * scale }
 }
 
 function escapeHtml(text: string) {

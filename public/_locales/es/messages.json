@@ -122,6 +122,9 @@
   "elementPickCanvas": {
     "message": "Contiene un elemento que no se puede elegir. Te recomendamos una captura de Área seleccionada."
   },
+  "elementPickFrame": {
+    "message": "Este marco procede de otro sitio, no se puede elegir su interior"
+  },
   "shotVisible": {
     "message": "Parte visible"
   },
@@ -148,6 +151,15 @@
   },
   "captureNoFullPdf": {
     "message": "Los archivos PDF no se pueden capturar como página completa"
+  },
+  "captureWhyBrowser": {
+    "message": "Las páginas propias de Chrome (nueva pestaña, ajustes) solo permiten la parte visible"
+  },
+  "captureWhyStore": {
+    "message": "Chrome Web Store solo permite la parte visible"
+  },
+  "captureWhyFile": {
+    "message": "Permite el acceso a URLs de archivos para capturar"
   },
   "menuCapture": {
     "message": "Captura de OmniKit"
@@ -478,7 +490,7 @@
     }
   },
   "itemLimitReached": {
-    "message": "Para que la edición sea fluida, el número de elementos está limitado a $COUNT$.\nDesactiva el límite si necesitas añadir más.",
+    "message": "Para que la edición sea fluida, el número de elementos está limitado a $COUNT$.\nPara añadir más, desactiva el límite en Ajustes.",
     "placeholders": {
       "count": {
         "content": "$1",
