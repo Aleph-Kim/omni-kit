@@ -512,5 +512,14 @@
   },
   "ok": {
     "message": "OK"
+  },
+  "openIn": {
+    "message": "Abrir em"
+  },
+  "openInNewTab": {
+    "message": "Nova guia"
+  },
+  "openInCurrentTab": {
+    "message": "Guia atual"
   }
 }

@@ -512,5 +512,14 @@
   },
   "ok": {
     "message": "Aceptar"
+  },
+  "openIn": {
+    "message": "Abrir en"
+  },
+  "openInNewTab": {
+    "message": "Pestaña nueva"
+  },
+  "openInCurrentTab": {
+    "message": "Pestaña actual"
   }
 }

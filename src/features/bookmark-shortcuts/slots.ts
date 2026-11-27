@@ -61,3 +61,16 @@ export async function saveSlot(index: number, bookmarkId: string | null): Promis
   await chrome.storage.local.set({ [STORAGE_KEY]: slots })
   return slots
 }
+
+const OPEN_IN_KEY = 'bookmarkOpenIn'
+
+export type OpenIn = 'new-tab' | 'current-tab'
+
+export async function loadOpenIn(): Promise<OpenIn> {
+  const stored = await chrome.storage.local.get(OPEN_IN_KEY)
+  return stored[OPEN_IN_KEY] === 'current-tab' ? 'current-tab' : 'new-tab'
+}
+
+export async function saveOpenIn(openIn: OpenIn) {
+  await chrome.storage.local.set({ [OPEN_IN_KEY]: openIn })
+}

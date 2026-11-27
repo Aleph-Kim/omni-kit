@@ -3,7 +3,18 @@ import { t } from '../../i18n'
 import { Chevron } from '../../ui/Chevron'
 import { SectionTitle } from '../../ui/SectionTitle'
 import type { BookmarkMessage } from './background'
-import { SLOT_COUNT, bookmarkLabel, commandName, loadBarBookmarkIds, loadSlots, saveSlot, type Slots } from './slots'
+import {
+  SLOT_COUNT,
+  bookmarkLabel,
+  commandName,
+  loadBarBookmarkIds,
+  loadOpenIn,
+  loadSlots,
+  saveOpenIn,
+  saveSlot,
+  type OpenIn,
+  type Slots,
+} from './slots'
 
 const RESULT_LIMIT = 50
 
@@ -25,6 +36,7 @@ export function BookmarkShortcutsPanel({ titleId, title }: { titleId: string; ti
   const [shortcuts, setShortcuts] = useState<Record<string, string>>({})
   const [listOpen, setListOpen] = useState(false)
   const [editing, setEditing] = useState<number | null>(null)
+  const [openIn, setOpenIn] = useState<OpenIn>('new-tab')
 
   const applySlots = async (ids: Slots) => {
     const barIds = await loadBarBookmarkIds()
@@ -42,6 +54,7 @@ export function BookmarkShortcutsPanel({ titleId, title }: { titleId: string; ti
     void (async () => {
       const commands = await chrome.commands.getAll()
       setShortcuts(Object.fromEntries(commands.map((command) => [command.name ?? '', command.shortcut ?? ''])))
+      setOpenIn(await loadOpenIn())
       await applySlots(await loadSlots())
     })()
   }, [])
@@ -116,6 +129,31 @@ export function BookmarkShortcutsPanel({ titleId, title }: { titleId: string; ti
       </ol>
       {listOpen && (
         <div className="mt-4 flex flex-col gap-4">
+          <div className="flex items-center gap-3 rounded-xl bg-(--ok-cell) px-3 py-2">
+            <span id="bookmark-open-in" className="flex-1">
+              {t('openIn')}
+            </span>
+            <div role="group" aria-labelledby="bookmark-open-in" className="relative grid grid-cols-2 rounded-lg bg-(--ok-fill) p-0.5 text-xs">
+              <span
+                aria-hidden="true"
+                className={`absolute inset-y-0.5 start-0.5 w-[calc(50%-2px)] rounded-md bg-(--ok-cell) shadow-sm transition-transform duration-200 ease-out motion-reduce:transition-none ${openIn === 'current-tab' ? 'translate-x-full rtl:-translate-x-full' : ''}`}
+              />
+              {(['new-tab', 'current-tab'] as const).map((value) => (
+                <button
+                  key={value}
+                  type="button"
+                  aria-pressed={openIn === value}
+                  className="relative rounded-md px-2.5 py-1 text-(--ok-label-2) transition-colors duration-200 aria-pressed:text-(--ok-label)"
+                  onClick={() => {
+                    setOpenIn(value)
+                    void saveOpenIn(value)
+                  }}
+                >
+                  {t(value === 'new-tab' ? 'openInNewTab' : 'openInCurrentTab')}
+                </button>
+              ))}
+            </div>
+          </div>
           <ol className="overflow-hidden rounded-xl bg-(--ok-cell)">
             {slots.map(({ bookmark, picked }, index) => {
               const open = editing === index

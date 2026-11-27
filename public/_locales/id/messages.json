@@ -512,5 +512,14 @@
   },
   "ok": {
     "message": "OK"
+  },
+  "openIn": {
+    "message": "Buka di"
+  },
+  "openInNewTab": {
+    "message": "Tab baru"
+  },
+  "openInCurrentTab": {
+    "message": "Tab saat ini"
   }
 }

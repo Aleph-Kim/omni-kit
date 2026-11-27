@@ -512,5 +512,14 @@
   },
   "ok": {
     "message": "ठीक है"
+  },
+  "openIn": {
+    "message": "कहाँ खोलें"
+  },
+  "openInNewTab": {
+    "message": "नया टैब"
+  },
+  "openInCurrentTab": {
+    "message": "मौजूदा टैब"
   }
 }

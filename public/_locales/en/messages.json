@@ -512,5 +512,14 @@
   },
   "ok": {
     "message": "OK"
+  },
+  "openIn": {
+    "message": "Open in"
+  },
+  "openInNewTab": {
+    "message": "New tab"
+  },
+  "openInCurrentTab": {
+    "message": "Current tab"
   }
 }

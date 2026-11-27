@@ -512,5 +512,14 @@
   },
   "ok": {
     "message": "حسنًا"
+  },
+  "openIn": {
+    "message": "الفتح في"
+  },
+  "openInNewTab": {
+    "message": "علامة تبويب جديدة"
+  },
+  "openInCurrentTab": {
+    "message": "علامة التبويب الحالية"
   }
 }

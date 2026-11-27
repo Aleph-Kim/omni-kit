@@ -512,5 +512,14 @@
   },
   "ok": {
     "message": "OK"
+  },
+  "openIn": {
+    "message": "Ouvrir dans"
+  },
+  "openInNewTab": {
+    "message": "Nouvel onglet"
+  },
+  "openInCurrentTab": {
+    "message": "Onglet actuel"
   }
 }

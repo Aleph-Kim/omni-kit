@@ -1,5 +1,5 @@
 import { flashBadge } from '../../badge'
-import { loadBarBookmarkIds, loadSlots, slotIndexFromCommand } from './slots'
+import { loadBarBookmarkIds, loadOpenIn, loadSlots, slotIndexFromCommand } from './slots'
 
 export type BookmarkMessage = { type: 'open-bookmark'; index: number }
 
@@ -11,6 +11,13 @@ export async function openBookmarkSlot(command: string) {
   if (url) {
     try {
       if (await focusOpenTab(url)) return
+      if ((await loadOpenIn()) === 'current-tab') {
+        const [tab] = await chrome.tabs.query({ active: true, lastFocusedWindow: true })
+        if (tab?.id !== undefined) {
+          await chrome.tabs.update(tab.id, { url })
+          return
+        }
+      }
       await chrome.tabs.create({ url })
       return
     } catch (error) {

@@ -512,5 +512,14 @@
   },
   "ok": {
     "message": "확인"
+  },
+  "openIn": {
+    "message": "여는 방식"
+  },
+  "openInNewTab": {
+    "message": "새 탭"
+  },
+  "openInCurrentTab": {
+    "message": "현재 탭"
   }
 }

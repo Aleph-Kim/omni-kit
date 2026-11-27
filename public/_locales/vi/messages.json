@@ -512,5 +512,14 @@
   },
   "ok": {
     "message": "OK"
+  },
+  "openIn": {
+    "message": "Mở trong"
+  },
+  "openInNewTab": {
+    "message": "Thẻ mới"
+  },
+  "openInCurrentTab": {
+    "message": "Thẻ hiện tại"
   }
 }

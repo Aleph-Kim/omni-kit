@@ -512,5 +512,14 @@
   },
   "ok": {
     "message": "好"
+  },
+  "openIn": {
+    "message": "開啟方式"
+  },
+  "openInNewTab": {
+    "message": "新分頁"
+  },
+  "openInCurrentTab": {
+    "message": "目前分頁"
   }
 }
