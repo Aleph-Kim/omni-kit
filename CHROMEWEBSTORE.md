@@ -18,7 +18,7 @@
 
 - 업로드할 파일: `npm run package`로 만든 `omni-kit-<버전>.zip` (`dist-release`에서 묶음, 이름이 `OmniKit DEV`가 아닌지 확인)
 - 스토어 아이콘: `public/icons/icon-128.png`
-- 스크린샷: `store-assets/screenshot-capture.png`, `store-assets/screenshot-editor.png`, `store-assets/screenshot-editor-hide.png`, `store-assets/screenshot-light.png`, `store-assets/screenshot-dark.png` (1280x800, 이 순서로 올림)
+- 스크린샷: `store-assets/screenshot-capture.png`, `store-assets/screenshot-editor-hide.png`, `store-assets/screenshot-light.png`, `store-assets/screenshot-dark.png` (1280x800, 이 순서로 올림)
 - 개인정보처리방침 주소: 저장소의 `PRIVACY.md` (공개 저장소라 로그인 없이 열림)
   `https://github.com/Aleph-Kim/omni-kit/blob/main/PRIVACY.md` (예전 구글 문서는 1.1.0용 `1sGd32lTq3sTiYn3jhmwASDvhPUfhIt49H4Nvorv1hno`, 1.0.x용 `1XemSNDAWv9wfWYxrJtoz5U8VORFr2NuJjwyqCF605Uk`)
 - 홈페이지 주소: `https://github.com/Aleph-Kim/omni-kit`
@@ -442,7 +442,7 @@ OmniKit مفتوح المصدر بموجب ترخيص MIT. الشيفرة الم
 | 카테고리 (Category) | 도구 (Tools), 생산성은 묶음 제목이라 고를 수 없고 그 아래 항목 중 선택 |
 | 언어 (Language) | 영어 (English) |
 | 스토어 아이콘 (Store icon) | `public/icons/icon-128.png` 업로드 |
-| 전 언어 공통 스크린샷 (Global screenshots) | 준비물의 5장을 순서대로 업로드 (언어별 현지화 스크린샷 칸은 비워 둠) |
+| 전 언어 공통 스크린샷 (Global screenshots) | 준비물의 4장을 순서대로 업로드 (언어별 현지화 스크린샷 칸은 비워 둠) |
 | 홈페이지 URL (Homepage URL) | 준비물의 홈페이지 주소 (깃허브 저장소) |
 | 작은 프로모션 타일, 마키 타일, YouTube, 지원 URL | 비워 둠 (선택 항목) |
 | 성인용 콘텐츠 (Mature content) | 끔 |
@@ -450,10 +450,9 @@ OmniKit مفتوح المصدر بموجب ترخيص MIT. الشيفرة الم
 스크린샷 구성 (실제 빌드한 팝업 화면에 예시 북마크와 예시 페이지를 넣어 촬영, 개인 북마크 노출 방지. 영어 화면, 5~9번 단축키는 지정한 모습으로 표시)
 
 1. `screenshot-capture.png`: 라이트 모드, 전체 페이지 버튼에 닿아 설명이 보이는 팝업 (Capture any part of the page)
-2. `screenshot-editor.png`: 라이트 모드, 예시 글 페이지에 도형, 펜, 화살표, 글자, 번호를 그린 편집 화면
-3. `screenshot-editor-hide.png`: 다크 모드, 예시 주문 페이지의 이메일, 전화, 주소를 모자이크하고 결제 수단을 흐리게 한 편집 화면
-4. `screenshot-light.png`: 라이트 모드, 2번 동그라미에 마우스를 올려 이름과 단축키 말풍선이 보이는 팝업
-5. `screenshot-dark.png`: 다크 모드, 편집을 펼치고 3번 칸에서 북마크를 검색하는 팝업 (크롬 팝업 최대 높이 600px로 자름)
+2. `screenshot-editor-hide.png`: 다크 모드, 예시 주문 페이지의 이메일, 전화, 주소를 모자이크하고 결제 수단을 흐리게 한 편집 화면
+3. `screenshot-light.png`: 라이트 모드, 2번 동그라미에 마우스를 올려 이름과 단축키 말풍선이 보이는 팝업
+4. `screenshot-dark.png`: 다크 모드, 편집을 펼치고 3번 칸에서 북마크를 검색하는 팝업 (크롬 팝업 최대 높이 600px로 자름)
 
 오른쪽 위 **임시저장 (Save draft)** 클릭
 

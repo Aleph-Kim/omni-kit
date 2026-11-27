@@ -15,6 +15,7 @@
 - `npm run check`: 타입 검사, 테스트, 빌드를 차례로 실행
 - `npm run package`: check 후 스토어용(release 모드)으로 `dist-release`에 다시 빌드해 zip으로 묶음. release가 아닌 빌드(`dist`)는 이름이 `OmniKit DEV`이고 툴바 아이콘 오른쪽 위에 주황 점(`src/background/dev-icon.ts`)을 찍어 스토어에서 설치한 출시 버전과 구분
 - 크롬 확인: `chrome://extensions`에서 `dist` 폴더를 압축해제된 확장으로 로드. manifest의 기본 단축키를 바꿨다면 새로고침이 아니라 삭제 후 다시 로드해야 반영됨
+- 스토어 작업(스토어 사진, 등록 정보 고치기, 대시보드 업로드)은 AppleScript로 내 크롬을 조작해서 함. 터미널에 화면 기록 권한이 없어 macOS 화면 찍기가 안 되므로 스토어 사진 촬영만 테스트용 크롬(headless)으로 함
 
 ## 구조
 
