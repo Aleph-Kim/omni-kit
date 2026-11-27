@@ -152,6 +152,9 @@
   "captureNoFullPdf": {
     "message": "Los archivos PDF no se pueden capturar como página completa"
   },
+  "captureNoFullCanvas": {
+    "message": "Esta página no se puede capturar como página completa."
+  },
   "captureWhyBrowser": {
     "message": "Las páginas propias de Chrome (nueva pestaña, ajustes) solo permiten la parte visible"
   },

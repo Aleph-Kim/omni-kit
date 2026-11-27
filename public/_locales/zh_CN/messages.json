@@ -152,6 +152,9 @@
   "captureNoFullPdf": {
     "message": "PDF 文件无法截取整页"
   },
+  "captureNoFullCanvas": {
+    "message": "此页面无法截取整页。"
+  },
   "captureWhyBrowser": {
     "message": "Chrome 内置页面（新标签页、设置等）只能截取可见部分"
   },

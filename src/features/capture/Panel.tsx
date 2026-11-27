@@ -3,7 +3,7 @@ import { t } from '../../i18n'
 import { SectionTitle } from '../../ui/SectionTitle'
 import type { CaptureMessage } from './background'
 import pageScrollScript from './content/page-scroll.ts?iife'
-import { captureBlockReason, captureSupport, frameOriginPattern, isPdf, type CaptureMode, type CaptureSupport } from './shot'
+import { captureBlockReason, captureSupport, frameOriginPattern, fullPageBlock, type CaptureMode, type CaptureSupport } from './shot'
 
 const OPTIONS: { mode: CaptureMode; titleKey: string; hintKey: string; icon: ReactNode }[] = [
   {
@@ -61,7 +61,7 @@ export function CapturePanel({ titleId, title }: { titleId: string; title: strin
   const [support, setSupport] = useState<CaptureSupport | null>(null)
   const [hovered, setHovered] = useState<CaptureMode | null>(null)
   const [frameOrigin, setFrameOrigin] = useState<string | null>(null)
-  const [pdf, setPdf] = useState(false)
+  const [fullBlock, setFullBlock] = useState<Awaited<ReturnType<typeof fullPageBlock>>>(null)
   const [reason, setReason] = useState<ReturnType<typeof captureBlockReason>>(null)
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export function CapturePanel({ titleId, title }: { titleId: string; title: strin
       const support = captureSupport(tab?.url, fileAccess)
       setReason(captureBlockReason(tab?.url, fileAccess))
       setTabId(tab?.id ?? null)
-      setPdf(support === 'full' && tab?.id !== undefined && (await isPdf(tab.id)))
+      setFullBlock(support === 'full' && tab?.id !== undefined ? await fullPageBlock(tab.id) : null)
       setSupport(support)
       // 권한 요청은 클릭 안에서 바로 해야 해서 미리 확인
       if (support === 'full' && tab?.id !== undefined) setFrameOrigin(await frameNeedingPermission(tab.id))
@@ -83,7 +83,7 @@ export function CapturePanel({ titleId, title }: { titleId: string; title: strin
   if (!support) return null
 
   const enabled = (mode: CaptureMode) =>
-    tabId !== null && (support === 'full' ? !(pdf && mode === 'full') : support === 'visible' && mode === 'visible')
+    tabId !== null && (support === 'full' ? !(fullBlock && mode === 'full') : support === 'visible' && mode === 'visible')
 
   // 영역, 요소 고르기 화면이 팝업에 가려지지 않게 요청 후 바로 닫음
   const capture = (mode: CaptureMode) => {
@@ -103,13 +103,13 @@ export function CapturePanel({ titleId, title }: { titleId: string; title: strin
       .finally(() => window.close())
   }
 
-  const notice = support !== 'full' ? t(support === 'visible' ? 'captureLimited' : 'captureUnavailable') : pdf ? t('captureNoFullPdf') : null
+  const notice = support !== 'full' ? t(support === 'visible' ? 'captureLimited' : 'captureUnavailable') : fullBlock ? t(fullBlock) : null
   const hint = !hovered
     ? notice
     : enabled(hovered)
       ? t(OPTIONS.find((option) => option.mode === hovered)!.hintKey)
-      : pdf && hovered === 'full'
-        ? t('captureNoFullPdf')
+      : fullBlock && hovered === 'full'
+        ? t(fullBlock)
         : reason
           ? t(reason)
           : notice

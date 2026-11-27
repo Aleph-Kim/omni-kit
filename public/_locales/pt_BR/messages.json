@@ -152,6 +152,9 @@
   "captureNoFullPdf": {
     "message": "Não é possível capturar a página inteira de arquivos PDF"
   },
+  "captureNoFullCanvas": {
+    "message": "Não é possível capturar a página inteira nesta página."
+  },
   "captureWhyBrowser": {
     "message": "As páginas do Chrome (nova guia, configurações) só permitem a parte visível"
   },

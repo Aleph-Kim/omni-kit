@@ -152,6 +152,9 @@
   "captureNoFullPdf": {
     "message": "لا يمكن التقاط الصفحة كاملة لملفات PDF"
   },
+  "captureNoFullCanvas": {
+    "message": "لا يمكن التقاط الصفحة كاملة في هذه الصفحة."
+  },
   "captureWhyBrowser": {
     "message": "صفحات Chrome الداخلية (علامة تبويب جديدة، الإعدادات) تتيح التقاط الجزء المرئي فقط"
   },

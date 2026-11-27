@@ -152,6 +152,9 @@
   "captureNoFullPdf": {
     "message": "Full-page capture isn't available for PDF files"
   },
+  "captureNoFullCanvas": {
+    "message": "Full-page capture isn't available on this page."
+  },
   "captureWhyBrowser": {
     "message": "Chrome's own pages (new tab, settings) allow only the visible part"
   },

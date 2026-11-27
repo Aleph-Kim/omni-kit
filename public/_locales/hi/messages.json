@@ -152,6 +152,9 @@
   "captureNoFullPdf": {
     "message": "PDF फ़ाइलों का पूरा पेज कैप्चर नहीं किया जा सकता"
   },
+  "captureNoFullCanvas": {
+    "message": "इस पेज का पूरा पेज कैप्चर नहीं किया जा सकता।"
+  },
   "captureWhyBrowser": {
     "message": "Chrome के अपने पेज (नया टैब, सेटिंग) में केवल दिखने वाला हिस्सा कैप्चर होता है"
   },

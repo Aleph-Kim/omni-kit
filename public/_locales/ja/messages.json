@@ -152,6 +152,9 @@
   "captureNoFullPdf": {
     "message": "PDFファイルはページ全体をキャプチャできません"
   },
+  "captureNoFullCanvas": {
+    "message": "このページはページ全体をキャプチャできません。"
+  },
   "captureWhyBrowser": {
     "message": "Chromeの標準ページ（新しいタブ、設定など）は表示中の範囲のみキャプチャできます"
   },

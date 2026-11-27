@@ -152,6 +152,9 @@
   "captureNoFullPdf": {
     "message": "PDF 파일은 전체 페이지를 캡처할 수 없어요"
   },
+  "captureNoFullCanvas": {
+    "message": "전체 페이지 캡처를 할 수 없는 페이지예요."
+  },
   "captureWhyBrowser": {
     "message": "크롬 기본 화면(새 탭, 설정 등)은 보이는 화면만 찍을 수 있어요"
   },

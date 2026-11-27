@@ -152,6 +152,9 @@
   "captureNoFullPdf": {
     "message": "File PDF tidak dapat ditangkap satu halaman penuh"
   },
+  "captureNoFullCanvas": {
+    "message": "Halaman ini tidak dapat ditangkap satu halaman penuh."
+  },
   "captureWhyBrowser": {
     "message": "Halaman bawaan Chrome (tab baru, pengaturan) hanya bisa ditangkap bagian yang terlihat"
   },

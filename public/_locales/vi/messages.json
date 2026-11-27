@@ -152,6 +152,9 @@
   "captureNoFullPdf": {
     "message": "Không thể chụp toàn trang đối với tệp PDF"
   },
+  "captureNoFullCanvas": {
+    "message": "Không thể chụp toàn trang trên trang này."
+  },
   "captureWhyBrowser": {
     "message": "Trang riêng của Chrome (tab mới, cài đặt) chỉ chụp được phần hiển thị"
   },

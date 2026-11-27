@@ -152,6 +152,9 @@
   "captureNoFullPdf": {
     "message": "Bei PDF-Dateien ist keine Aufnahme der ganzen Seite möglich"
   },
+  "captureNoFullCanvas": {
+    "message": "Auf dieser Seite ist keine Aufnahme der ganzen Seite möglich."
+  },
   "captureWhyBrowser": {
     "message": "Chrome-eigene Seiten (neuer Tab, Einstellungen) erlauben nur den sichtbaren Teil"
   },

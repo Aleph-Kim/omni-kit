@@ -330,12 +330,13 @@ function pageElements(): HTMLElement[] {
 }
 
 /**
- * 문서가 스크롤되지 않고 안쪽 상자만 스크롤되는 페이지는 화면에서 가장 넓은 스크롤 상자를 찍음
+ * 문서가 스크롤되지 않고 안쪽 상자만 스크롤되는 페이지는 화면 절반 이상인 가장 넓은 스크롤 상자를 찍음
+ * 그보다 작은 상자(GitHub 보드의 컬럼 등)뿐이면 하나만 펼치면 나머지가 빠져서 문서 그대로 화면 한 장
  */
 function findScrollTarget(root: HTMLElement): HTMLElement {
   if (root.scrollHeight > root.clientHeight) return root
   let best = root
-  let bestArea = 0
+  let bestArea = innerWidth * innerHeight * 0.5
   for (const el of document.querySelectorAll<HTMLElement>('body *')) {
     if (el.scrollHeight <= el.clientHeight) continue
     const { overflowY } = getComputedStyle(el)

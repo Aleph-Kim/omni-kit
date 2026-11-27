@@ -37,14 +37,28 @@ export function captureBlockReason(url: string | undefined, fileAccess: boolean)
 }
 
 /**
- * 크롬 PDF 보기 여부, 스크롤은 크롬 내장 PDF 확장 안에서만 일어나 다른 확장이 내릴 수 없음
+ * 전체 페이지를 못 찍는 페이지의 안내 문구 키
+ * 크롬 PDF 보기는 스크롤이 크롬 내장 PDF 확장 안에서만 일어나 다른 확장이 내릴 수 없고,
+ * 화면 절반 이상이 canvas(Figma 디자인 화면 등)면 내용이 그림 한 장이라 스크롤해 이어 붙일 것이 없음
  */
-export async function isPdf(tabId: number): Promise<boolean> {
+export async function fullPageBlock(tabId: number): Promise<'captureNoFullPdf' | 'captureNoFullCanvas' | null> {
   try {
-    const [{ result }] = await chrome.scripting.executeScript({ target: { tabId }, func: () => document.contentType })
-    return result === 'application/pdf'
+    const [{ result }] = await chrome.scripting.executeScript({
+      target: { tabId },
+      func: () => {
+        if (document.contentType === 'application/pdf') return 'captureNoFullPdf'
+        for (const canvas of document.querySelectorAll('canvas')) {
+          const box = canvas.getBoundingClientRect()
+          const width = Math.min(box.right, innerWidth) - Math.max(box.left, 0)
+          const height = Math.min(box.bottom, innerHeight) - Math.max(box.top, 0)
+          if (width > 0 && height > 0 && width * height >= innerWidth * innerHeight * 0.5) return 'captureNoFullCanvas'
+        }
+        return null
+      },
+    })
+    return result ?? null
   } catch {
-    return false
+    return null
   }
 }
 

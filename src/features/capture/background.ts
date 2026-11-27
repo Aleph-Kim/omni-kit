@@ -5,7 +5,7 @@ import elementSelectScript from './content/element-select.ts?iife'
 import { PICKED_ATTR, type PickedFrame } from './content/frames'
 import type { Point, Slice } from './content/page-scroll'
 import pageScrollScript from './content/page-scroll.ts?iife'
-import { MAX_PART_HEIGHT, MAX_PART_PIXELS, MAX_SHOTS, deviceScale, frameOriginPattern, isPdf, scrollPositions, sliceDraw, splitParts, toImageRect, type CaptureMode, type Rect } from './shot'
+import { MAX_PART_HEIGHT, MAX_PART_PIXELS, MAX_SHOTS, deviceScale, frameOriginPattern, fullPageBlock, scrollPositions, sliceDraw, splitParts, toImageRect, type CaptureMode, type Rect } from './shot'
 import { deleteCapture, deleteCapturesBefore, saveCapture, type Capture } from './store'
 
 export type CaptureMessage =
@@ -71,8 +71,9 @@ async function startCapture(mode: CaptureMode, tab: chrome.tabs.Tab, requestedOr
   // 선택 영역과 요소는 사용자가 고른 뒤 area-selected, element-selected 메시지로 이어짐
   if (mode === 'area') return run(tab, () => inject(tab, areaSelectScript))
   if (mode === 'element') return run(tab, () => startElementSelect(tab, requestedOrigin))
-  // 팝업은 PDF에서 전체 페이지를 흐리게 하지만 우클릭 메뉴는 막을 수 없어 안내만 띄움
-  if (mode === 'full' && (await isPdf(tab.id!))) return run(tab, () => showNotice(tab.id!, t('captureNoFullPdf')))
+  // 팝업은 PDF와 canvas 페이지에서 전체 페이지를 흐리게 하지만 우클릭 메뉴는 막을 수 없어 안내만 띄움
+  const block = mode === 'full' ? await fullPageBlock(tab.id!) : null
+  if (block) return run(tab, () => showNotice(tab.id!, t(block)))
   return run(tab, () => (mode === 'visible' ? captureVisible(tab) : captureFullPage(tab, requestedOrigin)))
 }
 
